@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>모바일 기울기 테스트</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    #status { color: red; margin-bottom: 20px; }
+    #gamma, #beta, #alpha { font-size: 24px; margin: 10px; }
+    button { font-size: 20px; padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <div id="status">버튼을 눌러 센서 권한 요청</div>
+  <button id="startBtn">기울기 테스트 시작</button>
+  <div id="gamma">Gamma: </div>
+  <div id="beta">Beta: </div>
+  <div id="alpha">Alpha: </div>
+
+  <script>
+    const status = document.getElementById('status');
+    const gammaEl = document.getElementById('gamma');
+    const betaEl = document.getElementById('beta');
+    const alphaEl = document.getElementById('alpha');
+    const btn = document.getElementById('startBtn');
+
+    btn.addEventListener('click', async () => {
+      // iOS 13+ 권한 요청
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        try {
+          const response = await DeviceOrientationEvent.requestPermission();
+          if (response !== 'granted') {
+            status.textContent = '센서 권한이 거부되었습니다.';
+            return;
+          }
+        } catch (err) {
+          status.textContent = '권한 요청 중 오류 발생';
+          console.error(err);
+          return;
+        }
+      }
+
+      status.textContent = '기울기 센서 활성화됨';
+      window.addEventListener('deviceorientation', (event) => {
+        gammaEl.textContent = `Gamma: ${event.gamma.toFixed(2)}`;
+        betaEl.textContent = `Beta: ${event.beta.toFixed(2)}`;
+        alphaEl.textContent = `Alpha: ${event.alpha.toFixed(2)}`;
+      });
+    });
+  </script>
+</body>
+</html>
