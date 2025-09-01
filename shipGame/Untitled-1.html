@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>낙하</title>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    const config = {
+      type: Phaser.AUTO,
+      width: 1280,
+      height: 720,
+      physics: {
+        default: "arcade",
+        arcade: { debug: true, },
+      },
+      scene: { preload, create, update }
+    };
+
+    const game = new Phaser.Game(config);
+
+    let ship;
+    let cursors = null;
+    let speedText;
+    let characters = [];
+
+    const maxSpeed = 300; // 최대 속도
+    const accelStep = 10; // 한 프레임당 속도 증가량
+    const charactersData = [
+      { key: "char1", weight: 1, gravity: 100 },
+      { key: "char2", weight: 2, gravity: 200 },
+      { key: "char3", weight: 3, gravity: 350 },
+      { key: "char4", weight: 4, gravity: 100 },
+      { key: "char5", weight: 5, gravity: 150 },
+      { key: "char6", weight: 6, gravity: 100 },
+      { key: "char7", weight: 7, gravity: 150 },
+      { key: "char8", weight: 8, gravity: 100 },
+      { key: "char9", weight: 9, gravity: 100 },
+      { key: "char10", weight: 10, gravity: 150 },
+    ];
+
+    function preload() {
+      this.load.image("bg", "assets/bg.png");
+      this.load.image("ship", "assets/ship2.png");
+      this.load.image("island", "assets/island.png");
+      const charKeys = ["elephant", "giraffe", "hippo", "monkey", "panda", "parrot", "penguin", "pig", "rabbit", "snake"];
+      charKeys.forEach((key, i) => this.load.image("char" + (i + 1), "assets/" + key + ".png"));
+      // this.load.json("shipPhysics", "assets/ship.json");
+    }
+
+    function create() {
+      // 배경
+      this.add.image(config.width / 2, config.height / 2, "bg").setDisplaySize(config.width, config.height); // 배경 추가
+
+      // 배 생성
+      ship = this.physics.add.image(config.width / 2, config.height - 50, "ship").setOrigin(0.5, 1).setScale(0.6);
+
+      // 배 물리 속성
+      ship.setCollideWorldBounds(true);  // 화면 밖으로 안 나가게      
+      ship.setDrag(150);         // 감속 정도 (커질수록 빨리 멈춤)
+      ship.setMaxVelocity(maxSpeed);  // 최대 속도 제한
+      ship.setImmovable(true);       // 배 위치 고정
+      ship.body.allowGravity = false;
+
+      cursors = this.input.keyboard.createCursorKeys(); // 키보드 입력      
+      speedText = this.add.text(10, 10, "", { font: "20px Arial", fill: "#000" }); // 속도/키 상태 텍스트
+
+      // 캐릭터 생성
+      for (let i = 0; i < 5; i++) {  // 예시로 5명 생성
+        createChar(this);
+      }
+    }
+
+    function update() {
+      if (!cursors) return;
+      // 배 좌우 이동
+      const dirValue = (cursors.right.isDown ? 1 : 0) - (cursors.left.isDown ? 1 : 0);
+      ship.body.velocity.x = Phaser.Math.Clamp(ship.body.velocity.x + dirValue * accelStep, -maxSpeed, maxSpeed);
+
+      // 배 기울기 계산
+      updateShipTilt();
+
+      // 텍스트 업데이트
+      const dirText = dirValue === -1 ? "LEFT" : dirValue === 1 ? "RIGHT" : "NONE";
+      speedText.setText(`속도: ${Math.abs(ship.body.velocity.x).toFixed(1)}\n방향키: ${dirText}`);
+      speedText.setColor(dirValue === -1 ? "#ff0000" : dirValue === 1 ? "#0000ff" : "#000000");
+    }
+
+
+    function createChar(scene) {
+      const randomIndex = Phaser.Math.Between(0, charactersData.length - 1);
+      const data = charactersData[randomIndex];
+
+      const x = Phaser.Math.Between(50, config.width - 50);
+      const y = Phaser.Math.Between(-10, 0);
+
+      const char = scene.physics.add.sprite(x, y, data.key);
+      char.setScale(0.1);
+      char.setCollideWorldBounds(true);
+      char.body.setGravityY(data.gravity);
+      char.weight = data.weight;
+      char.onShip = false;
+
+      // 배와 충돌
+      scene.physics.add.collider(char, ship, () => { char.onShip = true; });
+
+      characters.push(char);
+    }
+
+    function updateShipTilt() {
+      const onShipChars = characters.filter(c => c.onShip);
+      if (onShipChars.length === 0) {
+        ship.angle = 0;
+        return;
+      }
+
+      const weightedSum = onShipChars.reduce((sum, c) => sum + (c.x - ship.x) * c.weight, 0);
+      const totalWeight = onShipChars.reduce((sum, c) => sum + c.weight, 0);
+      const offset = weightedSum / totalWeight;
+
+      const maxAngle = 30;
+      ship.angle = Phaser.Math.Clamp(offset * 0.5, -maxAngle, maxAngle);
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>
