@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>낙하</title>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    const config = {
+      type: Phaser.AUTO,
+      width: 1280,
+      height: 720,
+      physics: {
+        default: "matter",
+        matter: { debug: true, gravity: { y: 0 } }
+      },
+      scene: { preload, create, update }
+    };
+
+    const game = new Phaser.Game(config);
+
+    let ship;
+    let cursors;
+    let speedText;
+    let gameOverText = null;
+    let characters = [];
+    let lastWeight = null;
+    let lastAngle = null;
+    let isGameOver = false;
+    let tiltTime = 0; // 30도 이상 유지 시간(ms)
+    let gameStarted = false; // 게임 상태일때만 배 움직일수있게
+    let startButton; // 시작 버튼
+    let restartButton; // 다시하기 버튼
+    let tiltGamma = 0; // 모바일 기울기 값
+
+    function isMobile() {
+      return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    }
+
+    const maxAngleDeg = 180; // 최대 기울기
+    const fixedY = config.height - 100; // 배 고정 y
+    const maxSpeed = 10; // 배 최대 속도
+    const accelStep = 0.2; // 프레임당 속도 증가량
+
+    const charactersData = [
+      { key: "char1", weight: 900 }, { key: "char2", weight: 700 }, { key: "char3", weight: 800 }, { key: "char4", weight: 300 },
+      { key: "char5", weight: 500 }, { key: "char6", weight: 100 }, { key: "char7", weight: 150 }, { key: "char8", weight: 400 },
+      { key: "char9", weight: 200 }, { key: "char10", weight: 250 }
+    ];
+
+    function preload() {
+      this.load.image("bg", "assets/bg.png");
+      this.load.image("ship", "assets/ship2.png");
+      const charKeys = ["elephant", "giraffe", "hippo", "monkey", "panda", "parrot", "penguin", "pig", "rabbit", "snake"];
+      charKeys.forEach((key, i) => this.load.image("char" + (i + 1), "assets/" + key + ".png"));
+      this.load.json("shipPhysics", "assets/ship.json");
+    }
+
+    function create() {
+      // 화면 밖으로 나가지 못하게
+      this.matter.world.setBounds(0, 0, config.width, config.height);
+
+      // 배경
+      this.add.image(config.width / 2, config.height / 2, "bg").setDisplaySize(config.width, config.height);
+
+      // 배 생성
+      const shipShapes = this.cache.json.get("shipPhysics");
+      ship = this.matter.add.sprite(config.width / 2, fixedY, "ship", null, { shape: shipShapes.ship }).setScale(0.6);
+
+      // 키보드 조작
+      // cursors = this.input.keyboard.createCursorKeys();
+      speedText = this.add.text(10, 10, "", { font: "20px Arial", fill: "#000" });
+
+      // 시작 버튼
+      startButton = this.add.text(config.width / 2, config.height / 2, "시작하기", {
+        font: "64px Arial",
+        fill: "#00ff00",
+        fontStyle: "bold"
+      }).setOrigin(0.5).setInteractive();
+
+      startButton.on('pointerdown', () => {
+        startButton.destroy();
+        gameStarted = true;
+        startGame(this);
+
+        // 모바일이면 기울기 이벤트 등록
+        if (isMobile() && window.DeviceOrientationEvent) {
+          window.addEventListener("deviceorientation", (event) => {
+            tiltGamma = event.gamma || 0;
+          });
+        }
+      });
+
+      // PC이면 키보드 조작
+      if (!isMobile()) cursors = this.input.keyboard.createCursorKeys();
+    }
+
+    function startGame(scene) {
+      // 초기화
+      characters.forEach(character => character.obj.destroy());
+      characters = [];
+      isGameOver = false;
+      tiltTime = 0;
+      ship.setAngle(0);
+
+      // 캐릭터 1초마다 생성
+      scene.time.addEvent({
+        delay: 1000,
+        callback: () => createChar(scene),
+        repeat: 9
+      });
+    }
+
+    function update(time, delta) {
+      if (isGameOver || !gameStarted) return;
+
+      // 배 y 고정
+      ship.y = fixedY;
+
+      // 배 좌우 이동
+      let dir = 0;
+      if (isMobile()) {
+        // 모바일이면 기울기 값으로 좌우 이동
+        if (Math.abs(tiltGamma) > 5) dir = tiltGamma > 0 ? 1 : -1;
+      } else {
+        // PC면 키보드
+        dir = (cursors.right.isDown ? 1 : 0) - (cursors.left.isDown ? 1 : 0);
+      }
+      ship.setVelocityX(dir ? Phaser.Math.Clamp(ship.body.velocity.x + dir * accelStep, -maxSpeed, maxSpeed) : ship.body.velocity.x * 0.98);
+
+      // 좌측 상단 표시
+      speedText.setText(`속도: ${Math.abs(ship.body.velocity.x).toFixed(2)}\n방향키: ${dir === -1 ? "LEFT" : dir === 1 ? "RIGHT" : "NONE"}`);
+      speedText.setColor(dir === -1 ? "#ff0000" : dir === 1 ? "#0000ff" : "#000000");
+
+      characters.forEach((character) => {
+        if (!character.onShip && !character.onGround) {
+          // 떨어지는 중
+          character.obj.y += 2 + character.weight * 0.002; // 무게 따라 속도 차등
+
+          const shipLeft = ship.x - ship.displayWidth / 2;
+          const shipRight = ship.x + ship.displayWidth / 2;
+
+          if (character.obj.y + character.obj.displayHeight >= fixedY && character.obj.x >= shipLeft && character.obj.x <= shipRight) {
+            // 배 위
+            character.onShip = true;
+            character.relativeX = character.obj.x - ship.x;
+            character.obj.y = fixedY - character.obj.displayHeight;
+          } else if (character.obj.y + character.obj.displayHeight >= config.height) {
+            // 바닥
+            character.onGround = true;
+            character.obj.y = config.height - character.obj.displayHeight;
+
+            // 바닥에 있는 캐릭터 좌우로 이동
+            moveOffScreen(this, character);
+          }
+        } else if (character.onShip) {
+          // 배 위에서 배 좌우+기울기 반영
+          const angleRad = Phaser.Math.DegToRad(ship.angle);
+          const rotatedX = character.relativeX * Math.cos(angleRad);
+          const rotatedY = character.relativeX * Math.sin(angleRad);
+          character.obj.x = ship.x + rotatedX;
+          character.obj.y = fixedY - character.obj.displayHeight + rotatedY;
+        }
+      });
+      updateShipTilt(this, delta);
+    }
+
+    function createChar(scene) {
+      const data = charactersData[Phaser.Math.Between(0, charactersData.length - 1)];
+      const x = Phaser.Math.Between(100, config.width - 100);
+      const char = scene.add.sprite(x, -50, data.key).setScale(0.1);
+      characters.push({ obj: char, weight: data.weight, onShip: false, onGround: false, relativeX: 0 });
+    }
+
+    function updateShipTilt(scene, delta) {
+      // 배 위에 있는 캐릭터만 필터링
+      const onShipChars = characters.filter(character => character.onShip && character.relativeX !== null);
+
+      if (onShipChars.length === 0) {
+        scene.tweens.add({ targets: ship, angle: 0, duration: 300, ease: "Sine.easeInOut" });
+        return;
+      }
+
+      // 무게 중심 계산 (토크 기반)
+      let leftTorque = 0;
+      let rightTorque = 0;
+
+      onShipChars.forEach(character => {
+        if (character.relativeX < 0) leftTorque += Math.abs(character.relativeX) * character.weight;
+        else rightTorque += Math.abs(character.relativeX) * character.weight;
+      });
+
+      const torqueDiff = rightTorque - leftTorque; // 오른쪽 토크 - 왼쪽 토크
+      const angleDeg = Phaser.Math.Clamp(torqueDiff * 0.0005, -maxAngleDeg, maxAngleDeg);
+
+      // 기울기 적용
+      scene.tweens.add({ targets: ship, angle: angleDeg, duration: 100, ease: "Sine.easeInOut" });
+
+      // 디버깅 로그
+      const totalWeight = onShipChars.reduce((sum, character) => sum + character.weight, 0);
+
+      if (lastAngle !== angleDeg || lastWeight !== totalWeight) {
+        console.log(
+          `총무게: ${totalWeight}, 기울기: ${angleDeg.toFixed(2)}도` +
+          `왼쪽토크: ${leftTorque.toFixed(2)}, 오른쪽토크: ${rightTorque.toFixed(2)}, `
+        );
+        lastAngle = angleDeg;
+        lastWeight = totalWeight;
+      }
+
+      // 게임오버 판정     
+      if (Math.abs(angleDeg) >= 30) {
+        tiltTime += delta; // 30도 이상이면 시간 누적
+        if (tiltTime >= 1200) gameOver(scene); // 1.2초 이상 유지
+      } else tiltTime = 0; // 시간 리셋
+    }
+
+
+    function gameOver(scene) {
+      if (isGameOver) return;
+      isGameOver = true;
+      ship.setVelocity(0, 0);
+      ship.setAngularVelocity(0);
+
+      // 배 위 캐릭터 배열
+      const onShipChars = characters.filter(character => character.onShip);
+
+      // 배 뒤집힘 각도 계산: 왼쪽 무게 > 오른쪽 무게 -> 왼쪽으로, 아니면 오른쪽
+      let leftWeight = 0, rightWeight = 0;
+      onShipChars.forEach(character => {
+        if (character.relativeX < 0) leftWeight += character.weight;
+        else rightWeight += character.weight;
+      });
+      const rotateAngle = leftWeight > rightWeight ? -180 : 180; // 왼쪽 무거우면 -180, 오른쪽 무거우면 180
+
+      // 배 트윈 (최대 ±180도)
+      scene.tweens.add({
+        targets: ship,
+        angle: Phaser.Math.Clamp(ship.angle + rotateAngle, -180, 180),
+        duration: 1000,
+        ease: "Sine.easeIn",
+      });
+
+      // 캐릭터는 배에서 떨어져 바닥으로 이동
+      onShipChars.forEach(character => {
+        character.onShip = false; // 배에서 떨어짐
+        const targetY = config.height - character.obj.displayHeight; // 바닥 위치
+        scene.tweens.add({
+          targets: character.obj,
+          y: targetY,
+          duration: 500 + Math.random() * 300, // 조금씩 차이를 줘서 자연스럽게
+          ease: "Sine.easeIn",
+          onComplete: () => { moveOffScreen(scene, character); }
+        });
+      });
+
+
+      gameOverText = scene.add.text(config.width / 2, config.height / 2, "GAME OVER", {
+        font: "64px Arial",
+        fill: "#ff0000",
+        fontStyle: "bold"
+      }).setOrigin(0.5);
+
+      restartButton = scene.add.text(config.width / 2, config.height / 2 + 100, "다시하기", {
+        font: "48px Arial",
+        fill: "#00ff00",
+        fontStyle: "bold"
+      }).setOrigin(0.5).setInteractive();
+
+      restartButton.on('pointerdown', () => {
+        restartButton.destroy();
+        if (gameOverText) {
+          gameOverText.destroy();
+          gameOverText = null;
+        }
+        characters.forEach(character => character.obj.destroy());
+        characters = [];
+        ship.setPosition(config.width / 2, fixedY);
+        ship.setAngle(0);
+        isGameOver = false;
+        tiltTime = 0;
+
+        startGame(scene);
+      });
+    }
+
+    function moveOffScreen(scene, character, moveSpeed = 200) {
+      const targetX = character.obj.x < config.width / 2 ? -50 : config.width + 50; // 화면 밖
+      const distance = Math.abs(targetX - character.obj.x);
+      const duration = (distance / moveSpeed) * 1000;
+
+      scene.tweens.add({
+        targets: character.obj,
+        x: targetX,
+        duration: duration,
+        ease: "Linear",
+        onComplete: () => {
+          character.obj.destroy();
+        },
+      });
+    }
+
+
+  </script>
+</body>
+
+</html>
