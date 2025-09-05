@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>낙하산</title>
+  <link rel="stylesheet" type="text/css" href="./include/css/common.css">
+</head>
+
+<body>
+  <div id="wrap" data-state="ready">
+    <button class="button start">시작하기</button>
+    <button class="button retry hidden">다시하기</button>
+    
+
+    <div class="gameOverText hidden">GAME OVER</div>
+    <div class="hud">
+      <div class="speedText">속도: 0.00</div>
+      <div class="directionText">방향: </div>
+      <div class="angle">기울기: </div>
+      <div class="weight">총무게: </div>
+    </div>
+    <div class="quizWrap hidden">
+      <div class="quizQuestion"></div>
+      <input type="text" class="quizInput" placeholder="정답을 입력하세요" />
+      <button class="quizSubmit">제출</button>
+      <div class="quizMessage"></div>
+    </div>
+  </div>
+  <button class="bgmToggle">BGM</button>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+  <script src="./include/js/commonClass.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<body>
+  <div id="ui">
+    <button class="btn start">시작하기</button>
+    <button class="btn restart hidden">다시하기</button>
+  </div>
+
+  <style>
+    #ui {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+    }
+    .btn {
+      font-size: 32px;
+      font-weight: bold;
+      padding: 20px 40px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .start {
+      background: #00cc66;
+      color: white;
+    }
+    .restart {
+      background: #ff3333;
+      color: white;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+
+  <script>
+    const startBtn = document.querySelector(".btn.start");
+    const restartBtn = document.querySelector(".btn.restart");
+
+    startBtn.addEventListener("click", () => {
+      startBtn.classList.add("hidden");
+      gameStarted = true;
+      startGame(game.scene.scenes[0]); // 현재 scene 전달
+    });
+
+    function gameOver(scene) {
+      if (isGameOver) return;
+      isGameOver = true;
+
+      // 기존 gameOver 처리 ...
+      restartBtn.classList.remove("hidden");
+    }
+
+    restartBtn.addEventListener("click", () => {
+      restartBtn.classList.add("hidden");
+      characters.forEach(character => character.obj.destroy());
+      characters = [];
+      ship.setPosition(config.width / 2, fixedY);
+      ship.setAngle(0);
+      isGameOver = false;
+      tiltTime = 0;
+      startGame(game.scene.scenes[0]);
+    });
+  </script>
+</body>
