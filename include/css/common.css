@@ -36,5 +36,5 @@
 /* 퀴즈 메시지 (정답/오답) */
 .quizMessage { margin-top: 10px; font-size: 18px; font-weight: bold; color: #e74c3c; } 
 
-.bgmToggle { position:absolute; top:10px; right:10px; z-index:100; cursor: pointer; background-color: green;} 
-.bgmToggle.on { background-color: red; } 
+.bgmToggle { position:absolute; top:10px; right:10px; z-index:100; width: 24px;height: 24px; cursor: pointer; background: url(../../assets/bgm.png) no-repeat center/contain;} 
+.bgmToggle.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 

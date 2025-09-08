@@ -83,7 +83,7 @@ class Ship {
 class Character {
   constructor(scene, data, x) {
     this.scene = scene;
-    this.obj = scene.add.sprite(x, -50, data.key).setScale(0.1);
+    this.obj = scene.add.sprite(x, -50, data.key).setScale(0.2);
     this.weight = data.weight;
     this.onShip = false;
     this.onGround = false;
@@ -122,13 +122,13 @@ class Character {
         this.scene.onShipChars.push(this);
         this.relativeX = this.obj.x - ship.sprite.x;
         this.obj.y = shipTop - this.obj.displayHeight / 2;
-        this.obj.setScale(0.1); // 배 위 스케일 적용
+        this.obj.setScale(0.2); // 배 위 스케일 적용
         this.shipOn();
-      } else if (this.obj.y + this.obj.displayHeight >= GAME_HEIGHT) {
+      } else if (this.obj.y + this.obj.displayHeight >= SHIP_FIXED_Y + this.obj.displayHeight) {
         // 바닥
         this.onGround = true;
         this.obj.y = GAME_HEIGHT - this.obj.displayHeight;
-        this.obj.setScale(0.1); // 바닥 스케일 적용
+        this.obj.setScale(0.2); // 바닥 스케일 적용
         this.moveOffScreen();
         this.groundOn();
       }
@@ -160,27 +160,32 @@ class Character {
 
   // 바닥 애니메이션
   groundOn() {
-    let startFrame = this.obj.x < GAME_WIDTH / 2 ? 0 : 2;
-    let endFrame = this.obj.x < GAME_WIDTH / 2 ? 1 : 3;
+    const sheetKey = this.data.key + "_swim";
+    const goingLeft = this.obj.x <= GAME_WIDTH / 2;
+    const animKey = sheetKey + (goingLeft ? "_left" : "_right");
 
-    const key = this.data.key + "_swim";
+    const startFrame = goingLeft ? 0 : 2;
+    const endFrame = goingLeft ? 1 : 3;
 
-    this.obj.setTexture(key);
-    if (!this.scene.anims.exists(key + "_swim_anim")) {
+    this.obj.setTexture(sheetKey, startFrame);
+
+    if (!this.scene.anims.exists(animKey)) {
       this.scene.anims.create({
-        key: key + "_swim_anim",
-        frames: this.scene.anims.generateFrameNumbers(key, { start: startFrame, end: endFrame }),
+        key: animKey,
+        frames: this.scene.anims.generateFrameNumbers(sheetKey, { start: startFrame, end: endFrame }),
         frameRate: 5,
         repeat: -1,
       });
     }
-    this.obj.play(key + "_swim_anim");
+
+    this.obj.play(animKey, true);
   }
 
   // 배에서 떨어져 바닥으로 이동 할때
   fall() {
     this.onShip = false;
-    const targetY = GAME_HEIGHT - this.obj.displayHeight; // 바닥 위치
+    // const targetY = GAME_HEIGHT - this.obj.displayHeight; // 바닥 위치        
+    const targetY = Phaser.Math.Between(GAME_HEIGHT - 10, SHIP_FIXED_Y + 50);
     this.scene.tweens.add({
       targets: this.obj,
       y: targetY,
@@ -191,19 +196,22 @@ class Character {
   }
 
   // 바닥에 떨어진 캐릭터들 좌우 가까운 방향으로 이동
-  moveOffScreen(moveSpeed = 200) {
+  moveOffScreen() {    
     if (this.scene.swimSound) {
       this.scene.swimSound.play();
       this.groundOn();
     }
+    this.obj.setDepth(this.obj.y);
+    const moveSpeed = this.data.swimSpeed || 200;
     const targetX = this.obj.x < GAME_WIDTH / 2 ? -50 : GAME_WIDTH + 50;
     const distance = Math.abs(targetX - this.obj.x);
-    const duration = (distance / moveSpeed) * 1000;
+    const duration = (distance / moveSpeed) * 500;
     this.scene.tweens.add({
       targets: this.obj,
       x: targetX,
       duration,
       ease: "Linear",
+      onUpdate: () => this.obj.setDepth(this.obj.y),
       onComplete: () => this.destroy(),
     });
   }
@@ -275,16 +283,16 @@ class GameScene extends Phaser.Scene {
     this.bgm = null; // BGM
 
     this.charactersData = [
-      { key: "char1", weight: 900, name: "elephant" },
-      { key: "char2", weight: 700, name: "giraffe" },
-      // { key: "char3", weight: 800, name: "hippo" },
-      // { key: "char4", weight: 300, name: "monkey" },
-      // { key: "char5", weight: 500, name: "panda" },
-      // { key: "char6", weight: 100, name: "parrot" },
-      // { key: "char7", weight: 150, name: "penguin" },
-      // { key: "char8", weight: 400, name: "pig" },
-      // { key: "char9", weight: 200, name: "rabbit" },
-      // { key: "char10", weight: 250, name: "snake" },
+      { key: "char1", weight: 900, name: "elephant", swimSpeed: 80 },
+      { key: "char2", weight: 700, name: "giraffe", swimSpeed: 90 },
+      { key: "char3", weight: 800, name: "hippo", swimSpeed: 120 },
+      { key: "char4", weight: 300, name: "monkey", swimSpeed: 140 },
+      { key: "char5", weight: 500, name: "panda", swimSpeed: 100 },
+      { key: "char6", weight: 100, name: "parrot", swimSpeed: 100 },
+      { key: "char7", weight: 150, name: "penguin", swimSpeed: 200 },
+      { key: "char8", weight: 400, name: "pig", swimSpeed: 110 },
+      { key: "char9", weight: 200, name: "rabbit", swimSpeed: 170 },
+      { key: "char10", weight: 250, name: "snake", swimSpeed: 150 },
     ];
   }
 
