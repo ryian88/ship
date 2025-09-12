@@ -184,7 +184,7 @@ class Character {
   // 배에서 떨어져 바닥으로 이동 할때
   fall() {
     this.onShip = false;
-    // const targetY = GAME_HEIGHT - this.obj.displayHeight; // 바닥 위치        
+    // const targetY = GAME_HEIGHT - this.obj.displayHeight; // 바닥 위치
     const targetY = Phaser.Math.Between(GAME_HEIGHT - 10, SHIP_FIXED_Y + 50);
     this.scene.tweens.add({
       targets: this.obj,
@@ -196,7 +196,7 @@ class Character {
   }
 
   // 바닥에 떨어진 캐릭터들 좌우 가까운 방향으로 이동
-  moveOffScreen() {    
+  moveOffScreen() {
     if (this.scene.swimSound) {
       this.scene.swimSound.play();
       this.groundOn();
@@ -212,7 +212,10 @@ class Character {
       duration,
       ease: "Linear",
       onUpdate: () => this.obj.setDepth(this.obj.y),
-      onComplete: () => this.destroy(),
+      onComplete: () => {
+        this.offScreen = true;
+        this.destroy();
+      },
     });
   }
 
@@ -377,6 +380,15 @@ class GameScene extends Phaser.Scene {
 
     // 배 기울기 경고 처리
     this.handleTiltWarning(delta);
+
+    // 모든 캐릭터가 내려왔을때 
+    if (this.tiltTime == 0 && this.characters.length > 0 && this.characters.every(c => c.onShip || c.offScreen)) {      
+      setTimeout(() => {
+        this.setGameState("gameend");
+        this.ship.stop();
+        if (this.bgm.isPlaying) this.bgm.stop();
+      }, 200);
+    }
   }
 
   setGameState(newState) {

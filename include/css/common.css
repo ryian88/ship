@@ -9,6 +9,7 @@
 .retry { background: #ff3333; color: white; display: none; } 
 #wrap[data-state="ready"] .start { display: block; } 
 #wrap[data-state="gameover"] .retry { display: block; } 
+#wrap[data-state="gameend"] .retry { display: block; } 
 #wrap[data-state="gameover"] .gameOverText { display: block; } 
 /* HUD */
 .hud { position: absolute; top: 10px; left: 10px; font-size: 18px; background: rgba(0,0,0,0.5); color: #fff; padding: 8px 12px; border-radius: 5px; pointer-events: none; } 
