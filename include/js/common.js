@@ -655,13 +655,7 @@ const config = {
   height: GAME_HEIGHT,
   parent: "wrap",
   physics: { default: "matter", matter: { debug: true, gravity: { y: 0 } } },
-  scene: [MainMenuScene, GameScene],
-  scale: {
-    mode: isMobile() ? Phaser.Scale.FIT : Phaser.Scale.NONE, // 모바일이면 화면 맞춤
-    autoCenter: Phaser.Scale.CENTER_BOTH,
-    parent: "wrap",
-    orientation: Phaser.Scale.LANDSCAPE, // 모바일 가로 모드 강제
-  },
+  scene: [MainMenuScene, GameScene],  
 };
 
 new Phaser.Game(config);
