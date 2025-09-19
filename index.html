@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>균형잡기</title>
+  <link rel="stylesheet" type="text/css" href="./include/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./include/css/common.css">
+</head>
+
+<body>
+  <div id="wrap" data-state="mainScene">
+    <div class="scene mainMenuScene">
+      <p class="mainTitle">균형잡기</p>
+      <div class="buttonBox">
+        <button class="button js-startButton startButton">시작하기</button>
+        <button class="button js-howToPlayButton howToPlayButton">게임 방법</button>
+      </div>
+    </div>
+
+    <div class="js-howToPlayPop howToPlayPop">
+      <div class="howToPlay">
+        <button class="js-howToPlayPopClose howToPlayPopClose"></button>
+        <div class="preview">
+          <img src="preview.png" alt="게임 예시 화면" />
+        </div>
+        <div class="sideTextWrap">
+          <ul>
+            <li>화면을 기울여 배를 움직일 수 있어요.</li>
+            <li>배에 동물 친구들을 태우면 점수가 올라가요.</li>
+            <li>배의 균형을 잃으면 배가 뒤집어질 수 있어요.</li>
+            <li>사용하고 싶은 아이템을 누르면 문제가 나와요.</li>
+            <li>정답을 맞추면 아이템을 사용할 수 있어요.</li>
+            <li>목표 점수를 달성하면 다음 단계로 이동할 수 있어요.</li>
+          </ul>
+        </div>
+        <div class="bottomTextWrap">
+          <p>제한 시간 내에 많은 <span>동물 친구들을 태워</span> 목표 점수를 달성해요.</p>
+          <p>균형을 잃으면 배가 뒤집힐 수 있으니 <span>균형을 잘 맞춰</span> 태우도록 해요.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene gameScene">
+      <div class="hud">
+        <div class="row">
+          <div class="label">점수:</div>
+          <div class="value js-score score"></div>
+        </div>
+        <div class="row">
+          <div class="label"><span class="js-stageNumber"></span>단계 목표:</div>
+          <div class="value js-stage stage"></div>
+        </div>
+      </div>
+      <div class="timeBox">
+        <p>시간: <span class="js-time time">60</span></p>
+      </div>
+
+      <div class="itemBox">
+        <button class="js-boostButton boostButton">
+          <img src="../assets/boost.png" alt="">
+        </button>
+        <button class="js-timeUpButton timeUpButton">
+          <img src="../assets/timeup.png" alt="">
+        </button>
+      </div>
+
+      <div class="quizPop js-quizPop">
+        <div class="js-quizWrap quizWrap"></div>
+      </div>
+    </div>
+
+    <div class="js-gameOverPop gameOverPop" data-state="next">
+      <div class="result">
+        <p><span class="js-resultNumber"></span>단계 <span class="js-resultStage resultStage"></span></p>
+        <p>점수: <span class="js-resultScore resultScore"></span></p>
+        <button class="button js-nextStageButton nextStageButton">다음 단계</button>
+        <button class="button js-homeButton homeButton">처음으로</button>
+      </div>
+
+    </div>
+
+    <button class="js-bgmButton bgmButton"></button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+  <script type="module" src="./include/js/common.js"></script>
+</body>
+
+</html>

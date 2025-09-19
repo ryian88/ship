@@ -1,0 +1,77 @@
+#wrap { position: absolute; width: 1280px; height: 720px; overflow: hidden; } 
+
+/* 공통 버튼 */
+.button { padding: 10px 110px; font-size: 30px; cursor: pointer; background-color: #215f9a; color: #fff; transition: background-color 0.2s; border: 2px solid #fff; border-radius: 50px; } 
+.button:hover { background-color: #163e64; } 
+.scene { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; } 
+
+/* BGM 버튼 */
+.bgmButton { position:absolute; bottom: 30px; right: 30px; z-index:100; width: 24px; height: 24px; cursor: pointer; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; cursor: pointer; } 
+.bgmButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
+
+/* 메인 */
+#wrap[data-state="mainScene"] .mainMenuScene { display: block; background: url(../../assets/bg.png) no-repeat center center / 100% 100%; } 
+.mainTitle { position: absolute; top: 80px; left: 750px; font-size: 100px; color: #fff; } 
+.buttonBox { display: flex; flex-wrap: wrap; width: 350px; gap: 20px; position: absolute; top: 440px; left: 760px; } 
+
+/* 게임방법 */
+.howToPlayPop { display: none; position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.3); } 
+.howToPlayPop.on { display: block; z-index: 2; } 
+.howToPlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 30px; border: 4px solid #274d76; width: 1240px; height: 680px; background: #d2e0f0; overflow: hidden; } 
+.howToPlayPopClose { width: 30px; height: 30px; position: absolute; top: 20px; right: 20px; cursor: pointer; background: #eee; } 
+.preview { position: absolute; top: 70px; left: 30px; width: 760px; height: 450px; background: #fff; border-radius: 30px; overflow: hidden; } 
+.sideTextWrap { position: absolute; top: 70px; left: 820px; color: #274d76; font-size: 26px; width: 380px; } 
+.bottomTextWrap { width: 100%; height: 130px; background: #34679d; color: #fff; position: absolute; bottom: 0; font-size: 34px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; } 
+.bottomTextWrap span { color: #ffef9e; } 
+
+/* 게임화면 */
+#wrap[data-state="playing"] .gameScene, #wrap[data-state="gameend"] .gameScene,#wrap[data-state="gameover"] .gameScene { display: block; } 
+
+/* HUD */
+.hud { position: absolute; bottom: 20px; left: 30px; font-size: 34px; color: #fff; width: 280px; text-align: right; } 
+.row { display: flex; justify-content: flex-end; } 
+.label { min-width: 180px; } 
+.value { min-width: 90px; } 
+.score { color: #ff80c0; } 
+.stage { color: #ffc848; } 
+
+/* 타이머 */
+.timeBox { position: absolute; bottom: 20px; right: 70px; font-size: 34px; color: #fff; } 
+.time { color: #d6c2ff; } 
+
+/* 아이템 */
+.itemBox { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; } 
+.itemBox button { width: 60px; height: 60px; background: rgba(255,255,255,0.8); border-radius: 10px; display: flex; align-items: center; justify-content: center; } 
+.itemBox button img { width: 45px; height: 45px; } 
+.itemBox button.on { pointer-events: none; } 
+.itemBox button.on img { filter: grayscale(100%); } 
+
+
+
+/* 게임오버 */
+.gameOverPop { display: none; position: absolute; } 
+.gameOverPop.on { display: block; width: 100%; height: 100%; background: rgba(0,0,0,0.5); } 
+.result { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; color: #fff; font-size: 34px; gap: 20px; } 
+.resultStage { color: #ffc848; } 
+.resultScore { color: #ff80c0; } 
+.gameOverPop button { display: none; } 
+.gameOverPop[data-state="next"] .nextStageButton { display: block; background: #ff80c0; } 
+.gameOverPop[data-state="end"] .homeButton, .gameOverPop[data-state="final"] .homeButton { display: block; } 
+
+
+/* 퀴즈 영역 */
+.quizPop { display: none; position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.3); } 
+.quizPop.on { display: block; } 
+.quizWrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #fff; padding: 20px; border: 6px solid #fdd203; border-radius: 10px; text-align: center; width: 620px; font-size: 30px; } 
+
+/* 퀴즈 문제 */
+.quizQuestion { width: 100%; height: 140px; display: flex; gap: 10px; margin-bottom: 10px; align-items: center; justify-content: center; text-align: center; } 
+.quizQuestion[data-item = "0"] .item .img { width: 120px; height: 120px; background: url(../../assets/boost.png) no-repeat center/contain; } 
+.quizQuestion[data-item = "1"] .item .img { width: 120px; height: 120px; background: url(../../assets/timeup.png) no-repeat center/contain; } 
+.item { width: 140px; height: 100%; background: #dceaf7; flex-shrink: 0; border-radius: 10px; display: flex; justify-content: center; align-items: center; } 
+.underline { display: inline-block; border-bottom: 3px solid #ff0000; color: #ff0000; } 
+.question { background: #fde3ee; border-radius: 10px; flex: 1; text-align: center; padding: 10px; display: flex; align-items: center; height: 100%; } 
+.options { display: flex; justify-content: space-between; background: #f1fbeb; padding: 10px; border-radius: 10px; } 
+.options li { width: 32%; height: 120px; display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #33cccc; color: #fff; cursor: pointer; } 
+
+
