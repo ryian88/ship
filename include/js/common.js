@@ -11,9 +11,9 @@ const MAX_SPEED = 10; // 배 최대 속도
 const ACCEL_STEP = 0.2; // 프레임당 속도 증가량
 
 let bgm = null;
-let stageTime = 10000; // 스테이지 시간
-let boostTime = 1000; // 부스트 유지시간
-const stageTargets = [60, 90, 120, 150]; // 목표 점수
+let stageTime = 60000; // 스테이지 시간
+let boostTime = 10000; // 부스트 유지시간
+const stageTargets = [600, 900, 1200, 1500]; // 목표 점수
 
 let charactersData = [
   { key: "char1", weight: 90, name: "elephant", swimSpeed: 80 },
@@ -51,10 +51,13 @@ const resultScore = document.querySelector(".js-resultScore");
 const resultNumber = document.querySelector(".js-resultNumber");
 
 const gameOverPop = document.querySelector(".js-gameOverPop");
+
 function isMobile() {
   return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
 }
+
 initScale(wrap);
+
 function showQuiz(scene, item) {
   // 랜덤 퀴즈 선택
   const randomIndex = Phaser.Math.Between(0, quizData.length - 1);
@@ -512,7 +515,7 @@ class Character {
     if (!this.onShip && !this.onGround) {
       this.obj.y += 2 + this.weight * 0.002; // 낙하 속도 (무게 반영)
       this.obj.x += Math.sin(performance.now() * this.sway.speed + this.sway.offset) * this.sway.amplitude * 0.05; // 좌우 흔들림 (사인 + 랜덤 속도)
-      this.obj.x = Phaser.Math.Clamp(this.obj.x, 0, GAME_WIDTH); // 화면 밖으로 못 나가게 제한
+      this.obj.x = Phaser.Math.Clamp(this.obj.x, 0 +50, GAME_WIDTH -50); // 화면 밖으로 못 나가게 제한
 
       // 낙하 스케일 점점 줄이기
       const minScale = 0.08; // 최소 스케일
@@ -655,7 +658,7 @@ const config = {
   height: GAME_HEIGHT,
   parent: "wrap",
   physics: { default: "matter", matter: { debug: true, gravity: { y: 0 } } },
-  scene: [MainMenuScene, GameScene],  
+  scene: [MainMenuScene, GameScene],
 };
 
 new Phaser.Game(config);

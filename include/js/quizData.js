@@ -84,4 +84,9 @@ export const quizData = [
     options: ["사슴", "호랑이", "늑대"],
     answer: 0,
   },
+  {
+    question: "다음 중 포유류이면서 알을 낳는 동물을 고르세요.",
+    options: ["고양이", "오리너구리", "사자"],
+    answer: 1,
+  },
 ];
