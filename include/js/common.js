@@ -11,7 +11,7 @@ const MAX_SPEED = 10; // 배 최대 속도
 const ACCEL_STEP = 0.2; // 프레임당 속도 증가량
 
 let bgm = null;
-let stageTime = 60000; // 스테이지 시간
+let stageTime = 30000; // 스테이지 시간
 let boostTime = 10000; // 부스트 유지시간
 const stageTargets = [600, 900, 1200, 1500]; // 목표 점수
 
@@ -174,11 +174,13 @@ class GameScene extends Phaser.Scene {
     this.boostActive = false;
     this.boostTimer = 0; // 남은 부스트 시간(ms)
     this.boostMultiplier = 2; // 속도 2배
+    this.boostFlashTween = null;
   }
 
   preload() {
     this.load.image("bg", "assets/bg.png");
     this.load.audio("success", "assets/media/success.mp3");
+    this.load.audio("timer", "assets/media/timer.mp3");
     this.load.audio("fail", "assets/media/fail.mp3");
     this.load.audio("correct", "assets/media/correct.mp3");
     this.load.audio("incorrect", "assets/media/incorrect.mp3");
@@ -212,6 +214,9 @@ class GameScene extends Phaser.Scene {
 
     // 경고음
     this.warning = this.sound.add("warning", { volume: 0.3 });
+
+    //10초 카운트
+    this.timerSound = this.sound.add("timer", { loop: true, volume: 0.5 });
 
     // 배경 생성
     this.add.image(GAME_WIDTH / 2, GAME_HEIGHT / 2, "bg").setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
@@ -273,12 +278,32 @@ class GameScene extends Phaser.Scene {
     const currentMaxSpeed = this.boostActive ? MAX_SPEED * this.boostMultiplier : MAX_SPEED;
     this.ship.move(dir, currentMaxSpeed);
 
+    //  배 부스트 처리
+    if (this.boostActive && !this.ship.boostFlashTween) {
+      const colors = [0xffff00, 0xff0000, 0x0000ff, 0x00ff00];
+      let colorIndex = 0;
+      this.ship.boostFlashTween = this.time.addEvent({
+        delay: 200,
+        loop: true,
+        callback: () => {
+          this.ship.sprite.setTint(colors[colorIndex]);
+          colorIndex = (colorIndex + 1) % colors.length;
+        },
+      });
+    }
+
+    if (!this.boostActive && this.ship.boostFlashTween) {
+      this.ship.boostFlashTween.remove(false);
+      this.ship.sprite.clearTint();
+      this.ship.boostFlashTween = null;
+    }
+
     // 캐릭터 업데이트
     this.characters.forEach(character => character.update(this.ship));
 
     // 배 상태 업데이트 및 기울기 적용
-    this.ship.updateState(this.onShipChars);
     this.ship.applyTilt();
+    this.ship.updateState(this.onShipChars);
 
     // HUD 업데이트
     updateHUD(this.ship, this);
@@ -343,13 +368,21 @@ class GameScene extends Phaser.Scene {
   updateTimer(delta) {
     if (this.state !== "playing") return;
     if (this.timer <= 0) {
+      if (this.timerSound.isPlaying) this.timerSound.stop();
       if (this.ship.state.totalScore >= this.targetScore) {
         if (this.currentStageIndex >= stageTargets.length - 1) this.gameOver("final");
         else this.gameOver("next");
       } else this.gameOver("end");
     } else {
       this.timer = this.timer - delta;
-      time.textContent = Math.max(0, Math.ceil(this.timer / 1000));
+      const sec = Math.max(0, Math.ceil(this.timer / 1000));
+      time.textContent = sec;
+
+      if (sec <= 10) {
+        if (!this.timerSound.isPlaying) this.timerSound.play();
+      } else {
+        if (this.timerSound.isPlaying) this.timerSound.stop();
+      }
     }
   }
 
@@ -400,6 +433,7 @@ class GameScene extends Phaser.Scene {
     this.boostTimer = 0;
     boostButton.classList.remove(ACT_ON);
     timeUpButton.classList.remove(ACT_ON);
+    if (this.timerSound.isPlaying) this.timerSound.stop();
   }
 }
 
@@ -493,7 +527,7 @@ class Character {
     this.scoreText = scene.add
       .text(this.obj.x, this.obj.y - 50, `+${this.weight}`, {
         font: "24px Arial",
-        fill: "#ffff00",
+        fill: "#834ef5",
         stroke: "#000",
         strokeThickness: 3,
       })
@@ -515,7 +549,7 @@ class Character {
     if (!this.onShip && !this.onGround) {
       this.obj.y += 2 + this.weight * 0.002; // 낙하 속도 (무게 반영)
       this.obj.x += Math.sin(performance.now() * this.sway.speed + this.sway.offset) * this.sway.amplitude * 0.05; // 좌우 흔들림 (사인 + 랜덤 속도)
-      this.obj.x = Phaser.Math.Clamp(this.obj.x, 0 +50, GAME_WIDTH -50); // 화면 밖으로 못 나가게 제한
+      this.obj.x = Phaser.Math.Clamp(this.obj.x, 0 + 50, GAME_WIDTH - 50); // 화면 밖으로 못 나가게 제한
 
       // 낙하 스케일 점점 줄이기
       const minScale = 0.08; // 최소 스케일

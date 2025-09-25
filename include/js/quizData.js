@@ -1,7 +1,7 @@
 export const quizData = [
   {
-    question: "다음 중 학교에서 관찰할 수 있는 동물이 <span class='underline'>아닌</span> 것을 고르세요.",
-    options: ["상어", "개미", "달팽이"],
+    question: "다음 중 땅 속에서 생활하며 시력이 거의 없는 포유류를 고르세요.",
+    options: ["두더지", "사슴", "낙타"],
     answer: 0,
   },
   {
@@ -10,14 +10,14 @@ export const quizData = [
     answer: 2,
   },
   {
-    question: "다음 중 날 수 <span class='underline'>없는</span> 동물을 고르세요.",
-    options: ["독수리", "펭귄", "참새"],
-    answer: 1,
+    question: "다음 중 심해에서 빛을 내는 생물을 고르세요.",
+    options: ["심해오징어", "거북이", "펭귄"],
+    answer: 0,
   },
   {
-    question: "다음 중 물에서만 생활하는 동물을 고르세요.",
-    options: ["거북이", "고래", "코끼리"],
-    answer: 1,
+    question: "다음 중 해수와 민물을 모두 생활할 수 <span class='underline'>없는</span> 어류를 고르세요.",
+    options: ["장어", "연어", "금붕어"],
+    answer: 2,
   },
   {
     question: "다음 중 초식동물이 <span class='underline'>아닌</span> 것을 고르세요.",
@@ -30,8 +30,8 @@ export const quizData = [
     answer: 0,
   },
   {
-    question: "다음 중 익충(해충을 잡아먹는 곤충)을 고르세요.",
-    options: ["잠자리", "바퀴벌레", "모기"],
+    question: "다음 중 꼬리가 고리 모양이고 줄무늬가 있는 동물을 고르세요.",
+    options: ["라쿤", "너구리", "오소리"],
     answer: 0,
   },
   {
@@ -65,9 +65,9 @@ export const quizData = [
     answer: 1,
   },
   {
-    question: "다음 중 가장 무거운 동물을 고르세요.",
-    options: ["코끼리", "고래", "말"],
-    answer: 1,
+    question: "다음 중 초음파를 사용해 먹이를 찾는 동물을 고르세요.",
+    options: ["박쥐", "고양이", "오리너구리"],
+    answer: 0,
   },
   {
     question: "다음 중 곤충이 <span class='underline'>아닌</span> 동물을 고르세요.",
