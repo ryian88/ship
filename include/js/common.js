@@ -13,7 +13,7 @@ const ACCEL_STEP = 0.2; // 프레임당 속도 증가량
 let bgm = null;
 let stageTime = 30000; // 스테이지 시간
 let boostTime = 10000; // 부스트 유지시간
-const stageTargets = [600, 900, 1200, 1500]; // 목표 점수
+const stageTargets = [500, 650, 800, 1000]; // 목표 점수
 
 let charactersData = [
   { key: "char1", weight: 90, name: "elephant", swimSpeed: 80 },
