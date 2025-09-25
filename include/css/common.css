@@ -34,6 +34,10 @@
 .value { min-width: 90px; } 
 .score { color: #ff80c0; } 
 .stage { color: #ffc848; } 
+.direction.left  { color: #ff0000; } 
+.direction.right  { color: #0000ff; } 
+.direction.left::after { content: "◀"; margin-left: 5px; } 
+.direction.right::after { content: "▶"; margin-left: 5px; } 
 
 /* 타이머 */
 .timeBox { position: absolute; bottom: 20px; right: 70px; font-size: 34px; color: #fff; } 

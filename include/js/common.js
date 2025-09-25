@@ -43,6 +43,7 @@ const homeButton = document.querySelector(".js-homeButton");
 
 const score = document.querySelector(".js-score");
 const stage = document.querySelector(".js-stage");
+const direction = document.querySelector(".js-direction");
 const stageNumber = document.querySelector(".js-stageNumber");
 const time = document.querySelector(".js-time");
 
@@ -124,10 +125,11 @@ function initBGMButton() {
   };
 }
 
-function updateHUD(ship, gameScene) {
+function updateHUD(ship, gameScene, dir) {
   score.textContent = `${ship.state.totalScore}`;
   stage.textContent = stageTargets[gameScene.currentStageIndex];
   stageNumber.textContent = `${gameScene.currentStageIndex + 1}`;
+  direction.className = `value js-direction direction ${dir === -1 ? "left" : dir === 1 ? "right" : ""}`;
 }
 
 class MainMenuScene extends Phaser.Scene {
@@ -306,7 +308,7 @@ class GameScene extends Phaser.Scene {
     this.ship.updateState(this.onShipChars);
 
     // HUD 업데이트
-    updateHUD(this.ship, this);
+    updateHUD(this.ship, this, dir);
 
     // 배 기울기 경고 처리
     this.handleTiltWarning(delta);
