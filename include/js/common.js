@@ -258,23 +258,13 @@ class GameScene extends Phaser.Scene {
 
     this.startStage();
 
-    // 모바일 기울기 이벤트
+    // 모바일 기울기 이벤트 가로모드, 세로모드일때 감마, 베타 변경
     if (isMobile() && window.DeviceOrientationEvent) {
       window.addEventListener("deviceorientation", e => {
-        if (window.orientation === 0 || window.orientation === 180) {
-          // 세로 모드
-          this.tiltGamma = e.gamma || 0;
-        } else {
-          // 가로 모드
-          this.tiltGamma = e.beta || 0;
-        }
+        const tilt = window.innerHeight > window.innerWidth ? e.gamma : e.beta;
+        this.tiltGamma = tilt || 0;
       });
     }
-
-    // 화면 회전 시 tilt 초기화
-    window.addEventListener("orientationchange", () => {
-      this.tiltGamma = 0;
-    });
   }
 
   update(time, delta) {
