@@ -260,9 +260,16 @@ class GameScene extends Phaser.Scene {
 
     // 모바일 기울기 이벤트 가로모드, 세로모드일때 감마, 베타 변경
     if (isMobile() && window.DeviceOrientationEvent) {
-      window.addEventListener("deviceorientation", e => {
-        const tilt = window.innerHeight > window.innerWidth ? e.gamma : e.beta;
-        this.tiltGamma = tilt || 0;
+      const handleTilt = e => {
+        const isPortrait = window.innerHeight > window.innerWidth;
+        this.tiltGamma = isPortrait ? e.gamma : e.beta;
+      };
+
+      window.addEventListener("deviceorientation", handleTilt);
+
+      // 화면 회전 시 tilt 초기화
+      window.addEventListener("orientationchange", () => {
+        setTimeout(() => (this.tiltGamma = 0), 100);
       });
     }
   }
