@@ -13,24 +13,9 @@ const ACCEL_STEP = 0.2; // 프레임당 속도 증가량
 let bgm = null;
 let stageTime = 30000; // 스테이지 시간
 let boostTime = 10000; // 부스트 유지시간
+let tiltGamma = 0; // 모바일 가로, 세로 모드에 따라 감마, 베타값
+
 const stageTargets = [600, 900, 1200, 1500]; // 목표 점수
-
-let tiltGamma = 0;
-let isPortrait = window.innerHeight > window.innerWidth;
-
-function registerTiltListener() {
-  if (isMobile() && window.DeviceOrientationEvent) {
-    window.addEventListener("deviceorientation", e => {
-      const isPortraitNow = window.innerHeight > window.innerWidth;
-      tiltGamma = isPortraitNow ? e.gamma : e.beta;
-    });
-
-    window.addEventListener("orientationchange", () => {
-      setTimeout(() => (tiltGamma = 0), 100);
-    });
-  }
-}
-
 let charactersData = [
   { key: "char1", weight: 90, name: "elephant", swimSpeed: 80 },
   { key: "char2", weight: 70, name: "giraffe", swimSpeed: 90 },
@@ -74,6 +59,17 @@ function isMobile() {
 }
 
 initScale(wrap);
+
+if (isMobile() && window.DeviceOrientationEvent) {
+  window.addEventListener("deviceorientation", e => {
+    const isPortraitNow = window.innerHeight > window.innerWidth;
+    tiltGamma = isPortraitNow ? e.gamma : e.beta;
+  });
+
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => (tiltGamma = 0), 100);
+  });
+}
 
 function showQuiz(scene, item) {
   // 랜덤 퀴즈 선택
@@ -708,4 +704,3 @@ const config = {
 };
 
 new Phaser.Game(config);
-registerTiltListener();
