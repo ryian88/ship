@@ -15,6 +15,23 @@ let stageTime = 30000; // 스테이지 시간
 let boostTime = 10000; // 부스트 유지시간
 const stageTargets = [600, 900, 1200, 1500]; // 목표 점수
 
+let tiltGamma = 0;
+let isPortrait = window.innerHeight > window.innerWidth;
+
+function registerTiltListener() {
+  if (isMobile() && window.DeviceOrientationEvent) {
+    window.addEventListener("deviceorientation", (e) => {
+      tiltGamma = isPortrait ? e.gamma : e.beta;
+    });
+
+    window.addEventListener("orientationchange", () => {
+      isPortrait = window.innerHeight > window.innerWidth;
+      tiltGamma = 0;
+      setTimeout(() => (tiltGamma = 0), 100);
+    });
+  }
+}
+
 let charactersData = [
   { key: "char1", weight: 90, name: "elephant", swimSpeed: 80 },
   { key: "char2", weight: 70, name: "giraffe", swimSpeed: 90 },
@@ -165,8 +182,7 @@ class GameScene extends Phaser.Scene {
     this.ship = null;
     this.characters = [];
     this.onShipChars = [];
-    this.tiltTime = 0; // 30도 이상 유지 시간(ms)
-    this.tiltGamma = 0; // 모바일 기울기 값
+    this.tiltTime = 0; // 30도 이상 유지 시간(ms)    
     this.timer = stageTime;
     this.state = "ready";
 
@@ -256,22 +272,7 @@ class GameScene extends Phaser.Scene {
       this.scene.start("MainMenuScene");
     };
 
-    this.startStage();
-
-    // 모바일 기울기 이벤트 가로모드, 세로모드일때 감마, 베타 변경
-    if (isMobile() && window.DeviceOrientationEvent) {
-      const handleTilt = e => {
-        const isPortrait = window.innerHeight > window.innerWidth;
-        this.tiltGamma = isPortrait ? e.gamma : e.beta;
-      };
-
-      window.addEventListener("deviceorientation", handleTilt);
-
-      // 화면 회전 시 tilt 초기화
-      window.addEventListener("orientationchange", () => {
-        setTimeout(() => (this.tiltGamma = 0), 100);
-      });
-    }
+    this.startStage();   
   }
 
   update(time, delta) {
@@ -288,7 +289,7 @@ class GameScene extends Phaser.Scene {
     // 좌우 이동 방향 계산 모바일이면 기울기 값으로 좌우 이동, PC면 키보드
     let dir = 0;
     if (isMobile()) {
-      if (Math.abs(this.tiltGamma) > 5) dir = this.tiltGamma > 0 ? 1 : -1;
+      if (Math.abs(tiltGamma) > 5) dir = tiltGamma > 0 ? 1 : -1;
     } else dir = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0);
 
     // 배 이동 속도에 부스트 적용 (MAX_SPEED 증가)
@@ -345,12 +346,7 @@ class GameScene extends Phaser.Scene {
     stage.textContent = stageTargets[this.currentStageIndex];
 
     // 게임 시작 시 BGM 재생 (이미 재생 중이면 무시)
-    if (!bgm.isPlaying && !bgm.isPaused) bgm.play();
-
-    // 모바일 기울기 이벤트 (최초 한 번만 등록해도 된다면 조건 추가)
-    if (isMobile() && window.DeviceOrientationEvent) {
-      window.addEventListener("deviceorientation", e => (this.tiltGamma = e.gamma || 0));
-    }
+    if (!bgm.isPlaying && !bgm.isPaused) bgm.play();  
 
     // 캐릭터 생성
     this.charTimer = this.time.addEvent({
@@ -713,3 +709,4 @@ const config = {
 };
 
 new Phaser.Game(config);
+registerTiltListener();
