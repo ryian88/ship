@@ -6,11 +6,11 @@
 .scene { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; } 
 
 /* BGM 버튼 */
-.bgmButton { position:absolute; bottom: 30px; right: 30px; z-index:100; width: 24px; height: 24px; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; cursor: pointer; } 
+.bgmButton { position:absolute; bottom: 30px; right: 30px; width: 24px; height: 24px; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; cursor: pointer; } 
 .bgmButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
 
 #wrap.mobile .orientationButton { opacity: 1; pointer-events: auto; } 
-.orientationButton { position:absolute; bottom: 30px; right: 80px; z-index:100; width: 24px; height: 24px; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; opacity: 0; pointer-events: none; } 
+.orientationButton { position:absolute; bottom: 30px; right: 80px; width: 24px; height: 24px; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; opacity: 0; pointer-events: none; } 
 .orientationButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
 
 /* 메인 */
