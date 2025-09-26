@@ -9,6 +9,9 @@
 .bgmButton { position:absolute; bottom: 30px; right: 30px; z-index:100; width: 24px; height: 24px; cursor: pointer; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; cursor: pointer; } 
 .bgmButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
 
+.orientationButton{position:absolute; bottom: 30px; right: 80px; z-index:100; width: 24px; height: 24px; cursor: pointer; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; cursor: pointer;}
+.orientationButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
+
 /* 메인 */
 #wrap[data-state="mainScene"] .mainMenuScene { display: block; background: url(../../assets/bg.png) no-repeat center center / 100% 100%; } 
 .mainTitle { position: absolute; top: 80px; left: 750px; font-size: 100px; color: #fff; } 

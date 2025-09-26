@@ -13,6 +13,7 @@ const ACCEL_STEP = 0.2; // 프레임당 속도 증가량
 let bgm = null;
 let stageTime = 30000; // 스테이지 시간
 let boostTime = 10000; // 부스트 유지시간
+let orientation = false;
 let tiltGamma = 0; // 모바일 가로, 세로 모드에 따라 감마, 베타값
 
 const stageTargets = [600, 900, 1200, 1500]; // 목표 점수
@@ -35,6 +36,7 @@ const howToplayButton = document.querySelector(".js-howToPlayButton");
 const howToPlayPop = document.querySelector(".js-howToPlayPop");
 const howToPlayPopClose = document.querySelector(".js-howToPlayPopClose");
 const bgmButton = document.querySelector(".js-bgmButton");
+const orientationButton = document.querySelector(".js-orientationButton");
 const quizPop = document.querySelector(".js-quizPop");
 const quizWrap = document.querySelector(".js-quizWrap");
 const boostButton = document.querySelector(".js-boostButton");
@@ -137,6 +139,18 @@ function initBGMButton() {
   };
 }
 
+function initOrientation() {
+  orientationButton.onclick = () => {
+    if (orientation == false) {
+      orientation = true;
+      orientationButton.classList.add(ACT_ON);
+    } else {
+      orientation = false;
+      orientationButton.classList.remove(ACT_ON);
+    }
+  };
+}
+
 function updateHUD(ship, gameScene, dir) {
   score.textContent = `${ship.state.totalScore}`;
   stage.textContent = stageTargets[gameScene.currentStageIndex];
@@ -159,6 +173,7 @@ class MainMenuScene extends Phaser.Scene {
       bgm.play();
     }
     initBGMButton();
+    initOrientation();
 
     startButton.onclick = () => {
       setGameState("gameScene");
@@ -283,7 +298,7 @@ class GameScene extends Phaser.Scene {
 
     // 좌우 이동 방향 계산 모바일이면 기울기 값으로 좌우 이동, PC면 키보드
     let dir = 0;
-    if (isMobile()) {
+    if (isMobile() && orientation) {
       if (Math.abs(tiltGamma) > 5) dir = tiltGamma > 0 ? 1 : -1;
     } else dir = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0);
 
