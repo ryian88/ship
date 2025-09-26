@@ -20,13 +20,12 @@ let isPortrait = window.innerHeight > window.innerWidth;
 
 function registerTiltListener() {
   if (isMobile() && window.DeviceOrientationEvent) {
-    window.addEventListener("deviceorientation", (e) => {
-      tiltGamma = isPortrait ? e.gamma : e.beta;
+    window.addEventListener("deviceorientation", e => {
+      const isPortraitNow = window.innerHeight > window.innerWidth;
+      tiltGamma = isPortraitNow ? e.gamma : e.beta;
     });
 
     window.addEventListener("orientationchange", () => {
-      isPortrait = window.innerHeight > window.innerWidth;
-      tiltGamma = 0;
       setTimeout(() => (tiltGamma = 0), 100);
     });
   }
@@ -182,7 +181,7 @@ class GameScene extends Phaser.Scene {
     this.ship = null;
     this.characters = [];
     this.onShipChars = [];
-    this.tiltTime = 0; // 30도 이상 유지 시간(ms)    
+    this.tiltTime = 0; // 30도 이상 유지 시간(ms)
     this.timer = stageTime;
     this.state = "ready";
 
@@ -272,7 +271,7 @@ class GameScene extends Phaser.Scene {
       this.scene.start("MainMenuScene");
     };
 
-    this.startStage();   
+    this.startStage();
   }
 
   update(time, delta) {
@@ -346,7 +345,7 @@ class GameScene extends Phaser.Scene {
     stage.textContent = stageTargets[this.currentStageIndex];
 
     // 게임 시작 시 BGM 재생 (이미 재생 중이면 무시)
-    if (!bgm.isPlaying && !bgm.isPaused) bgm.play();  
+    if (!bgm.isPlaying && !bgm.isPaused) bgm.play();
 
     // 캐릭터 생성
     this.charTimer = this.time.addEvent({
