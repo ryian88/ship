@@ -56,13 +56,17 @@ const resultNumber = document.querySelector(".js-resultNumber");
 
 const gameOverPop = document.querySelector(".js-gameOverPop");
 
+const mobileLeftButton = document.querySelector(".js-mobileLeftButton");
+const mobileRightButton = document.querySelector(".js-mobileRightButton");
+
 function isMobile() {
   return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
 }
 
 initScale(wrap);
-
+if (isMobile()) wrap.classList.add('mobile')
 if (isMobile() && window.DeviceOrientationEvent) {
+  wrap.classList.add('mobile')
   window.addEventListener("deviceorientation", e => {
     const isPortraitNow = window.innerHeight > window.innerWidth;
     tiltGamma = isPortraitNow ? e.gamma : e.beta;
@@ -144,9 +148,13 @@ function initOrientation() {
     if (orientation == false) {
       orientation = true;
       orientationButton.classList.add(ACT_ON);
+      mobileLeftButton.classList.add(ACT_ON);
+      mobileRightButton.classList.add(ACT_ON);
     } else {
       orientation = false;
       orientationButton.classList.remove(ACT_ON);
+      mobileLeftButton.classList.remove(ACT_ON);
+      mobileRightButton.classList.remove(ACT_ON);
     }
   };
 }
@@ -284,15 +292,11 @@ class GameScene extends Phaser.Scene {
     };
 
     // 모바일 좌우 버튼 이벤트
-    const btnLeft = document.querySelector(".btnLeft");
-    const btnRight = document.querySelector(".btnRight");
+    mobileLeftButton.addEventListener("touchstart", () => (this.mobileDir = -1));
+    mobileLeftButton.addEventListener("touchend", () => (this.mobileDir = 0));
 
-    btnLeft.addEventListener("touchstart", () => (this.mobileDir = -1));
-    btnLeft.addEventListener("touchend", () => (this.mobileDir = 0));
-
-    btnRight.addEventListener("touchstart", () => (this.mobileDir = 1));
-    btnRight.addEventListener("touchend", () => (this.mobileDir = 0));
-
+    mobileRightButton.addEventListener("touchstart", () => (this.mobileDir = 1));
+    mobileRightButton.addEventListener("touchend", () => (this.mobileDir = 0));
 
     this.startStage();
   }
