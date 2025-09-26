@@ -82,3 +82,7 @@
 .options li { width: 32%; height: 120px; display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #33cccc; color: #fff; cursor: pointer; } 
 
 
+.mbBtn{width: 100px;height: 100px;position: absolute;top: 50%;transform: translateY(-50%);cursor: pointer; pointer-events: auto;background: #000;}
+.btnLeft{left: 0;}
+.btnRight{right: 0;}}
+

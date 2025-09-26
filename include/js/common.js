@@ -203,6 +203,7 @@ class GameScene extends Phaser.Scene {
     this.boostTimer = 0; // 남은 부스트 시간(ms)
     this.boostMultiplier = 2; // 속도 2배
     this.boostFlashTween = null;
+    this.mobileDir = 0; // 좌우 버튼 방향 상태
   }
 
   preload() {
@@ -282,6 +283,17 @@ class GameScene extends Phaser.Scene {
       this.scene.start("MainMenuScene");
     };
 
+    // 모바일 좌우 버튼 이벤트
+    const btnLeft = document.querySelector(".btnLeft");
+    const btnRight = document.querySelector(".btnRight");
+
+    btnLeft.addEventListener("touchstart", () => (this.mobileDir = -1));
+    btnLeft.addEventListener("touchend", () => (this.mobileDir = 0));
+
+    btnRight.addEventListener("touchstart", () => (this.mobileDir = 1));
+    btnRight.addEventListener("touchend", () => (this.mobileDir = 0));
+
+
     this.startStage();
   }
 
@@ -298,8 +310,10 @@ class GameScene extends Phaser.Scene {
 
     // 좌우 이동 방향 계산 모바일이면 기울기 값으로 좌우 이동, PC면 키보드
     let dir = 0;
-    if (isMobile() && orientation) {
-      if (Math.abs(tiltGamma) > 5) dir = tiltGamma > 0 ? 1 : -1;
+    if (isMobile()) {
+      if (!orientation) {
+        if (Math.abs(tiltGamma) > 5) dir = tiltGamma > 0 ? 1 : -1;
+      } else dir = this.mobileDir; // 버튼으로 이동
     } else dir = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0);
 
     // 배 이동 속도에 부스트 적용 (MAX_SPEED 증가)
