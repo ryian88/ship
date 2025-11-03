@@ -52,7 +52,6 @@ const bgmButton = document.querySelector(".js-bgmButton");
 const orientationButton = document.querySelector(".js-orientationButton");
 const quizPop = document.querySelector(".js-quizPop");
 const gamePause = document.querySelector(".js-gamePause");
-const quizPopClose = document.querySelector(".js-quizPopClose");
 const quizQuestion = document.querySelector(".js-quizQuestion");
 const quizzButtons = document.querySelectorAll(".js-quizzButtons");
 const boostItem = document.querySelector(".js-boostItem");
@@ -75,7 +74,6 @@ const mobileRightButton = document.querySelector(".js-mobileRightButton");
 const resultItem = document.querySelector(".js-resultItem");
 const resultBubble = document.querySelector(".js-resultBubble");
 const question = document.querySelector(".js-question");
-const quizState = { 0: null, 1: null };
 let quizIndexPointer = 0;
 
 function isMobile() {
@@ -105,16 +103,9 @@ function addHover(btn) {
 
 // 아이템별 퀴즈 상태 저장
 function showQuiz(scene, item) {
-  let state = quizState[item];
-
-  if (!state) {
-    const quizIndex = quizIndexPointer;
-    quizIndexPointer = (quizIndexPointer + 1) % quizData.length; // 다음 문제로 순환
-    state = { quizIndex, selected: null };
-    quizState[item] = state;
-  }
-
-  const quiz = quizData[state.quizIndex];
+  const quizIndex = quizIndexPointer;
+  quizIndexPointer = (quizIndexPointer + 1) % quizData.length;
+  const quiz = quizData[quizIndex];
 
   quizPop.dataset.item = item;
   quizPop.classList.add(ACT_ON);
@@ -126,42 +117,29 @@ function showQuiz(scene, item) {
   const optionsList = quizQuestion.querySelector(".options");
   optionsList.querySelectorAll("li").forEach((li, i) => {
     li.textContent = quiz.options[i] || "";
-    li.classList.toggle(ACT_ON, state.selected === i);
-
+    li.classList.remove(ACT_ON);
     li.onclick = () => {
-      if (state.selected !== null) return;
-      state.selected = i; // 선택 저장
       li.classList.add(ACT_ON);
       quizQuestion.classList.add(ACT_ON);
-      checkAnswer(scene, i, quiz.answer, item, state.quizIndex);
+
+      // 정답 체크
+      checkAnswer(scene, i, quiz.answer, item);
     };
   });
 
-  const isAnswered = state.selected !== null;
-  quizQuestion.classList.toggle(ACT_ON, isAnswered);
-
-  // 정답/오답 상태 복구
-  if (isAnswered) {
-    const correct = state.selected === quiz.answer;
-    resultBubble.classList.add(ACT_ON);
-    resultBubble.textContent = correct ? "정답" : "오답";
-    resultItem.classList.toggle(ACT_ON, !correct);
-  } else {
-    resultBubble.classList.remove(ACT_ON);
-    resultItem.classList.remove(ACT_ON);
-  }
-
-  // 닫기 버튼
-  quizPopClose.onclick = () => quizPop.classList.remove(ACT_ON);
+  // 결과 영역 초기화
+  resultBubble.classList.remove(ACT_ON);
+  resultItem.classList.remove(ACT_ON);
+  quizQuestion.classList.remove(ACT_ON);
 }
 
-function checkAnswer(scene, selected, answer, item, quizIndex) {
+function checkAnswer(scene, selected, answer, item) {
   const correct = selected === answer;
-  quizState[item] = { quizIndex, selected };
 
-  // 정답 사운드 & 보상
+  // 정답 사운드 & 보상 처리
   if (correct) {
     scene.sound.play("correct");
+
     if (item === 0) {
       scene.boostCount++;
       boostItem.dataset.count = scene.boostCount;
@@ -171,12 +149,20 @@ function checkAnswer(scene, selected, answer, item, quizIndex) {
       timeUpItem.dataset.count = scene.timeUpBonus;
       timeUpCount.textContent = scene.timeUpBonus;
     }
-  } else scene.sound.play("incorrect");
+  } else {
+    scene.sound.play("incorrect");
+  }
 
-  // 결과 UI 처리
+  // 결과 UI
   resultBubble.textContent = correct ? "정답 입니다." : "오답 입니다.";
   resultBubble.classList.add(ACT_ON);
-  resultItem.classList.toggle(ACT_ON, !correct); // 오답일 때만 ON
+  resultItem.classList.toggle(ACT_ON, !correct);
+  quizzButtons[item].classList.add(ACT_ON);
+
+  // 1초 후 팝업 닫기
+  scene.time.delayedCall(1000, () => {
+    quizPop.classList.remove(ACT_ON, "answered");
+  });
 }
 
 // 게임 진행 상태
@@ -232,14 +218,15 @@ class MainMenuScene extends Phaser.Scene {
   create() {
     if (!bgm) {
       bgm = this.sound.add("bgm", { loop: true, volume: 0.1 });
-      bgm.play();
     }
     initBGMButton();
     initOrientation();
 
     startButton.onclick = () => {
-      setGameState("loadingScene");
-      this.scene.start("LoadingScene");
+      if (bgm.isPlaying) bgm.resume();
+      else bgm.pause();
+      setGameState("gameScene");
+      this.scene.start("GameScene", { charactersData });
       quizData.sort(() => Math.random() - 0.5);
     };
 
@@ -680,9 +667,6 @@ class GameScene extends Phaser.Scene {
     this.boostTimer = 0;
     boostItem.classList.remove(ACT_ON);
     if (this.timerSound.isPlaying) this.timerSound.stop();
-    for (const key in quizState) {
-      quizState[key] = null;
-    }
   }
 }
 
@@ -1002,13 +986,12 @@ class Boot extends Phaser.Scene {
     // 아이스캔디 로고 생성
     const logo = this.add.image(width / 2, height / 2, "logo").setAlpha(0);
     logo.setY(logo.y + 100);
-    console.log("logo start y:", logo.y, "target y:", height / 2);
 
     this.tweens.add({
       targets: logo,
       alpha: 1,
       y: "-=120",
-      duration: 450,
+      duration: 150,
       ease: "ease-in-out",
       repeat: 0,
       onComplete: () => {
@@ -1016,7 +999,7 @@ class Boot extends Phaser.Scene {
           targets: logo,
           alpha: 1,
           y: "+=20",
-          duration: 400,
+          duration: 100,
           ease: "ease-in-out",
           repeat: 0,
         });
@@ -1041,8 +1024,8 @@ class Boot extends Phaser.Scene {
     });
 
     this.time.delayedCall(1500, () => {
-      setGameState("mainScene");
-      this.scene.start("MainMenuScene");
+      setGameState("loadingScene");
+      this.scene.start("LoadingScene");
     });
   }
 }
@@ -1057,7 +1040,7 @@ class LoadingScene extends Phaser.Scene {
     const { width, height } = this.scale;
 
     // 배경
-    this.cameras.main.setBackgroundColor("#000000");
+    this.cameras.main.setBackgroundColor("#c9effa");
 
     // "Loading..." 텍스트
     this.add
@@ -1141,8 +1124,8 @@ class LoadingScene extends Phaser.Scene {
         this.percentText.setText(`${Math.floor(progress * 100)}%`);
       },
       onComplete: () => {
-        setGameState("gameScene");
-        this.scene.start("GameScene", { charactersData: this.charactersData });
+        setGameState("mainScene");
+        this.scene.start("MainMenuScene");
       },
     });
   }
@@ -1152,9 +1135,10 @@ const config = {
   type: Phaser.AUTO,
   width: GAME_WIDTH,
   height: GAME_HEIGHT,
+  backgroundColor: 0xc9effa,
   parent: "wrap",
   physics: { default: "matter", matter: { debug: false, gravity: { y: 0 } } },
-  scene: [Boot, MainMenuScene, LoadingScene, GameScene],
+  scene: [Boot, LoadingScene, MainMenuScene, GameScene],
 };
 
 new Phaser.Game(config);
