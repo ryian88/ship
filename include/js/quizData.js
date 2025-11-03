@@ -89,4 +89,14 @@ export const quizData = [
     options: ["고양이", "오리너구리", "사자"],
     answer: 1,
   },
+  {
+    question: "다음 중 사막에서 잘 적응하여 사는 동물을 고르세요.",
+    options: ["낙타", "펭귄", "곰"],
+    answer: 0,
+  },
+  {
+    question: "다음 중 나무 위에서 생활하는 동물을 고르세요.",
+    options: ["코알라", "코끼리", "물개"],
+    answer: 0,
+  },
 ];

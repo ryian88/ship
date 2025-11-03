@@ -1,91 +1,153 @@
-#wrap { position: absolute; width: 1280px; height: 720px; overflow: hidden; } 
+/* 폰트 */
+@font-face { font-family: 'Hakgyoansim-Bold'; src: url("../font/Hakgyoansim\ Dunggeunmiso\ TTF\ B.ttf") format("woff"); } 
+@font-face { font-family: 'Hakgyoansim-Regular'; src: url("../font/Hakgyoansim\ Dunggeunmiso\ TTF\ R.ttf") format("woff"); } 
+@font-face { font-family: 'Waguri'; src: url("../font/WAGURI\ TTF.ttf") format("woff"); } 
+@font-face { font-family: 'GmarketSans'; src: url("../font/GmarketSansTTFMedium.ttf") format("woff"); } 
+@font-face { font-family: 'Cafe24Ssurround'; src: url("../font/Cafe24Ssurround-v2.0.ttf") format("woff"); } 
 
-/* 공통 버튼 */
-.button { padding: 10px 110px; font-size: 30px; cursor: pointer; background-color: #215f9a; color: #fff; transition: background-color 0.2s; border: 2px solid #fff; border-radius: 50px; } 
-.button:hover { background-color: #163e64; } 
+#wrap { position: absolute; width: 1280px; height: 720px; overflow: hidden; } 
 .scene { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; } 
 
 /* BGM 버튼 */
-.bgmButton { position:absolute; bottom: 30px; right: 30px; width: 24px; height: 24px; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; cursor: pointer; } 
+.bgmButton { position: absolute; top: 16px; left: 15px; width: calc(74px*0.6667); height: calc(74px*0.6667); background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; cursor: pointer; display: none; } 
 .bgmButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
 
-#wrap.mobile .orientationButton { opacity: 1; pointer-events: auto; } 
-.orientationButton { position:absolute; bottom: 30px; right: 80px; width: 24px; height: 24px; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; opacity: 0; pointer-events: none; } 
-.orientationButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
+#wrap[data-state="mainScene"] .bgmButton, #wrap[data-state="playing"] .bgmButton, #wrap[data-state="gameover"] .bgmButton { display: block; } 
 
 /* 메인 */
-#wrap[data-state="mainScene"] .mainMenuScene { display: block; background: url(../../assets/bg.png) no-repeat center center / 100% 100%; } 
-.mainTitle { position: absolute; top: 80px; left: 750px; font-size: 100px; color: #fff; } 
-.buttonBox { display: flex; flex-wrap: wrap; width: 350px; gap: 20px; position: absolute; top: 440px; left: 760px; } 
-
-/* 게임방법 */
-.howToPlayPop { display: none; position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.3); } 
-.howToPlayPop.on { display: block; z-index: 2; } 
-.howToPlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 30px; border: 4px solid #274d76; width: 1240px; height: 680px; background: #d2e0f0; overflow: hidden; } 
-.howToPlayPopClose { width: 30px; height: 30px; position: absolute; top: 20px; right: 20px; cursor: pointer; background: #eee; } 
-.preview { position: absolute; top: 70px; left: 30px; width: 760px; height: 450px; background: #fff; border-radius: 30px; overflow: hidden; } 
-.sideTextWrap { position: absolute; top: 70px; left: 820px; color: #274d76; font-size: 26px; width: 380px; } 
-.bottomTextWrap { width: 100%; height: 130px; background: #34679d; color: #fff; position: absolute; bottom: 0; font-size: 34px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; } 
-.bottomTextWrap span { color: #ffef9e; } 
+#wrap[data-state="mainScene"] .mainMenuScene { display: block; background: url(../../assets/bg_intro.png) no-repeat center center / 100% 100%; } 
+.mainTitle { position: absolute; top: 23px; left: 311px; width: calc(1050px*0.6667); height: calc(438px*0.6667); background: url(../../assets/title.png) no-repeat center/contain; } 
+.intro { position: absolute; top: 222px; left: 232px; width: calc(1147px*0.6667); height: calc(705px*0.6667); background: url(../../assets/intro.png) no-repeat center/contain; } 
+.introPanda { position: absolute; top: 65px; left: 1047px; width: calc(319px*0.6667); height: calc(449px*0.6667); background: url(../../assets/intro_panda.png) no-repeat center/contain; } 
+.introPenguin { position: absolute; top: 38px; left: 40px; width: calc(243px*0.6667); height: calc(336px*0.6667); background: url(../../assets/intro_penguin.png) no-repeat center/contain; } 
+.buttonBox { display: flex; flex-wrap: wrap; width: calc(319px*0.6667); gap: 3px; position: absolute; top: 484px; left: 1014px; } 
+.startButton { background: url(../../assets/btn_start.png) no-repeat center/contain; width: calc(319px*0.6667); height: calc(136px*0.6667); } 
+.startButton.hover { background: url(../../assets/btn_start_hover.png) no-repeat center/contain; } 
+.howToPlayButton { background: url(../../assets/btn_how.png) no-repeat center/contain; width: calc(319px*0.6667); height: calc(136px*0.6667); } 
+.howToPlayButton.hover { background: url(../../assets/btn_how_hover.png) no-repeat center/contain; } 
 
 /* 게임화면 */
-#wrap[data-state="playing"] .gameScene, #wrap[data-state="gameend"] .gameScene,#wrap[data-state="gameover"] .gameScene { display: block; } 
+#wrap[data-state="playing"] .gameScene, #wrap[data-state="gameend"] .gameScene, #wrap[data-state="gameover"] .gameScene { display: block; } 
+.wave { width: calc(1920px*0.6667); height: calc(262px*0.6667); background: url(../../assets/game_wave.png) no-repeat center/contain; position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; } 
 
 /* HUD */
-.hud { position: absolute; bottom: 20px; left: 30px; font-size: 34px; color: #fff; width: 280px; text-align: right; } 
-.row { display: flex; justify-content: flex-end; } 
-.label { min-width: 180px; } 
-.value { min-width: 90px; } 
-.score { color: #ff80c0; } 
-.stage { color: #ffc848; } 
-.direction.left { color: #ff0000; } 
-.direction.right { color: #0000ff; } 
-.direction.left::after { content: "◀"; margin-left: 5px; } 
-.direction.right::after { content: "▶"; margin-left: 5px; } 
-
-/* 타이머 */
-.timeBox { position: absolute; bottom: 20px; right: 70px; font-size: 34px; color: #fff; } 
-.time { color: #d6c2ff; } 
+.hud { position: absolute; bottom: 17px; left: 32px; width: calc(488px*0.6667); height: calc(151px*0.6667); text-align: right; background: url(../../assets/game_score.png) no-repeat center/contain; } 
+.stageNumber { position: absolute; top: 15px; left: 156px; color: #fff; font-family: 'Waguri'; font-size: 17px; background: #2a607f; border-radius: 10px; width: 70px; height: 25px; display: flex; justify-content: center; align-items: center; text-align: center; } 
+.stageNumber span { font-family: 'Waguri'; font-size: 16px; } 
+.score { position: absolute; top: 55px; left: 4px; color: #484848; font-size: 34px; font-family: 'Waguri'; width: 160px; text-align: center; } 
+.stage { position: absolute; top: 55px; left: 159px; color: #a40606; font-size: 34px; font-family: "Waguri"; width: 160px; text-align: center; } 
 
 /* 아이템 */
-.itemBox { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; } 
-.itemBox button { width: 60px; height: 60px; background: rgba(255,255,255,0.8); border-radius: 10px; display: flex; align-items: center; justify-content: center; } 
-.itemBox button img { width: 45px; height: 45px; } 
-.itemBox button.on { pointer-events: none; } 
-.itemBox button.on img { filter: grayscale(100%); } 
+.itemBox { position: absolute; bottom: 17px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; } 
+.itemBox button { width: calc(110px*0.6667); height: calc(130px*0.6667); position: relative; } 
+.boostItem { background: url(../../assets/game_item_speedup.png) no-repeat center/contain; } 
+.boostItem.on { background: url(../../assets/game_item_speedup_off.png) no-repeat center/contain; } 
+.timeUpItem { background: url(../../assets/game_item_timeup.png) no-repeat center/contain; } 
+.timeUpItem.on { background: url(../../assets/game_item_timeup_off.png) no-repeat center/contain; } 
+.itemBox button[data-count="0"], .itemBox button.on { pointer-events: none; } 
+.itemBox button p { position: absolute; top: 1px; left: 50%; transform: translateX(-50%); width: 27px; height: 27px; color: #fff; font-size: 12px; font-family:'Waguri'; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #2a607f; } 
 
+/* 타이머 */
+.timerContainer { position: absolute; top: 28px; left: 50%; transform: translateX(-50%); width: 464px; height: 20px;} 
+.timerContainer::before { content: ''; position: absolute; pointer-events: none; background: rgba(255,255,255,0.3); border-radius: 10px; width: 100%; height: 100%; } 
+.timerBar { width: 100%; height: 100%; transition: width 0.1s linear; position: relative; border-radius: 10px;  background-color: rgba(255, 255, 255, 0.7);} 
+.timerBar::after { content: ''; position: absolute; top: -18px; right: -20px; width: calc(66px * 0.6667); height: calc(60px * 0.6667); background: url(../../assets/timer.png) no-repeat center/contain; transform-origin: bottom center;  } 
 
+.timerBar.on::after { animation: ring 1s infinite ease-in-out; } 
+
+@keyframes ring { 0%, 50%, 100% { background-image: url(../../assets/timer.png); transform: rotate(0deg); } 
+ 12.5% { background-image: url(../../assets/timer_on.png); transform: rotate(3deg); } 
+ 25% { background-image: url(../../assets/timer_on.png); transform: rotate(-3deg); } 
+ 37.5% { background-image: url(../../assets/timer_on.png); transform: rotate(3deg); } 
+ 75% { background-image: url(../../assets/timer_on.png); transform: rotate(-3deg); } 
+ }
+
+ /* 모바일 자이로센서 */
+#wrap.mobile .orientationButton { opacity: 1; pointer-events: auto; } 
+/* 모바일 버튼 */
+.mobileButton { width: calc(318px*0.6667); height: calc(318px*0.6667); position: absolute; top: 50%; transform: translateY(-50%); cursor: pointer; pointer-events: none; opacity: 0; } 
+.mobileButton.on { pointer-events: auto; opacity: 1; } 
+.mobileLeftButton { left: 10px; background: url(../../assets/game_touch_left.png) no-repeat center/contain; } 
+.mobileRightButton { right: 10px; background: url(../../assets/game_touch_right.png) no-repeat center/contain; } 
+
+/* 퀴즈상점 */
+.quizMarketPop { display: none; position: absolute; background: url(../../assets/store_bg.png) no-repeat center/contain; width: 100%; height: 100%; } 
+.quizMarketPop.on { display: block; } 
+.quizMarketPop .nextStageButton { background: url(../../assets/store_close.png) no-repeat center/contain; position: absolute; right: 17px; top: 14px; width: calc(66px*0.6667); height: calc(66px*0.6667); } 
+.boostButton { background: url(../../assets/store_item_speed.png) no-repeat center/contain; width: calc(443px*0.6667); height: calc(450px*0.6667); position: absolute; top: 264px; left: 445px; } 
+.timeUpButton { background: url(../../assets/store_item_time.png) no-repeat center/contain; width: calc(443px*0.6667); height: calc(450px*0.6667); position: absolute; top: 264px; left: 794px; } 
+
+/* 퀴즈 영역 */
+.quizPop { display: none; position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.7); } 
+.quizPop.on { display: block; } 
+.quizPop .quizPopClose { background: url(../../assets/store_close.png) no-repeat center/contain; width: calc(66px*0.6667); height: calc(66px*0.6667); position: absolute; top: 120px; left: 1090px; } 
+.quizWrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #fff; padding: 20px; border: 6px solid #fdd203; border-radius: 10px; text-align: center; width: 960px; height: 450px; font-size: 30px; display: flex; justify-content: center; align-items: center; gap: 30px; } 
+
+/* 퀴즈 */
+.quizQuestion { width: 1040px; height: 100%; display: flex; gap: 10px; align-items: center; justify-content: center; text-align: center; flex-direction: column; } 
+.quizQuestion.on { pointer-events: none; } 
+.charBox { width: 520px; height: 100%; } 
+.char { background: url(../../assets/store.png) no-repeat center/contain; width: calc(555px*0.4); height: calc(852px*0.4); position: absolute; left: 10px; bottom: 10px; } 
+.resultItem { width: calc(443px*0.25); height: calc(450px*0.25); position: absolute; top: 70px; left: 210px; } 
+.quizPop[data-item = "0"] .resultItem { background: url(../../assets/store_item_speed.png) no-repeat center/contain; } 
+.quizPop[data-item = "1"] .resultItem { background: url(../../assets/store_item_time.png) no-repeat center/contain; } 
+.resultItem.on { filter: grayscale(100%); } 
+.resultBubble { position: absolute; top: 30px; left: 80px; display: none; font-family: 'Hakgyoansim-Bold'; } 
+.resultBubble.on { display: block; } 
+.underline { display: inline-block; border-bottom: 3px solid #ff0000; color: #ff0000; } 
+.question { background: #fde3ee; border-radius: 10px; flex: 1; text-align: center; padding: 10px; display: flex; align-items: center; width: 100%; } 
+.options { display: flex; justify-content: space-between; background: #f1fbeb; padding: 10px; border-radius: 10px; width: 100%; } 
+.options li { width: 32%; height: 120px; display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #33cccc; color: #fff; cursor: pointer; } 
+.options li.on { background: #008080; } 
 
 /* 게임오버 */
 .gameOverPop { display: none; position: absolute; } 
-.gameOverPop.on { display: block; width: 100%; height: 100%; background: rgba(0,0,0,0.5); } 
-.result { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; color: #fff; font-size: 34px; gap: 20px; } 
-.resultStage { color: #ffc848; } 
-.resultScore { color: #ff80c0; } 
+.gameOverPop.on { display: block; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2; } 
 .gameOverPop button { display: none; } 
-.gameOverPop[data-state="next"] .nextStageButton { display: block; background: #ff80c0; } 
-.gameOverPop[data-state="end"] .homeButton, .gameOverPop[data-state="final"] .homeButton { display: block; } 
+.result { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 34px; font-family: 'Waguri'; } 
+.result .resultNumber { position: absolute; color: #6e2802; width: 50px; text-align: right; font-family: 'Cafe24Ssurround'; font-size: 40px;} 
+.result .resultScore { position: absolute; color: #fff; font-size: 46px; width: 150px; text-align: center; font-family: 'Cafe24Ssurround';} 
+.result .homeButton { position: absolute; background: url(../../assets/button_home.png) no-repeat center/contain; width: calc(261px*0.6667); height: calc(125px*0.6667); } 
 
+.gameOverPop[data-state="end"] .result { background: url(../../assets/stage_fail.png) no-repeat center/contain; width: calc(1654px*0.6667); height: calc(614px*0.6667); } 
+.gameOverPop[data-state="end"] .result .resultNumber { top: 239px; left: 257px; } 
+.gameOverPop[data-state="end"] .result .resultScore { top: 240px; left: 593px; } 
+.gameOverPop[data-state="end"] .result .homeButton { display: block; top: 326px; left: 463px; } 
 
-/* 퀴즈 영역 */
-.quizPop { display: none; position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.3); } 
-.quizPop.on { display: block; } 
-.quizWrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #fff; padding: 20px; border: 6px solid #fdd203; border-radius: 10px; text-align: center; width: 620px; font-size: 30px; } 
+.gameOverPop[data-state="final"] .result, .gameOverPop[data-state="next"] .result { background: url(../../assets/stage_success.png) no-repeat center/contain; width: calc(704px*0.6667); height: calc(862px*0.6667); } 
+.gameOverPop[data-state="final"] .resultNumber, .gameOverPop[data-state="next"] .result .resultNumber { top: 234px; left: 93px; } 
+.gameOverPop[data-state="final"] .resultScore, .gameOverPop[data-state="next"] .result .resultScore { top: 304px; left: 159px; } 
+.gameOverPop[data-state="next"] .result .quizMarketButton { display: block; background: url(../../assets/button_store.png) no-repeat center/contain; width: calc(261px*0.6667); height: calc(125px*0.6667); position: absolute; top: 398px; left: 52px; } 
+.gameOverPop[data-state="next"] .result .nextStageButton { display: block; background: url(../../assets/button_next.png) no-repeat center/contain; width: calc(261px*0.6667); height: calc(125px*0.6667); position: absolute; top: 398px; left: 239px; } 
 
-/* 퀴즈 문제 */
-.quizQuestion { width: 100%; height: 140px; display: flex; gap: 10px; margin-bottom: 10px; align-items: center; justify-content: center; text-align: center; } 
-.quizQuestion[data-item = "0"] .item .img { width: 120px; height: 120px; background: url(../../assets/boost.png) no-repeat center/contain; } 
-.quizQuestion[data-item = "1"] .item .img { width: 120px; height: 120px; background: url(../../assets/timeup.png) no-repeat center/contain; } 
-.item { width: 140px; height: 100%; background: #dceaf7; flex-shrink: 0; border-radius: 10px; display: flex; justify-content: center; align-items: center; } 
-.underline { display: inline-block; border-bottom: 3px solid #ff0000; color: #ff0000; } 
-.question { background: #fde3ee; border-radius: 10px; flex: 1; text-align: center; padding: 10px; display: flex; align-items: center; height: 100%; } 
-.options { display: flex; justify-content: space-between; background: #f1fbeb; padding: 10px; border-radius: 10px; } 
-.options li { width: 32%; height: 120px; display: flex; justify-content: center; align-items: center; border-radius: 10px; background: #33cccc; color: #fff; cursor: pointer; } 
+.gameOverPop[data-state="final"] .homeButton { display: block; top: 398px; left: 144px; } 
 
+/* 게임방법 */
+.howToPlayPop { display: none; position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.7); width: 100%; height: 100%; } 
+.howToPlayPop.on { display: block; z-index: 2; } 
+.howToPlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: url(../../assets/howToPlay.png) no-repeat center/contain; width: calc(1715px*0.6667); height: calc(913px*0.6667); } 
+.howToPlayPopClose { background: url(../../assets/store_close.png) no-repeat center/contain; width: calc(66px*0.6667); height: calc(66px*0.6667); position: absolute; top: 19px; right: 17px; cursor: pointer; } 
+.howToPlay .bubble { position: absolute; } 
+.howToPlay .bubble p { position: absolute; font-size: 24px; font-family: 'GmarketSans'; line-height: 30px; letter-spacing: 1px; } 
+.howToPlay .bubble_1 { background: url(../../assets/bubble_1.png) no-repeat center / contain; width: calc(743px * 0.6667); height: calc(141px * 0.6667); top: 104px; left: -40px; } 
+.howToPlay .bubble_2 { background: url(../../assets/bubble_2.png) no-repeat center / contain; width: calc(536px * 0.6667); height: calc(139px * 0.6667); top: 94px; left: 731px; } 
+.howToPlay .bubble_3 { background: url(../../assets/bubble_3.png) no-repeat center / contain; width: calc(565px * 0.6667); height: calc(156px * 0.6667); top: 329px; left: 130px; } 
+.howToPlay .bubble_4 { background: url(../../assets/bubble_4.png) no-repeat center / contain; width: calc(766px * 0.6667); height: calc(189px * 0.6667); top: 254px; left: 660px; } 
+.howToPlay .bubble_1 p { top: 19px; left: 26px; } 
+.howToPlay .bubble_2 p { top: 20px; left: 44px; } 
+.howToPlay .bubble_3 p { top: -4px; left: 22px; line-height: 40px; width: 300px; } 
+.howToPlay .bubble_4 p { top: 17px; left: 44px; white-space: pre-line; line-height: 32px; } 
+.howToPlay .bubble_3 p .speed { background: url(../../assets/speed.png) no-repeat center / contain; width: calc(75px * 0.6667); height: calc(75px * 0.6667); display: inline-block; position: relative; top: 10px; left: 1px; } 
+.howToPlay .bubble_3 p .time { background: url(../../assets/time.png) no-repeat center / contain; width: calc(40px * 0.6667); height: calc(65px * 0.6667); display: inline-block; position: relative; top: 10px; } 
+.bottomTextWrap { width: 100%; height: 120px; color: #fff; position: absolute; bottom: 33px; font-size: 38px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; font-family: 'Waguri'; } 
+.bottomTextWrap span { color: #ffc22f; } 
 
-.mobileButton { width: 100px; height: 100px; position: absolute; top: 50%; transform: translateY(-50%); cursor: pointer; pointer-events: none; opacity: 0; } 
-.mobileButton.on{pointer-events: auto; opacity: 1;}
-.mobileLeftButton { left: 0; } 
-.mobileRightButton { right: 0; } 
- 
+/* 로고 */
+#wrap[data-state="logoScene"] .logoScene { display: block; background: #c9effa; } 
 
+/* 모바일 자이로 */
+.orientationButton { position: absolute; bottom: 30px; right: 80px; width: 24px; height: 24px; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; opacity: 0; pointer-events: none; } 
+.orientationButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
+
+.gamepause { width: calc(74px*0.6667); height: calc(74px*0.6667); background: url(../../assets/pause.png) no-repeat center/contain; position: absolute; top: 16px; right: 15px; } 
+.gamepause.on { background: url(../../assets/play.png) no-repeat center/contain; } 
