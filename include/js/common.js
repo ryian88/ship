@@ -11,23 +11,23 @@ const MAX_SPEED = 10; // 배 최대 속도
 const ACCEL_STEP = 0.15; // 프레임당 속도 증가량
 
 let bgm = null;
-let stageTime = 15000; // 스테이지 시간
+let stageTime = 30000; // 스테이지 시간
 let boostTime = 7000; // 부스트 유지시간
 let orientation = false;
 let tiltGamma = 0; // 모바일 가로, 세로 모드에 따라 감마, 베타값
 let totalScore = 0;
 
 const stageTargets = [
-  { targetScore: 50 },
-  { targetScore: 110 },
-  { targetScore: 180 },
-  // { targetScore: 260 },
-  // { targetScore: 350 },
-  // { targetScore: 450 },
-  // { targetScore: 560, whaleCount: 1 },
-  // { targetScore: 680, whaleCount: 1 },
-  // { targetScore: 810, whaleCount: 2 },
-  // { targetScore: 950, whaleCount: 3 },
+  { targetScore: 500 },
+  { targetScore: 1050 },
+  { targetScore: 1650 },
+  { targetScore: 2300 },
+  { targetScore: 3000 },
+  { targetScore: 3750 },
+  { targetScore: 4550, whaleCount: 1 },
+  { targetScore: 5400, whaleCount: 1 },
+  { targetScore: 6300, whaleCount: 2 },
+  { targetScore: 7000, whaleCount: 3 },
 ];
 
 const charactersData = [
@@ -60,7 +60,7 @@ const timeUpItem = document.querySelector(".js-timeUpItem");
 const timeUpCount = document.querySelector(".js-timeUpCount");
 const nextStageButton = document.querySelectorAll(".js-nextStageButton");
 const quizMarketButton = document.querySelector(".js-quizMarketButton");
-const homeButton = document.querySelector(".js-homeButton");
+const homeButtons = document.querySelectorAll(".js-homeButton");
 const timerBar = document.querySelector(".js-timerBar");
 const score = document.querySelector(".js-score");
 const stage = document.querySelector(".js-stage");
@@ -328,19 +328,23 @@ class GameScene extends Phaser.Scene {
       quizMarketPop.classList.add(ACT_ON);
     };
 
-    homeButton.onclick = () => {
-      this.reset();
-      this.currentStageIndex = 0;
-      totalScore = 0;
-      this.boostCount = 1;
-      this.timeUpBonus = 1;
-      boostItem.dataset.count = this.boostCount;
-      timeUpItem.dataset.count = this.timeUpBonus;
-      boostCount.textContent = this.boostCount;
-      timeUpCount.textContent = this.timeUpBonus;
-      setGameState("mainScene");
-      this.scene.start("MainMenuScene");
-    };
+    homeButtons.forEach(homeButton => {
+      homeButton.onclick = () => {
+        this.reset();
+        this.currentStageIndex = 0;
+        totalScore = 0;
+        this.boostCount = 1;
+        this.timeUpBonus = 1;
+        boostItem.dataset.count = this.boostCount;
+        timeUpItem.dataset.count = this.timeUpBonus;
+        boostCount.textContent = this.boostCount;
+        timeUpCount.textContent = this.timeUpBonus;
+        gamePause.classList.remove(ACT_ON);
+        wrap.classList.remove("paused");
+        setGameState("mainScene");
+        this.scene.start("MainMenuScene");
+      };
+    });
 
     gamePause.onclick = () => {
       if (gamePause.classList.contains(ACT_ON)) {
@@ -637,7 +641,7 @@ class GameScene extends Phaser.Scene {
 
     if (state === "end") {
       this.currentStageIndex = 0;
-      resultScore.textContent = this.ship.state.stageScore;
+      resultScore.textContent = this.ship.state.stageScore + totalScore;
     } else {
       resultScore.textContent = totalScore + this.ship.state.stageScore;
       totalScore += this.ship.state.stageScore;

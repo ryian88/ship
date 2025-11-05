@@ -204,7 +204,8 @@
 .orientationButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
 
 #wrap.paused .gameScene::before { content: ""; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); z-index: 100; } 
-#wrap.paused .gamepause { top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: calc(74px*1); height: calc(74px*1); } 
+#wrap.paused .gamepause { top: 50%; left: 60%; transform: translate(-50%, -50%); z-index: 101; } 
+#wrap.paused .homeButton { width: calc(261px*0.6667); height: calc(125px*0.6667); position: absolute; top: 50%; left: 40%; transform: translate(-50%, -50%); z-index: 101; background: url(../../assets/button_home.png) no-repeat center/contain; } 
 
 .gamepause { width: calc(74px*0.6667); height: calc(74px*0.6667); background: url(../../assets/pause.png) no-repeat center/contain; position: absolute; top: 16px; right: 15px; } 
-.gamepause.on { background: url(../../assets/play.png) no-repeat center/contain; } 
+.gamepause.on { width: calc(261px*0.6667); height: calc(125px*0.6667); background: url(../../assets/btn_resume.png) no-repeat center/contain; } 
