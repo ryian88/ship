@@ -11,23 +11,23 @@ const MAX_SPEED = 10; // 배 최대 속도
 const ACCEL_STEP = 0.15; // 프레임당 속도 증가량
 
 let bgm = null;
-let stageTime = 30000; // 스테이지 시간
+let stageTime = 15000; // 스테이지 시간
 let boostTime = 7000; // 부스트 유지시간
 let orientation = false;
 let tiltGamma = 0; // 모바일 가로, 세로 모드에 따라 감마, 베타값
 let totalScore = 0;
 
 const stageTargets = [
-  { targetScore: 500 },
-  { targetScore: 1100 },
-  { targetScore: 1800 },
-  { targetScore: 2600 },
-  { targetScore: 3500 },
-  { targetScore: 4500 },
-  { targetScore: 5600, whaleCount: 1 },
-  { targetScore: 6800, whaleCount: 1 },
-  { targetScore: 8100, whaleCount: 2 },
-  { targetScore: 9500, whaleCount: 3 },
+  { targetScore: 50 },
+  { targetScore: 110 },
+  { targetScore: 180 },
+  // { targetScore: 260 },
+  // { targetScore: 350 },
+  // { targetScore: 450 },
+  // { targetScore: 560, whaleCount: 1 },
+  // { targetScore: 680, whaleCount: 1 },
+  // { targetScore: 810, whaleCount: 2 },
+  // { targetScore: 950, whaleCount: 3 },
 ];
 
 const charactersData = [
@@ -74,6 +74,8 @@ const mobileRightButton = document.querySelector(".js-mobileRightButton");
 const resultItem = document.querySelector(".js-resultItem");
 const resultBubble = document.querySelector(".js-resultBubble");
 const question = document.querySelector(".js-question");
+const loadingBar = document.querySelector(".js-loadingBar");
+const loadingBoat = document.querySelector(".js-loadingBoat");
 let quizIndexPointer = 0;
 
 function isMobile() {
@@ -157,7 +159,7 @@ function checkAnswer(scene, selected, answer, item) {
   resultBubble.textContent = correct ? "정답 입니다." : "오답 입니다.";
   resultBubble.classList.add(ACT_ON);
   resultItem.classList.toggle(ACT_ON, !correct);
-  quizzButtons[item].classList.add(ACT_ON);
+  quizzButtons[item].classList.add(correct ? "correct" : "incorrect");
 
   // 1초 후 팝업 닫기
   scene.time.delayedCall(1000, () => {
@@ -281,6 +283,13 @@ class GameScene extends Phaser.Scene {
     const shipShapes = this.cache.json.get("shipPhysics"); // 배 생성
     this.ship = new Ship(this, GAME_WIDTH / 2, SHIP_FIXED_Y, shipShapes);
 
+    this.anims.create({
+      key: "boostWing_anim",
+      frames: this.anims.generateFrameNumbers("boostWing", { start: 0, end: 1 }),
+      frameRate: 2,
+      repeat: -1,
+    });
+
     // PC용 키보드
     if (!isMobile()) this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -323,6 +332,12 @@ class GameScene extends Phaser.Scene {
       this.reset();
       this.currentStageIndex = 0;
       totalScore = 0;
+      this.boostCount = 1;
+      this.timeUpBonus = 1;
+      boostItem.dataset.count = this.boostCount;
+      timeUpItem.dataset.count = this.timeUpBonus;
+      boostCount.textContent = this.boostCount;
+      timeUpCount.textContent = this.timeUpBonus;
       setGameState("mainScene");
       this.scene.start("MainMenuScene");
     };
@@ -330,9 +345,11 @@ class GameScene extends Phaser.Scene {
     gamePause.onclick = () => {
       if (gamePause.classList.contains(ACT_ON)) {
         gamePause.classList.remove(ACT_ON);
+        wrap.classList.remove("paused");
         this.scene.resume();
       } else {
         gamePause.classList.add(ACT_ON);
+        wrap.classList.add("paused");
         this.scene.pause();
       }
     };
@@ -374,16 +391,14 @@ class GameScene extends Phaser.Scene {
 
     //  배 부스트 처리
     if (this.boostActive && !this.ship.boostFlashTween) {
-      const colors = [0xffff00, 0xff0000, 0x0000ff, 0x00ff00];
-      let colorIndex = 0;
-      this.ship.boostFlashTween = this.time.addEvent({
-        delay: 200,
-        loop: true,
-        callback: () => {
-          this.ship.sprite.setTint(colors[colorIndex]);
-          colorIndex = (colorIndex + 1) % colors.length;
-        },
-      });
+      this.ship.boostWing.setVisible(true);
+
+      if (!this.ship.boostWing.anims.isPlaying) {
+        this.ship.boostWing.play("boostWing_anim");
+      }
+    } else {
+      this.ship.boostWing.setVisible(false);
+      this.ship.boostWing.stop(); // 애니메이션 정지
     }
 
     if (!this.boostActive && this.ship.boostFlashTween) {
@@ -620,24 +635,13 @@ class GameScene extends Phaser.Scene {
     // 결과 표시
     resultNumber.textContent = `${this.currentStageIndex + 1}`;
 
-    const resetItems = () => {
-      this.boostCount = 1;
-      this.timeUpBonus = 1;
-      boostItem.dataset.count = this.boostCount;
-      timeUpItem.dataset.count = this.timeUpBonus;
-      boostCount.textContent = this.boostCount;
-      timeUpCount.textContent = this.timeUpBonus;
-    };
-
     if (state === "end") {
       this.currentStageIndex = 0;
-      resultScore.textContent = totalScore;
-      resetItems();
+      resultScore.textContent = this.ship.state.stageScore;
     } else {
       resultScore.textContent = totalScore + this.ship.state.stageScore;
       totalScore += this.ship.state.stageScore;
       if (state === "final") {
-        resetItems();
         console.log("모든 게임 완료");
         this.currentStageIndex = 0;
       }
@@ -659,7 +663,7 @@ class GameScene extends Phaser.Scene {
     this.tiltTime = 0;
     this.timer = stageTime;
     this.ship.reset();
-    quizzButtons.forEach(quizzButton => quizzButton.classList.remove(ACT_ON));
+    quizzButtons.forEach(quizzButton => quizzButton.classList.remove("correct", "incorrect"));
     gameOverPop.classList.remove(ACT_ON);
     quizMarketPop.classList.remove(ACT_ON);
     quizPop.classList.remove(ACT_ON);
@@ -685,6 +689,13 @@ class Ship {
     this.warningLight.offsetX = -10; // 초기값
     this.warningBlinkTimer = null;
     this.isBlinkOn = false;
+
+    //부스트 날개 생성
+    this.boostWing = scene.add.sprite(x, y, "boostWing");
+    this.boostWing.setScale(0.1);
+    this.boostWing.setDepth(10);
+    this.boostWing.setFlipX(true);
+    this.boostWing.offsetX = -10; // 초기값
   }
 
   blinkWarning(state) {
@@ -721,8 +732,15 @@ class Ship {
         this.scene.shipCreak.play({ rate: Phaser.Math.FloatBetween(0.95, 1.05) });
         this.prevDir = dir;
 
-        if (dir === 1) this.warningLight.offsetX = -10;
-        else if (dir === -1) this.warningLight.offsetX = 10;
+        if (dir === 1) {
+          this.warningLight.offsetX = -10;
+          this.boostWing.offsetX = -10;
+          this.boostWing.setFlipX(true);
+        } else if (dir === -1) {
+          this.warningLight.offsetX = 10;
+          this.boostWing.offsetX = 10;
+          this.boostWing.setFlipX(false);
+        }
       }
     } else {
       this.sprite.setVelocityX(v * 0.98); // 감속
@@ -766,18 +784,19 @@ class Ship {
   }
 
   updateWarningLight() {
-    if (!this.warningLight) return;
+    this.updateChildObject(this.warningLight, -60);
+    this.updateChildObject(this.boostWing, -10);
+  }
 
+  updateChildObject(target, baseY) {
+    if (!target) return;
     const angleRad = Phaser.Math.DegToRad(this.sprite.angle);
-    const baseY = -60;
-    const offsetX = this.warningLight.offsetX ?? -10;
-
+    const offsetX = target.offsetX ?? -10;
     const rotatedX = offsetX * Math.cos(angleRad) - baseY * Math.sin(angleRad);
     const rotatedY = offsetX * Math.sin(angleRad) + baseY * Math.cos(angleRad);
-
-    this.warningLight.x = this.sprite.x + rotatedX;
-    this.warningLight.y = this.sprite.y + rotatedY;
-    this.warningLight.angle = this.sprite.angle;
+    target.x = this.sprite.x + rotatedX;
+    target.y = this.sprite.y + rotatedY;
+    target.angle = this.sprite.angle;
   }
 
   stop() {
@@ -1036,41 +1055,8 @@ class LoadingScene extends Phaser.Scene {
     this.charactersData = charactersData;
   }
 
-  init() {
-    const { width, height } = this.scale;
-
-    // 배경
-    this.cameras.main.setBackgroundColor("#c9effa");
-
-    // "Loading..." 텍스트
-    this.add
-      .text(width / 2, height / 2 - 60, "Loading...", {
-        fontSize: "32px",
-        color: "#ffffff",
-        fontFamily: "Arial Black",
-      })
-      .setOrigin(0.5);
-
-    // 로딩바 크기
-    this.barWidth = 400;
-    const barHeight = 25;
-
-    // 배경 바
-    this.add.rectangle(width / 2 - this.barWidth / 2, height / 2, this.barWidth, barHeight, 0x444444).setOrigin(0, 0.5);
-
-    // 진행 바
-    this.progressBar = this.add.rectangle(width / 2 - this.barWidth / 2, height / 2, 0, barHeight, 0xffffff).setOrigin(0, 0.5);
-
-    // 퍼센트 텍스트
-    this.percentText = this.add
-      .text(width / 2, height / 2 + 50, "0%", {
-        fontSize: "24px",
-        color: "#ffffff",
-      })
-      .setOrigin(0.5);
-  }
-
   preload() {
+    this.load.image("loding", "assets/loding.png");
     this.load.image("bg", "assets/bg.png");
     this.load.image("wave", "assets/game_wave.png");
     this.load.audio("success", "assets/media/success.mp3");
@@ -1106,27 +1092,26 @@ class LoadingScene extends Phaser.Scene {
       frameHeight: 550,
     });
 
-    this.load.on("complete", () => {
-      this.animateProgressBar();
+    this.load.spritesheet("boostWing", "assets/whale_spout.png", {
+      frameWidth: 669,
+      frameHeight: 550,
     });
-  }
 
-  animateProgressBar() {
-    // 0→100 트윈, 항상 표시
-    this.tweens.add({
-      targets: { progress: 0 },
-      progress: 1,
-      duration: 500, // 최소 0.5초
-      ease: "Linear",
-      onUpdate: (tween, target) => {
-        const progress = target.progress;
-        this.progressBar.width = this.barWidth * progress;
-        this.percentText.setText(`${Math.floor(progress * 100)}%`);
-      },
-      onComplete: () => {
+    this.load.on("progress", value => {
+      loadingBar.style.width = `${value * 100}%`;
+      loadingBoat.style.left = `calc(${value * 100}% - ${loadingBoat.offsetWidth * value}px)`;
+    });
+
+    this.load.spritesheet("whale", "assets/whale.png", {
+      frameWidth: 657,
+      frameHeight: 420,
+    });
+
+    this.load.on("complete", () => {
+      this.time.delayedCall(500, () => {
         setGameState("mainScene");
         this.scene.start("MainMenuScene");
-      },
+      });
     });
   }
 }
