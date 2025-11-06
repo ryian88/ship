@@ -10,6 +10,7 @@
 
 /* BGM 버튼 */
 .bgmButton { position: absolute; top: 16px; left: 15px; width: calc(74px*0.6667); height: calc(74px*0.6667); background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; cursor: pointer; display: none; } 
+.bgmButton.hover{transform: scale(1.1);}
 .bgmButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
 
 #wrap[data-state="playing"] .bgmButton, #wrap[data-state="gameover"] .bgmButton { display: block; } 
@@ -31,10 +32,10 @@
 .introPanda { position: absolute; top: 65px; left: 1047px; width: calc(319px*0.6667); height: calc(449px*0.6667); background: url(../../assets/intro_panda.png) no-repeat center/contain; animation: introPanda 1.2s ease-out forwards; transform-origin: center; animation-delay: 0.5s; opacity: 0; } 
 .introPenguin { position: absolute; top: 38px; left: 40px; width: calc(243px*0.6667); height: calc(336px*0.6667); background: url(../../assets/intro_penguin.png) no-repeat center/contain; animation: introPenguin 1.2s ease-out forwards; transform-origin: center; opacity: 0; } 
 .buttonBox { display: flex; flex-wrap: wrap; width: calc(319px*0.6667); gap: 3px; position: absolute; top: 484px; left: 1014px; } 
-.startButton { background: url(../../assets/btn_start.png) no-repeat center/contain; width: calc(319px*0.6667); height: calc(136px*0.6667); } 
-.startButton.hover { background: url(../../assets/btn_start_hover.png) no-repeat center/contain; } 
-.howToPlayButton { background: url(../../assets/btn_how.png) no-repeat center/contain; width: calc(319px*0.6667); height: calc(136px*0.6667); } 
-.howToPlayButton.hover { background: url(../../assets/btn_how_hover.png) no-repeat center/contain; } 
+.startButton { width: calc(319px * 0.6667); height: calc(136px * 0.6667); background: url(../../assets/btn_start.png) no-repeat 0 0; background-size: calc(319px * 0.6667 * 2) calc(136px * 0.6667); } 
+.startButton:hover { background-position: calc(-319px * 0.6667) 0; } 
+.howToPlayButton { width: calc(319px * 0.6667); height: calc(136px * 0.6667); background: url(../../assets/btn_how.png) no-repeat 0 0; background-size: calc(319px * 0.6667 * 2) calc(136px * 0.6667); } 
+.howToPlayButton:hover { background-position: calc(-319px * 0.6667) 0; } 
 
 @keyframes mainTitle { 
  0% { transform: translateY(150px) scale(0.8); } 
@@ -89,8 +90,10 @@
 .itemBox button { width: calc(110px*0.6667); height: calc(130px*0.6667); position: relative; } 
 .boostItem { background: url(../../assets/game_item_speedup.png) no-repeat center/contain; } 
 .boostItem.on { background: url(../../assets/game_item_speedup_off.png) no-repeat center/contain; } 
+.boostItem.hover{transform: scale(1.1);}
 .timeUpItem { background: url(../../assets/game_item_timeup.png) no-repeat center/contain; } 
 .timeUpItem.on { background: url(../../assets/game_item_timeup_off.png) no-repeat center/contain; } 
+.timeUpItem.hover{transform: scale(1.1);}
 .itemBox button[data-count="0"], .itemBox button.on { pointer-events: none; } 
 .itemBox button p { position: absolute; top: 1px; left: 50%; transform: translateX(-50%); width: 27px; height: 27px; color: #fff; font-size: 12px; font-family:'Waguri'; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #2a607f; } 
 
@@ -181,6 +184,7 @@
 .howToPlayPop.on { display: block; z-index: 2; } 
 .howToPlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: url(../../assets/howToPlay.png) no-repeat center/contain; width: calc(1715px*0.6667); height: calc(913px*0.6667); } 
 .howToPlayPopClose { background: url(../../assets/store_close.png) no-repeat center/contain; width: calc(66px*0.6667); height: calc(66px*0.6667); position: absolute; top: 19px; right: 17px; cursor: pointer; } 
+.howToPlayPopClose.hover{transform:scale(1.1);}
 .howToPlay .bubble { position: absolute; } 
 .howToPlay .bubble p { position: absolute; font-size: 24px; font-family: 'GmarketSans'; line-height: 30px; letter-spacing: 1px; } 
 .howToPlay .bubble_1 { background: url(../../assets/bubble_1.png) no-repeat center / contain; width: calc(743px * 0.6667); height: calc(141px * 0.6667); top: 104px; left: -40px; } 
@@ -208,4 +212,5 @@
 #wrap.paused .homeButton { width: calc(261px*0.6667); height: calc(125px*0.6667); position: absolute; top: 50%; left: 40%; transform: translate(-50%, -50%); z-index: 101; background: url(../../assets/button_home.png) no-repeat center/contain; } 
 
 .gamepause { width: calc(74px*0.6667); height: calc(74px*0.6667); background: url(../../assets/pause.png) no-repeat center/contain; position: absolute; top: 16px; right: 15px; } 
+.gamepause.hover{transform: scale(1.1);}
 .gamepause.on { width: calc(261px*0.6667); height: calc(125px*0.6667); background: url(../../assets/btn_resume.png) no-repeat center/contain; } 
