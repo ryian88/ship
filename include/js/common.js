@@ -584,7 +584,7 @@ class GameScene extends Phaser.Scene {
         this.ship.blinkWarning(true);
       }
 
-      if (this.tiltTime >= 3000) this.gameOver("end");
+      if (this.tiltTime >= 4000) this.gameOver("end");
     } else {
       this.tiltTime = 0;
       this.prevTiltDir = 0;
