@@ -7,8 +7,10 @@ const GAME_WIDTH = 1280;
 const GAME_HEIGHT = 720;
 const SHIP_FIXED_Y = GAME_HEIGHT - 190; // 배 고정 y
 const MAX_ANGLE_DEG = 18; // 최대 기울기
-const MAX_SPEED = 10; // 배 최대 속도
-const ACCEL_STEP = 0.15; // 프레임당 속도 증가량
+// const MAX_SPEED = 10; // 배 최대 속도
+// const ACCEL_STEP = 0.15; // 프레임당 속도 증가량
+const MAX_SPEED = 2000; // 배 최대 속도
+const ACCEL_STEP = 6; // 프레임당 속도 증가량
 
 let bgm = null;
 let stageTime = 30000; // 스테이지 시간
@@ -17,17 +19,30 @@ let orientation = false;
 let tiltGamma = 0; // 모바일 가로, 세로 모드에 따라 감마, 베타값
 let totalScore = 0;
 
+// const stageTargets = [
+//   { targetScore: 500 },
+//   { targetScore: 1050 },
+//   { targetScore: 1650 },
+//   { targetScore: 2300 },
+//   { targetScore: 3000 },
+//   { targetScore: 3750 },
+//   { targetScore: 4550, whaleCount: 1 },
+//   { targetScore: 5400, whaleCount: 1 },
+//   { targetScore: 6300, whaleCount: 2 },
+//   { targetScore: 7000, whaleCount: 3 },
+// ];
+
 const stageTargets = [
-  { targetScore: 400 },
-  { targetScore: 850 },
-  { targetScore: 1350 },
-  { targetScore: 1900 },
-  { targetScore: 2500 },
-  { targetScore: 3150 },
-  { targetScore: 3850, whaleCount: 1 },
-  { targetScore: 4500, whaleCount: 1 },
-  { targetScore: 5200, whaleCount: 2 },
-  { targetScore: 5950, whaleCount: 3 },
+  // { targetScore: 50 },
+  // { targetScore: 100 },
+  // { targetScore: 160 },
+  // { targetScore: 230 },
+  // { targetScore: 300 },
+  // { targetScore: 370 },
+  // { targetScore: 450, whaleCount: 1 },
+  // { targetScore: 540, whaleCount: 1 },
+  { targetScore: 630, whaleCount: 2 },
+  { targetScore: 700, whaleCount: 3 },
 ];
 
 const charactersData = [
@@ -231,10 +246,7 @@ class MainMenuScene extends Phaser.Scene {
       this.scene.start("GameScene", { charactersData });
       quizData.sort(() => Math.random() - 0.5);
     };
-    addHover(bgmButton);
-    addHover(gamePause);
-    addHover(boostItem);
-    addHover(timeUpItem);
+
     addHover(startButton);
     addHover(howToplayButton);
     addHover(howToPlayPopClose);
@@ -271,7 +283,7 @@ class GameScene extends Phaser.Scene {
   }
 
   create() {
-    this.matter.world.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT); // 화면 밖으로 나가지 못하게
+    this.physics.world.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT); // 화면 밖으로 나가지 못하게
     this.swimSound = this.sound.add("swim", { volume: 0.5 }); // 수영 효과음 생성
     this.shipCreak = this.sound.add("shipCreak", { volume: 0.3 }); // 배 이동 사운드
     this.warning = this.sound.add("warning", { volume: 0.3 }); // 경고음
@@ -283,8 +295,8 @@ class GameScene extends Phaser.Scene {
       .setScale(0.6667)
       .setDepth(11);
 
-    const shipShapes = this.cache.json.get("shipPhysics"); // 배 생성
-    this.ship = new Ship(this, GAME_WIDTH / 2, SHIP_FIXED_Y, shipShapes);
+    // const shipShapes = this.cache.json.get("shipPhysics"); // 배 생성
+    this.ship = new Ship(this, GAME_WIDTH / 2, SHIP_FIXED_Y);
 
     this.anims.create({
       key: "boostWing_anim",
@@ -493,12 +505,9 @@ class GameScene extends Phaser.Scene {
     const startX = fromLeft ? -150 : GAME_WIDTH + 150; // 화면 밖 고래
     const midX = fromLeft ? 150 : GAME_WIDTH - 150; // 고래 위치
 
-    const whale = this.matter.add
-      .sprite(startX, SHIP_FIXED_Y, "whale", null, {
-        isStatic: true,
-        label: "whale",
-      })
-      .setScale(0.3);
+    const whale = this.physics.add.sprite(startX, SHIP_FIXED_Y, "whale").setScale(0.3).setImmovable(true);
+    whale.name = "whale"; // label 대체
+
     if (fromLeft) whale.setFlipX(true);
     this.whales.push(whale);
 
@@ -553,7 +562,7 @@ class GameScene extends Phaser.Scene {
         const overlapX = Math.abs(whale.x - ship.x) < (whale.displayWidth + ship.displayWidth) / 2;
         if (overlapX) {
           const pushDir = whale.x < ship.x ? 1 : -1;
-          ship.setVelocityX(pushDir * 8); // 배가 밀리는 거리
+          ship.setVelocityX(pushDir * 500); // 배가 밀리는 거리
         }
       },
       onComplete: () => {
@@ -584,7 +593,7 @@ class GameScene extends Phaser.Scene {
         this.ship.blinkWarning(true);
       }
 
-      if (this.tiltTime >= 4000) this.gameOver("end");
+      if (this.tiltTime >= 3000) this.gameOver("end");
     } else {
       this.tiltTime = 0;
       this.prevTiltDir = 0;
@@ -682,15 +691,16 @@ class GameScene extends Phaser.Scene {
 }
 
 class Ship {
-  constructor(scene, x, y, shipShapes) {
+  constructor(scene, x, y) {
     this.scene = scene;
     // 배 생성 상태
-    this.sprite = scene.matter.add.sprite(x, y, "ship", 0, { shape: shipShapes.ship }).setScale(0.5).setDepth(10);
+    this.sprite = this.scene.physics.add.sprite(x, y, "ship").setDepth(10).setScale(0.5).setCollideWorldBounds(true);
+
     this.state = { leftTorque: 0, rightTorque: 0, angleDeg: 0, stageScore: 0 };
     this.prevDir = 0; // 이전 방향 저장
 
     // 경고등 생성
-    this.warningLight = scene.add.sprite(x, y - 60, "warningLight");
+    this.warningLight = scene.add.sprite(x, y, "warningLight");
     this.warningLight.setScale(0.5);
     this.warningLight.setDepth(10);
     this.warningLight.offsetX = -10; // 초기값
@@ -702,7 +712,6 @@ class Ship {
     this.boostWing.setScale(0.1);
     this.boostWing.setDepth(10);
     this.boostWing.setFlipX(true);
-    this.boostWing.offsetX = -10; // 초기값
   }
 
   blinkWarning(state) {
@@ -739,21 +748,21 @@ class Ship {
         this.scene.shipCreak.play({ rate: Phaser.Math.FloatBetween(0.95, 1.05) });
         this.prevDir = dir;
 
-        if (dir === 1) {
-          this.warningLight.offsetX = -10;
-          this.boostWing.offsetX = -10;
-          this.boostWing.setFlipX(true);
-        } else if (dir === -1) {
-          this.warningLight.offsetX = 10;
-          this.boostWing.offsetX = 10;
-          this.boostWing.setFlipX(false);
-        }
+        // if (dir === 1) {
+        //   // this.warningLight.offsetX = -55;
+        //   this.boostWing.setFlipX(true);
+        // } else if (dir === -1) {
+        //   // this.warningLight.offsetX = 55;
+        //   this.boostWing.setFlipX(false);
+        // }
       }
     } else {
       this.sprite.setVelocityX(v * 0.98); // 감속
       this.prevDir = 0; // 정지 상태면 방향 초기화
     }
     if (dir !== 0) this.sprite.setFrame(dir < 0 ? 1 : 0); // 좌우 이미지
+    this.updateChildObject(this.warningLight, -55, dir);
+    this.updateChildObject(this.boostWing, -10, dir);
   }
 
   // 배 상태(좌/우 토크, 기울기, 총 무게) 계산
@@ -775,7 +784,6 @@ class Ship {
   // 배 기울기 적용
   applyTilt() {
     this.sprite.angle = Phaser.Math.Linear(this.sprite.angle, this.state.angleDeg, 0.1);
-    this.updateWarningLight();
   }
 
   // 배가 넘어지는 애니메이션
@@ -786,25 +794,39 @@ class Ship {
       angle: this.state.leftTorque > this.state.rightTorque ? -180 : 180,
       duration: 1000,
       ease: "Sine.easeIn",
-      onUpdate: () => this.updateWarningLight(),
+      onUpdate: () => {
+        this.updateChildObject(this.warningLight, -55);
+        this.updateChildObject(this.boostWing, -10);
+      },
     });
   }
 
-  updateWarningLight() {
-    this.updateChildObject(this.warningLight, -60);
-    this.updateChildObject(this.boostWing, -10);
-  }
-
-  updateChildObject(target, baseY) {
+updateChildObject(target, baseY, dir = 0) {
     if (!target) return;
+
     const angleRad = Phaser.Math.DegToRad(this.sprite.angle);
-    const offsetX = target.offsetX ?? -10;
+
+    // Physics body 중심 기준
+    const baseX = this.sprite.body ? this.sprite.body.center.x : this.sprite.x;
+    const baseYCenter = this.sprite.body ? this.sprite.body.center.y : this.sprite.y;
+
+    // dir에 따라 offsetX 바로 계산
+    let offsetX = 0; // 기본 중앙
+    if (target === this.warningLight) offsetX = dir === 1 ? -55 : dir === -1 ? 55 : 0;
+    if (target === this.boostWing) {
+        offsetX = -10; // 기본
+        target.setFlipX(dir === 1);
+    }
+
+    // 회전 변환
     const rotatedX = offsetX * Math.cos(angleRad) - baseY * Math.sin(angleRad);
     const rotatedY = offsetX * Math.sin(angleRad) + baseY * Math.cos(angleRad);
-    target.x = this.sprite.x + rotatedX;
-    target.y = this.sprite.y + rotatedY;
+
+    target.x = baseX + rotatedX;
+    target.y = baseYCenter + rotatedY;
     target.angle = this.sprite.angle;
-  }
+}
+
 
   stop() {
     this.sprite.setVelocity(0, 0);
@@ -1129,7 +1151,7 @@ const config = {
   height: GAME_HEIGHT,
   backgroundColor: 0xc9effa,
   parent: "wrap",
-  physics: { default: "matter", matter: { debug: false, gravity: { y: 0 } } },
+  physics: { default: "arcade", arcade: { debug: false, gravity: { y: 0 } } },
   scene: [Boot, LoadingScene, MainMenuScene, GameScene],
 };
 

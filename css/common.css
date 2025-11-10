@@ -10,21 +10,69 @@
 
 /* BGM 버튼 */
 .bgmButton { position: absolute; top: 16px; left: 15px; width: calc(74px*0.6667); height: calc(74px*0.6667); background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; cursor: pointer; display: none; } 
+.bgmButton.hover { transform: scale(1.1); } 
 .bgmButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
 
 #wrap[data-state="playing"] .bgmButton, #wrap[data-state="gameover"] .bgmButton { display: block; } 
+/* 로딩 */
+#wrap[data-state="loadingScene"] .loadingScene { display: block; background: #c9effa; } 
+.loadingContainer { width: 500px; height: 30px; background: #fff; border: 3px solid #94ccdc; padding: 2px; border-radius: 30px; box-sizing: border-box; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); } 
+.loadingBar { height: 100%; width: 0%; background: #94ccdc; border-radius: 30px; } 
+.loadingBoat { position: absolute; top: -70px; left: 0; width: 94px; height: 57px; background: url(../../assets/loading_boat.png) no-repeat 0 0; background-size: 282px 57px; animation: boatMove 0.5s steps(3) infinite; pointer-events: none; transition: left 0.1s linear; } 
+
+@keyframes boatMove { 
+ from { background-position: 0 0; } 
+ to { background-position: -282px 0; } 
+ }
 
 /* 메인 */
 #wrap[data-state="mainScene"] .mainMenuScene { display: block; background: url(../../assets/bg_intro.png) no-repeat center center / 100% 100%; } 
-.mainTitle { position: absolute; top: 23px; left: 311px; width: calc(1050px*0.6667); height: calc(438px*0.6667); background: url(../../assets/title.png) no-repeat center/contain; } 
-.intro { position: absolute; top: 222px; left: 232px; width: calc(1147px*0.6667); height: calc(705px*0.6667); background: url(../../assets/intro.png) no-repeat center/contain; } 
-.introPanda { position: absolute; top: 65px; left: 1047px; width: calc(319px*0.6667); height: calc(449px*0.6667); background: url(../../assets/intro_panda.png) no-repeat center/contain; } 
-.introPenguin { position: absolute; top: 38px; left: 40px; width: calc(243px*0.6667); height: calc(336px*0.6667); background: url(../../assets/intro_penguin.png) no-repeat center/contain; } 
-.buttonBox { display: flex; flex-wrap: wrap; width: calc(319px*0.6667); gap: 3px; position: absolute; top: 484px; left: 1014px; } 
-.startButton { background: url(../../assets/btn_start.png) no-repeat center/contain; width: calc(319px*0.6667); height: calc(136px*0.6667); } 
-.startButton.hover { background: url(../../assets/btn_start_hover.png) no-repeat center/contain; } 
-.howToPlayButton { background: url(../../assets/btn_how.png) no-repeat center/contain; width: calc(319px*0.6667); height: calc(136px*0.6667); } 
-.howToPlayButton.hover { background: url(../../assets/btn_how_hover.png) no-repeat center/contain; } 
+.mainTitle { position: absolute; top: 23px; left: 311px; width: calc(1050px*0.6667); height: calc(438px*0.6667); background: url(../../assets/title.png) no-repeat center/contain; transform: translateX(150px) scale(0.8); opacity: 0; animation: mainTitle 1.2s ease-out forwards; animation-delay: 2s; } 
+.intro { position: absolute; top: 222px; left: 232px; width: calc(1147px*0.6667); height: calc(705px*0.6667); background: url(../../assets/intro.png) no-repeat center/contain; animation: intro 1.2s ease-out forwards; transform-origin: center; opacity: 0; animation-delay: 1.2s; } 
+.introPanda { position: absolute; top: 65px; left: 1047px; width: calc(319px*0.6667); height: calc(449px*0.6667); background: url(../../assets/intro_panda.png) no-repeat center/contain; animation: introPanda 1.2s ease-out forwards; transform-origin: center; animation-delay: 0.5s; opacity: 0; } 
+.introPenguin { position: absolute; top: 38px; left: 40px; width: calc(243px*0.6667); height: calc(336px*0.6667); background: url(../../assets/intro_penguin.png) no-repeat center/contain; animation: introPenguin 1.2s ease-out forwards; transform-origin: center; opacity: 0; } 
+.buttonBox { display: flex; flex-wrap: wrap; width: calc(319px*0.6667); gap: 3px; position: absolute; top: 450px; left: 1014px; } 
+.startButton { width: calc(319px * 0.6667); height: calc(136px * 0.6667); background: url(../../assets/btn_start.png) no-repeat 0 0; background-size: calc(319px * 0.6667 * 2) calc(136px * 0.6667); } 
+.startButton.hover { background-position: calc(-319px * 0.6667) 0; } 
+.howToPlayButton { width: calc(319px * 0.6667); height: calc(136px * 0.6667); background: url(../../assets/btn_how.png) no-repeat 0 0; background-size: calc(319px * 0.6667 * 2) calc(136px * 0.6667); } 
+.howToPlayButton.hover { background-position: calc(-319px * 0.6667) 0; } 
+
+@keyframes mainTitle { 
+ 0% { transform: translateY(150px) scale(0.8); } 
+ 60% { transform: translateY(-10px) scale(1.05); opacity: 1; } 
+ 100% { transform: translateY(0) scale(1); opacity: 1; } 
+ }
+
+@keyframes intro { 
+ 0% { transform: translateX(100px) scale(0.6) rotate(0deg); } 
+ 12.5% { transform: translateX(80px) scale(0.7) rotate(3deg); } 
+ 25% { transform: translateX(60px) scale(0.8) rotate(-3deg); } 
+ 37.5% { transform: translateX(40px) scale(0.9) rotate(3deg); } 
+ 50% { transform: translateX(20px) scale(1) rotate(0deg); opacity: 1; } 
+ 75% { transform: translateX(0) scale(1.05) rotate(-2deg); opacity: 1; } 
+ 100% { transform: translateX(0) scale(1) rotate(0deg); opacity: 1; } 
+ }
+
+ @keyframes introPanda { 
+ 0% { transform: translateX(-200px) translateY(-200px) scale(0.6); } 
+ 12.5% { transform: translateX(-160px) translateY(-160px) scale(0.7); } 
+ 25% { transform: translateX(-120px) translateY(-120px) scale(0.8); } 
+ 37.5% { transform: translateX(-80px) translateY(-80px) scale(0.9); } 
+ 50% { transform:translateX(-40px) translateY(-40px) scale(1); opacity: 1; } 
+ 75% { transform:translateX(0px) translateY(0) scale(1.05); opacity: 1; } 
+ 100% { transform:translateX(0px) translateY(0) scale(1); opacity: 1; } 
+ }
+
+ @keyframes introPenguin { 
+ 0% { transform: translateX(200px) translateY(-200px) scale(0.6); } 
+ 12.5% { transform: translateX(160px) translateY(-160px) scale(0.7); } 
+ 25% { transform: translateX(120px) translateY(-120px) scale(0.8) } 
+ 37.5% { transform: translateX(80px) translateY(-80px) scale(0.9); } 
+ 50% { transform: translateX(40px) translateY(-40px) scale(1); opacity: 1; } 
+ 75% { transform: translateX(0px) translateY(0) scale(1.05); opacity: 1; } 
+ 100% { transform: translateX(0px) translateY(0) scale(1); opacity: 1; } 
+ }
+
 
 /* 게임화면 */
 #wrap[data-state="playing"] .gameScene, #wrap[data-state="gameend"] .gameScene, #wrap[data-state="gameover"] .gameScene { display: block; } 
@@ -42,8 +90,10 @@
 .itemBox button { width: calc(110px*0.6667); height: calc(130px*0.6667); position: relative; } 
 .boostItem { background: url(../../assets/game_item_speedup.png) no-repeat center/contain; } 
 .boostItem.on { background: url(../../assets/game_item_speedup_off.png) no-repeat center/contain; } 
+.boostItem.hover { transform: scale(1.1); } 
 .timeUpItem { background: url(../../assets/game_item_timeup.png) no-repeat center/contain; } 
 .timeUpItem.on { background: url(../../assets/game_item_timeup_off.png) no-repeat center/contain; } 
+.timeUpItem.hover { transform: scale(1.1); } 
 .itemBox button[data-count="0"], .itemBox button.on { pointer-events: none; } 
 .itemBox button p { position: absolute; top: 1px; left: 50%; transform: translateX(-50%); width: 27px; height: 27px; color: #fff; font-size: 12px; font-family:'Waguri'; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #2a607f; } 
 
@@ -62,30 +112,23 @@
  75% { background-image: url(../../assets/timer_on.png); transform: rotate(-3deg); } 
  }
 
- /* 모바일 자이로센서 */
-#wrap.mobile .orientationButton { opacity: 1; pointer-events: auto; } 
-/* 모바일 버튼 */
-.mobileButton { width: calc(318px*0.6667); height: calc(318px*0.6667); position: absolute; top: 50%; transform: translateY(-50%); cursor: pointer; pointer-events: none; opacity: 0; } 
-.mobileButton.on { pointer-events: auto; opacity: 1; } 
-.mobileLeftButton { left: 10px; background: url(../../assets/game_touch_left.png) no-repeat center/contain; } 
-.mobileRightButton { right: 10px; background: url(../../assets/game_touch_right.png) no-repeat center/contain; } 
-
 /* 퀴즈상점 */
 .quizMarketPop { display: none; position: absolute; background: url(../../assets/store_bg.png) no-repeat center/contain; width: 100%; height: 100%; } 
 .quizMarketPop.on { display: block; } 
-.quizMarketPop .nextStageButton { background: url(../../assets/store_close.png) no-repeat center/contain; position: absolute; right: 17px; top: 14px; width: calc(66px*0.6667); height: calc(66px*0.6667); } 
+.quizMarketPop .nextStageButton { background: url(../../assets/button_next.png) no-repeat center/contain; position: absolute; top: 590px; left: 670px; width: calc(261px*0.6667); height: calc(125px*0.6667); } 
 .storeItemBox { background: url(../../assets/store_itemBox.png) no-repeat center/contain; width: calc(443px*0.6667); height: calc(450px*0.6667); position: absolute; top: 264px; left: 445px; } 
 .boostButton { background: url(../../assets/store_item_speed.png) no-repeat center / contain; width: calc(270px*0.6667); height: calc(270px*0.6667); position: absolute; top: 44px; left: 47px; } 
 .storeItemBox2 { left:794px } 
 .timeUpButton { background: url(../../assets/store_item_time.png) no-repeat center/contain; width: calc(171px*0.6667); height: calc(276px*0.6667); position: absolute; top: 58px; left: 90px; } 
-.storeItemBox.on { pointer-events: none; } 
-.storeItemBox.on div { filter: grayscale(100%); } 
+.storeItemBox.correct, .storeItemBox.incorrect { pointer-events: none; } 
+.storeItemBox.correct::after { content: ''; position: absolute; bottom: 0px; right: 0px; width: calc(245px * 0.6667); height: calc(251px * 0.6667); background: url(../../assets/item_get.png) no-repeat center/contain; } 
+.storeItemBox.incorrect::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: calc(347px * 0.6667); height: calc(204px * 0.6667); background: url(../../assets/item_soldout.png) no-repeat center/contain; } 
 
 /* 퀴즈 영역 */
 .quizPop { display: none; position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.7); } 
 .quizPop.on { display: block; } 
 .quizPop .quizPopClose { background: url(../../assets/store_close.png) no-repeat center/contain; width: calc(66px*0.6667); height: calc(66px*0.6667); position: absolute; top: 120px; left: 1090px; } 
-.quizWrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #fff; padding: 20px; border: 6px solid #fdd203; border-radius: 10px; text-align: center; width: 960px; height: 450px; font-size: 30px; display: flex; justify-content: center; align-items: center; gap: 30px; font-family: "Cafe24Ssurround";} 
+.quizWrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #fff; padding: 20px; border: 6px solid #fdd203; border-radius: 10px; text-align: center; width: 960px; height: 450px; font-size: 30px; display: flex; justify-content: center; align-items: center; gap: 30px; font-family: "Cafe24Ssurround"; } 
 
 /* 퀴즈 */
 .quizQuestion { width: 1040px; height: 100%; display: flex; gap: 10px; align-items: center; justify-content: center; text-align: center; flex-direction: column; } 
@@ -114,23 +157,26 @@
 .result .homeButton { position: absolute; background: url(../../assets/button_home.png) no-repeat center/contain; width: calc(261px*0.6667); height: calc(125px*0.6667); } 
 
 .gameOverPop[data-state="end"] .result { background: url(../../assets/stage_fail.png) no-repeat center/contain; width: calc(1654px*0.6667); height: calc(614px*0.6667); } 
-.gameOverPop[data-state="end"] .result .resultNumber { top: 239px; left: 257px; } 
-.gameOverPop[data-state="end"] .result .resultScore { top: 240px; left: 593px; } 
+.gameOverPop[data-state="end"] .result .resultNumber { top: 209px; left: 254px; } 
+.gameOverPop[data-state="end"] .result .resultScore { top: 209px; left: 596px; } 
 .gameOverPop[data-state="end"] .result .homeButton { display: block; top: 326px; left: 463px; } 
 
-.gameOverPop[data-state="final"] .result, .gameOverPop[data-state="next"] .result { background: url(../../assets/stage_success.png) no-repeat center/contain; width: calc(704px*0.6667); height: calc(862px*0.6667); } 
-.gameOverPop[data-state="final"] .resultNumber, .gameOverPop[data-state="next"] .result .resultNumber { top: 234px; left: 93px; } 
-.gameOverPop[data-state="final"] .resultScore, .gameOverPop[data-state="next"] .result .resultScore { top: 304px; left: 159px; } 
+.gameOverPop[data-state="next"] .result { background: url(../../assets/stage_success.png) no-repeat center/contain; width: calc(704px*0.6667); height: calc(862px*0.6667); } 
+.gameOverPop[data-state="next"] .result .resultNumber { top: 234px; left: 93px; } 
+.gameOverPop[data-state="next"] .result .resultScore { top: 304px; left: 159px; } 
 .gameOverPop[data-state="next"] .result .quizMarketButton { display: block; background: url(../../assets/button_store.png) no-repeat center/contain; width: calc(261px*0.6667); height: calc(125px*0.6667); position: absolute; top: 398px; left: 52px; } 
 .gameOverPop[data-state="next"] .result .nextStageButton { display: block; background: url(../../assets/button_next.png) no-repeat center/contain; width: calc(261px*0.6667); height: calc(125px*0.6667); position: absolute; top: 398px; left: 239px; } 
-
-.gameOverPop[data-state="final"] .homeButton { display: block; top: 398px; left: 144px; } 
+.gameOverPop[data-state="final"] .result { background: url(../../assets/stage_finish.png) no-repeat center/contain; width: calc(1920px*0.6667); height: calc(1080px*0.6667); } 
+.gameOverPop[data-state="final"] .homeButton { background: url(../../assets/button_finish.png) no-repeat center/contain; width: calc(274px*0.6667); height: calc(137px*0.6667); display: block; top: 544px; left: 564px; } 
+.gameOverPop[data-state="final"] .resultNumber { display: none; } 
+.gameOverPop[data-state="final"] .resultScore { top: 468px; left: 441px; color: #0048a2; font-size: 38px; } 
 
 /* 게임방법 */
 .howToPlayPop { display: none; position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.7); width: 100%; height: 100%; } 
 .howToPlayPop.on { display: block; z-index: 2; } 
 .howToPlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: url(../../assets/howToPlay.png) no-repeat center/contain; width: calc(1715px*0.6667); height: calc(913px*0.6667); } 
 .howToPlayPopClose { background: url(../../assets/store_close.png) no-repeat center/contain; width: calc(66px*0.6667); height: calc(66px*0.6667); position: absolute; top: 19px; right: 17px; cursor: pointer; } 
+.howToPlayPopClose.hover { transform:scale(1.1); } 
 .howToPlay .bubble { position: absolute; } 
 .howToPlay .bubble p { position: absolute; font-size: 24px; font-family: 'GmarketSans'; line-height: 30px; letter-spacing: 1px; } 
 .howToPlay .bubble_1 { background: url(../../assets/bubble_1.png) no-repeat center / contain; width: calc(743px * 0.6667); height: calc(141px * 0.6667); top: 104px; left: -40px; } 
@@ -149,9 +195,27 @@
 /* 로고 */
 #wrap[data-state="logoScene"] .logoScene { display: block; background: #c9effa; } 
 
-/* 모바일 자이로 */
-.orientationButton { position: absolute; bottom: 30px; right: 80px; width: 24px; height: 24px; background: url(../../assets/bgm.png) no-repeat center/contain; z-index: 1; opacity: 0; pointer-events: none; } 
-.orientationButton.on { background: url(../../assets/bgm_off.png) no-repeat center/contain; } 
+ /* 모바일 자이로센서 */
+#wrap.mobile[data-state="mainScene"] .orientationButton { opacity: 1; pointer-events: auto; } 
+
+
+
+.orientationButton { position: absolute; bottom: 26px; right: 53px; z-index: 1; opacity: 0; pointer-events: none; width: calc(128px * 0.6667); height: calc(76px * 0.6667); background: url(../../assets/gyroSenso.png) no-repeat 0 0; background-size: calc(128px * 0.6667 * 2) calc(76px * 0.6667); background-position: calc(-128px * 0.6667) 0;} 
+.orientationButton::before { content: "자이로 센서 사용"; position: absolute; left: -183px; top: 13px; font-size: 25px; color: #fff; font-family: 'Waguri'; } 
+.orientationButton.on { background-position: 0 0; } 
+
+/* 모바일 버튼 */
+.mobileButton { width: calc(318px*0.6667); height: calc(318px*0.6667); position: absolute; top: 50%; transform: translateY(-50%); cursor: pointer; pointer-events: none; opacity: 0; -webkit-user-select: none; /* 텍스트 선택 방지 (iOS Safari) */
+ -webkit-touch-callout: none; /* 길게 눌러서 메뉴 뜨는 거 방지 */
+ user-select: none; /* 다른 브라우저에서도 선택 방지 */ } 
+#wrap[data-state="playing"] .mobileButton.on { pointer-events: auto; opacity: 1; } 
+.mobileLeftButton { left: 10px; background: url(../../assets/game_touch_left.png) no-repeat center/contain; } 
+.mobileRightButton { right: 10px; background: url(../../assets/game_touch_right.png) no-repeat center/contain; } 
+
+#wrap.paused .gameScene::before { content: ""; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); z-index: 100; } 
+#wrap.paused .gamepause { top: 50%; left: 60%; transform: translate(-50%, -50%); z-index: 101; } 
+#wrap.paused .homeButton { width: calc(261px*0.6667); height: calc(125px*0.6667); position: absolute; top: 50%; left: 40%; transform: translate(-50%, -50%); z-index: 101; background: url(../../assets/button_home.png) no-repeat center/contain; } 
 
 .gamepause { width: calc(74px*0.6667); height: calc(74px*0.6667); background: url(../../assets/pause.png) no-repeat center/contain; position: absolute; top: 16px; right: 15px; } 
-.gamepause.on { background: url(../../assets/play.png) no-repeat center/contain; } 
+.gamepause.hover { transform: scale(1.1); } 
+.gamepause.on { width: calc(261px*0.6667); height: calc(125px*0.6667); background: url(../../assets/btn_resume.png) no-repeat center/contain; } 
