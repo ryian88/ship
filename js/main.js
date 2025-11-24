@@ -1,4 +1,4 @@
-const Rt = [
+const Ft = [
   { targetScore: 400 },
   { targetScore: 850 },
   { targetScore: 1350 },
@@ -9,7 +9,7 @@ const Rt = [
   { targetScore: 4500, whaleCount: 1 },
   { targetScore: 5200, whaleCount: 2 },
   { targetScore: 5950, whaleCount: 3 }
-], Ht = [
+], bt = [
   { key: "char1", weight: 90, name: "elephant", swimSpeed: 80 },
   { key: "char2", weight: 70, name: "giraffe", swimSpeed: 90 },
   { key: "char3", weight: 80, name: "hippo", swimSpeed: 120 },
@@ -20,16 +20,16 @@ const Rt = [
   { key: "char8", weight: 40, name: "pig", swimSpeed: 110 },
   { key: "char9", weight: 20, name: "rabbit", swimSpeed: 170 },
   { key: "char10", weight: 25, name: "snake", swimSpeed: 150 }
-], Ut = 10, bt = 13234170, yt = 1280, Ft = 720, Dt = 3e4, Bt = 7e3, Mt = Ft - 190, It = 18, zt = 10, Xt = 0.15, Gt = "loading", Vt = { width: 94, height: 57 }, Kt = 12, Zt = { start: 0, end: 2 };
-function Jt(at) {
+], Ut = 10, Kt = 13234170, yt = 1280, Lt = 720, Dt = 3e4, Bt = 7e3, Rt = Lt - 190, It = 18, zt = 10, Xt = 20, Vt = 0.15, Gt = "loading", Yt = { width: 94, height: 57 }, Zt = 12, Jt = { start: 0, end: 2 };
+function Qt(at) {
   return at && at.__esModule && Object.prototype.hasOwnProperty.call(at, "default") ? at.default : at;
 }
-var wt = { exports: {} }, Qt = wt.exports, Yt;
-function $t() {
-  return Yt || (Yt = 1, function(at, Z) {
+var wt = { exports: {} }, $t = wt.exports, Wt;
+function jt() {
+  return Wt || (Wt = 1, function(at, Z) {
     (function(q, _) {
       at.exports = _();
-    })(Qt, () => (
+    })($t, () => (
       /******/
       (() => {
         var J = {
@@ -107912,11 +107912,11 @@ return new ` + this.key + `();
     ));
   }(wt)), wt.exports;
 }
-var xt = $t();
-const At = /* @__PURE__ */ Jt(xt);
-class jt extends xt.Scene {
+var xt = jt();
+const At = /* @__PURE__ */ Qt(xt);
+class kt extends xt.Scene {
   constructor() {
-    super("Preloader"), this.charactersData = Ht;
+    super("Preloader"), this.charactersData = bt;
   }
   init() {
     const J = { width: 500, height: 30 }, q = {
@@ -107927,8 +107927,8 @@ class jt extends xt.Scene {
     const c = this.add.graphics({ fillStyle: { color: 9751772 } });
     c.fillRoundedRect(q.x, q.y, J.height, J.height, _), this.anims.create({
       key: "loading",
-      frames: this.anims.generateFrameNumbers(Gt, Zt),
-      frameRate: Kt,
+      frames: this.anims.generateFrameNumbers(Gt, Jt),
+      frameRate: Zt,
       repeat: -1
     });
     const h = this.add.sprite(0, 0, Gt).play("loading");
@@ -108089,17 +108089,17 @@ const Nt = [
     answer: 0
   }
 ];
-function Wt(at, Z = 1, J = 0) {
+function Ht(at, Z = 1, J = 0) {
   return at.on("pointerover", () => at.setFrame(Z)).on("pointerout", () => at.setFrame(J)), at;
 }
 function Ot(at) {
   const { width: Z, height: J } = at.scale;
   return at.add.rectangle(Z / 2, J / 2, Z, J, 0, 0.7).setOrigin(0.5).setDepth(100).setVisible(!1).setInteractive();
 }
-function Lt() {
+function Mt() {
   return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
 }
-class kt extends At.Scene {
+class qt extends At.Scene {
   constructor() {
     super({ key: "Quiz" }), this.quizIndexPointer = 0, this.storeButtons = {};
   }
@@ -108152,12 +108152,12 @@ class kt extends At.Scene {
     this.add.image(Z.x + _, Z.y + it, J).setScale(0.6667).setOrigin(0.5);
   }
 }
-class qt extends xt.Scene {
+class _t extends xt.Scene {
   constructor() {
     super("Boot");
   }
   preload() {
-    this.load.spritesheet(Gt, "assets/players/boat/boat_spritesheet.png", { frameWidth: Vt.width, frameHeight: Vt.height }), this.load.image("logo", "assets/icecandy_logo.png");
+    this.load.spritesheet(Gt, "assets/players/boat/boat_spritesheet.png", { frameWidth: Yt.width, frameHeight: Yt.height }), this.load.image("logo", "assets/icecandy_logo.png");
   }
   create() {
     const { width: Z, height: J } = this.scale, q = this.add.rectangle(0, 0, Z, J, 13234170).setOrigin(0, 0), _ = this.add.image(Z / 2, J / 2, "logo").setAlpha(0);
@@ -108182,7 +108182,7 @@ class qt extends xt.Scene {
     });
   }
 }
-class _t extends xt.Scene {
+class te extends xt.Scene {
   constructor() {
     super("MainMenu"), this.orientation = 0;
   }
@@ -108191,7 +108191,7 @@ class _t extends xt.Scene {
   }
   create() {
     const { width: Z, height: J } = this.scale;
-    this.gameScene = this.scene.get("Game"), this.overlay = Ot(this), this.createBackground(Z, J), this.createHowToPlayPopup(Z, J), this.createButtons(), Lt() && this.createOrientationButton(Z, J);
+    this.gameScene = this.scene.get("Game"), this.overlay = Ot(this), this.createBackground(Z, J), this.createHowToPlayPopup(Z, J), this.createButtons(), Mt() && this.createOrientationButton(Z, J);
   }
   createOrientationButton(Z, J) {
     this.add.text(Z - 300, J - 70, "0", {
@@ -108269,7 +108269,7 @@ class _t extends xt.Scene {
   createButtons() {
     this.howButton = this.add.sprite(1150, 490, "btn_how", 0).setInteractive({ useHandCursor: !0 }).setScale(0.6667).on("pointerdown", () => {
       this.overlay.setVisible(!0), this.howPopup.setVisible(!0);
-    }), Wt(this.howButton), this.startButton = this.add.sprite(1150, 590, "btn_start", 0).setInteractive({ useHandCursor: !0 }).setScale(0.6667).on("pointerdown", () => {
+    }), Ht(this.howButton), this.startButton = this.add.sprite(1150, 590, "btn_start", 0).setInteractive({ useHandCursor: !0 }).setScale(0.6667).on("pointerdown", () => {
       setTimeout(() => {
         Nt.sort(() => Math.random() - 0.5), this.scene.start("Game", {
           charactersData: this.charactersData,
@@ -108277,7 +108277,7 @@ class _t extends xt.Scene {
           // ← 여기 추가!
         });
       }, 500);
-    }), Wt(this.startButton);
+    }), Ht(this.startButton);
   }
   createHowToPlayPopup(Z, J) {
     const q = this.add.image(0, 0, "howToPlayPop").setScale(0.6667), _ = this.add.image(q.displayWidth / 2 - 60, -q.displayHeight / 2 + 40, "closeBtn").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
@@ -108286,7 +108286,7 @@ class _t extends xt.Scene {
     this.howPopup = this.add.container(Z / 2, J / 2, [q, _]).setVisible(!1).setDepth(101);
   }
 }
-class te extends At.GameObjects.Container {
+class ee extends At.GameObjects.Container {
   constructor(Z, J, q, _) {
     super(Z, J, q), this.scene = Z, this.sprite = Z.matter.add.sprite(J, q, "ship", 0, { shape: _.ship }).setScale(0.5).setDepth(10), this.state = { leftTorque: 0, rightTorque: 0, angleDeg: 0, stageScore: 0 }, this.prevDir = 0, this.warningLight = Z.add.sprite(J, q - 60, "warningLight"), this.warningLight.setScale(0.5), this.warningLight.setDepth(10), this.warningLight.offsetX = -10, this.warningBlinkTimer = null, this.isBlinkOn = !1, this.tiltTime = 0, this.prevTiltDir = 0;
   }
@@ -108304,8 +108304,8 @@ class te extends At.GameObjects.Container {
   move(Z, J) {
     const q = this.sprite.body.velocity.x;
     if (Z) {
-      const _ = this.scene.boostActive ? Xt * this.scene.boostMultiplier : Xt;
-      !this.scene.orientation && Lt() ? this.sprite.setVelocityX(Z * J) : this.sprite.setVelocityX(At.Math.Clamp(q + Z * _, -J, J)), Z !== this.prevDir && (this.scene.shipCreak.play({ rate: At.Math.FloatBetween(0.95, 1.05) }), this.prevDir = Z, Z > 0 ? this.warningLight.offsetX = -10 : Z < 0 && (this.warningLight.offsetX = 10));
+      const _ = this.scene.boostActive ? Vt * this.scene.boostMultiplier : Vt;
+      !this.scene.orientation && Mt() ? this.sprite.setVelocityX(Z * J) : this.sprite.setVelocityX(At.Math.Clamp(q + Z * _, -J, J)), Z !== this.prevDir && (this.scene.shipCreak.play({ rate: At.Math.FloatBetween(0.95, 1.05) }), this.prevDir = Z, Z > 0 ? this.warningLight.offsetX = -10 : Z < 0 && (this.warningLight.offsetX = 10));
     } else
       this.sprite.setVelocityX(q * 0.98), this.prevDir = 0;
     Z !== 0 && this.sprite.setFrame(Z < 0 ? 1 : 0);
@@ -108348,10 +108348,10 @@ class te extends At.GameObjects.Container {
     this.sprite.setVelocity(0, 0), this.sprite.setAngularVelocity(0);
   }
   reset() {
-    this.scene.tweens.killTweensOf(this.sprite), this.sprite.setPosition(yt / 2, Mt), this.sprite.setAngle(0), this.blinkWarning(!1), this.tiltTime = 0;
+    this.scene.tweens.killTweensOf(this.sprite), this.sprite.setPosition(yt / 2, Rt), this.sprite.setAngle(0), this.blinkWarning(!1), this.tiltTime = 0;
   }
 }
-class ee extends Phaser.GameObjects.Container {
+class ie extends Phaser.GameObjects.Container {
   constructor(Z, J, q) {
     super(Z, q, -50), this.scene = Z, Z.add.existing(this), this.obj = Z.add.sprite(0, 0, J.key).setScale(0.2).setDepth(1), this.add(this.obj), this.weight = J.weight, this.onShip = !1, this.onGround = !1, this.relativeX = 0, this.data = J, this.scoreText = Z.add.text(0, -50, `+${this.weight}`, {
       fontFamily: "Waguri",
@@ -108374,7 +108374,7 @@ class ee extends Phaser.GameObjects.Container {
     if (!this.onShip && !this.onGround) {
       this.y += 2 + this.weight * 0.01, this.x += Math.sin(performance.now() * this.sway.speed + this.sway.offset) * this.sway.amplitude * 0.05, this.x = Phaser.Math.Clamp(this.x, 50, yt - 50), this.obj.scaleX > 0.08 && (this.obj.setScale(this.obj.scaleX - 2e-4), this.setDepth(12));
       const _ = Z.sprite.x - Z.sprite.displayWidth / 2, it = Z.sprite.x + Z.sprite.displayWidth / 2;
-      this.y + this.obj.displayHeight >= Mt && this.x >= _ + 20 && this.x <= it - 20 ? (this.onShip = !0, this.scene.onShipChars.push(this), this.relativeX = this.x - Z.sprite.x, this.y = J - this.obj.displayHeight / 2, this.obj.setScale(0.2), this.setDepth(5), this.shipOn(), this.scoreText.x = 0, this.scoreText.y = -20) : this.y + this.obj.displayHeight >= Ft - 10 && (this.onGround = !0, this.y = Ft - this.obj.displayHeight, this.obj.setScale(0.2), this.moveOffScreen(), this.groundOn());
+      this.y + this.obj.displayHeight >= Rt && this.x >= _ + 20 && this.x <= it - 20 ? (this.onShip = !0, this.scene.onShipChars.push(this), this.relativeX = this.x - Z.sprite.x, this.y = J - this.obj.displayHeight / 2, this.obj.setScale(0.2), this.setDepth(5), this.shipOn(), this.scoreText.x = 0, this.scoreText.y = -20) : this.y + this.obj.displayHeight >= Lt - 10 && (this.onGround = !0, this.y = Lt - this.obj.displayHeight, this.obj.setScale(0.2), this.moveOffScreen(), this.groundOn());
     } else if (this.onShip) {
       const q = Phaser.Math.DegToRad(Z.sprite.angle), _ = this.relativeX * Math.cos(q), it = this.relativeX * Math.sin(q);
       this.x = Z.sprite.x + _, this.y = J - this.obj.displayHeight / 2 + it;
@@ -108407,7 +108407,7 @@ class ee extends Phaser.GameObjects.Container {
   }
   fall() {
     this.setDepth(12), this.onShip = !1;
-    const Z = Phaser.Math.Between(Ft - 10, Mt + 50);
+    const Z = Phaser.Math.Between(Lt - 10, Rt + 50);
     this.scene.tweens.add({
       targets: this,
       y: Z,
@@ -108434,16 +108434,16 @@ class ee extends Phaser.GameObjects.Container {
     this.obj.destroy(), this.scoreText.destroy();
   }
 }
-function ie(at, Z) {
+function se(at, Z) {
   let J = 0;
   const q = () => {
-    J >= Z || (J++, se(at, q));
+    J >= Z || (J++, ne(at, q));
   };
   q();
 }
-function se(at, Z) {
+function ne(at, Z) {
   if (at.whales.length > 0) return;
-  const J = Phaser.Math.Between(0, 1) === 0, q = J ? -150 : yt + 150, _ = J ? 150 : yt - 150, it = at.matter.add.sprite(q, Mt, "whale", null, {
+  const J = Phaser.Math.Between(0, 1) === 0, q = J ? -150 : yt + 150, _ = J ? 150 : yt - 150, it = at.matter.add.sprite(q, Rt, "whale", null, {
     isStatic: !0,
     label: "whale"
   }).setScale(0.3);
@@ -108479,7 +108479,7 @@ function se(at, Z) {
     }
   });
 }
-class ne extends xt.Scene {
+class re extends xt.Scene {
   constructor() {
     super("Game"), this.ship = null, this.characters = [], this.onShipChars = [], this.boostTimer = 0, this.boostCount = 1, this.boostMultiplier = 2, this.timeUpBonus = 1, this.currentStageIndex = 0, this.totalScore = 0, this.whales = [], this.tiltGamma = 0, this.mobileDir = 0;
   }
@@ -108491,7 +108491,7 @@ class ne extends xt.Scene {
     const { width: Z, height: J } = this.scale;
     this.add.image(Z / 2, J / 2, "mainGameBG").setScale(0.6667), this.add.image(Z / 2, J, "wave").setOrigin(0.5, 1).setScale(0.6667).setDepth(11), this.add.image(200, J - 80, "game_score").setScale(0.6667).setDepth(13), this.matter.world.setBounds(0, 0, Z, J), this.swimSound = this.sound.add("swim", { volume: 0.5 }), this.timerSound = this.sound.add("timer", { loop: !0, volume: 0.5 }), this.shipCreak = this.sound.add("shipCreak", { volume: 0.3 }), this.warning = this.sound.add("warning", { volume: 0.3 });
     const q = this.cache.json.get("shipPhysics");
-    this.ship = new te(this, Z / 2, Mt, q), Lt() || (this.cursors = this.input.keyboard.createCursorKeys()), Lt() && window.DeviceOrientationEvent && (window.addEventListener("deviceorientation", (_) => {
+    this.ship = new ee(this, Z / 2, Rt, q), Mt() || (this.cursors = this.input.keyboard.createCursorKeys()), Mt() && window.DeviceOrientationEvent && (window.addEventListener("deviceorientation", (_) => {
       const it = window.innerHeight > window.innerWidth;
       this.tiltGamma = it ? _.gamma : _.beta;
     }), window.addEventListener("orientationchange", () => {
@@ -108502,22 +108502,22 @@ class ne extends xt.Scene {
   }
   update(Z, J) {
     if (this.gameOverTriggered) return;
-    this.ship.sprite.y = Mt;
+    this.ship.sprite.y = Rt;
     let q = 0;
-    if (Lt() ? this.orientation ? q = this.mobileDir : q = Math.sign(this.tiltGamma) * Math.min(Math.abs(this.tiltGamma) / 20, 1) : q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0), this.boostActive) {
+    if (Mt() ? this.orientation ? q = this.mobileDir : q = Math.sign(this.tiltGamma) * Math.min(Math.abs(this.tiltGamma) / 20, 1) : q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0), this.boostActive) {
       this.boostTimer -= J;
-      const p = Phaser.Math.Clamp(this.boostTimer / Bt, 0, 1), S = this.interfaceScene.boostGaugeHeight * p;
+      const S = Phaser.Math.Clamp(this.boostTimer / Bt, 0, 1), t = this.interfaceScene.boostGaugeHeight * S;
       this.interfaceScene.boostGauge.clear(), this.interfaceScene.boostGauge.fillStyle(65280, 0.7);
-      const t = this.interfaceScene.boostGaugeY + (this.interfaceScene.boostGaugeHeight - S);
-      this.interfaceScene.boostGauge.fillRect(this.interfaceScene.boostGaugeX, t, this.interfaceScene.boostGaugeWidth, S), this.boostTimer <= 0 && (this.boostActive = !1, this.interfaceScene.boostButton.setFrame(0), this.interfaceScene.boostGauge.clear(), this.interfaceScene.boostButton.setInteractive({ useHandCursor: !0 }));
+      const d = this.interfaceScene.boostGaugeY + (this.interfaceScene.boostGaugeHeight - t);
+      this.interfaceScene.boostGauge.fillRect(this.interfaceScene.boostGaugeX, d, this.interfaceScene.boostGaugeWidth, t), this.boostTimer <= 0 && (this.boostActive = !1, this.interfaceScene.boostButton.setFrame(0), this.interfaceScene.boostGauge.clear(), this.interfaceScene.boostButton.setInteractive({ useHandCursor: !0 }));
     }
     const _ = this.ship.sprite.displayWidth / 2;
     (this.ship.sprite.x <= _ && q < 0 || this.ship.sprite.x >= this.scale.width - _ && q > 0) && (q = 0);
-    const it = this.boostActive ? zt * this.boostMultiplier : zt;
-    this.ship.move(q, it), this.characters.forEach((p) => p.update(this.ship)), this.ship.applyTilt(J), this.ship.updateState(this.onShipChars), this.updateHUD(this.ship, this, q), this.interfaceScene.updateTimer(J);
+    const it = this.boostActive ? Xt * this.boostMultiplier : Xt, p = this.boostActive ? zt * this.boostMultiplier : zt;
+    this.ship.move(q, Mt() ? it : p), this.characters.forEach((S) => S.update(this.ship)), this.ship.applyTilt(J), this.ship.updateState(this.onShipChars), this.updateHUD(this.ship, this, q), this.interfaceScene.updateTimer(J);
   }
   updateHUD() {
-    this.hudScore.setText(`${this.ship.state.stageScore + this.totalScore}`), this.hudStageNumber.setText(`${this.currentStageIndex + 1} 단계`), this.hudStageTarget.setText(`${Rt[this.currentStageIndex].targetScore}`);
+    this.hudScore.setText(`${this.ship.state.stageScore + this.totalScore}`), this.hudStageNumber.setText(`${this.currentStageIndex + 1} 단계`), this.hudStageTarget.setText(`${Ft[this.currentStageIndex].targetScore}`);
   }
   pauseGame() {
     this.scene.pause("Game"), this.scene.pause("Interface"), this.scene.launch("Pause");
@@ -108530,13 +108530,13 @@ class ne extends xt.Scene {
   }
   // 게임 시작
   startStage(Z = 0) {
-    this.currentStageIndex = Z, this.targetScore = Rt[Z].targetScore, this.charactersData.sort(() => Math.random() - 0.5), this.charTimer = this.time.addEvent({
+    this.currentStageIndex = Z, this.targetScore = Ft[Z].targetScore, this.charactersData.sort(() => Math.random() - 0.5), this.charTimer = this.time.addEvent({
       delay: 1e3,
       callback: () => this.createChar(),
       loop: !0
     });
-    const J = Rt[this.currentStageIndex].whaleCount || 0;
-    J > 0 && ie(this, J);
+    const J = Ft[this.currentStageIndex].whaleCount || 0;
+    J > 0 && se(this, J);
   }
   gameOver() {
     this.gameOverTriggered = !0, this.sound.play("fail"), this.ship.stop(), this.ship.fallOver(), this.onShipChars.forEach((Z) => Z.fall()), this.time.delayedCall(1e3, () => {
@@ -108560,7 +108560,7 @@ class ne extends xt.Scene {
       fontFamily: "Waguri",
       fontSize: "34px",
       color: "#484848"
-    }).setDepth(13).setOrigin(0.5, 0.5), this.hudStageTarget = this.add.text(280, J - 60, `${Rt[this.currentStageIndex].targetScore}`, {
+    }).setDepth(13).setOrigin(0.5, 0.5), this.hudStageTarget = this.add.text(280, J - 60, `${Ft[this.currentStageIndex].targetScore}`, {
       fontFamily: "Waguri",
       fontSize: "34px",
       color: "#a40606"
@@ -108578,7 +108578,7 @@ class ne extends xt.Scene {
     if (this.gameOverTriggered) return;
     const Z = this.charactersData[Phaser.Math.Between(0, this.charactersData.length - 1)], J = yt / Ut;
     (!this.zonePool || this.zonePool.length === 0) && (this.zonePool = Phaser.Utils.Array.NumberArray(0, Ut - 1), Phaser.Utils.Array.Shuffle(this.zonePool));
-    const q = this.zonePool.pop(), _ = J * q, it = _ + J, p = Phaser.Math.Between(_ + 100, it - 100), S = new ee(this, Z, p);
+    const q = this.zonePool.pop(), _ = J * q, it = _ + J, p = Phaser.Math.Between(_ + 100, it - 100), S = new ie(this, Z, p);
     this.characters.push(S);
   }
   // 다음 스테이지 시작 전 준비
@@ -108589,7 +108589,7 @@ class ne extends xt.Scene {
     this.resetStage(), this.currentStageIndex = 0, this.boostCount = 1, this.timeUpBonus = 1, this.totalScore = 0, this.interfaceScene.boostCountText.setText(this.boostCount), this.interfaceScene.timeUpCountText.setText(this.timeUpBonus);
   }
 }
-class re extends xt.Scene {
+class ae extends xt.Scene {
   constructor() {
     super({ key: "Interface" }), this.timer = Dt;
   }
@@ -108624,7 +108624,7 @@ class re extends xt.Scene {
     const J = this.timer / Dt, { x: q, y: _, width: it, height: p, radius: S } = this.timerBarConfig;
     this.timerBar.clear();
     const t = it * J;
-    t > 0 && (this.timerBar.fillStyle(this.timer <= 1e4 ? 16731691 : 32157, 0.7), this.timerBar.fillRoundedRect(q, _, t, p, S), this.timerEndIcon.x = q + t, this.timerEndIcon.y = _, this.timer <= 1e4 ? (this.gameScene.timerSound.isPlaying || this.gameScene.timerSound.play(), this.timerEndSway = { amplitude: 3, speed: 0.05 }, this.timerEndIcon.angle += Math.sin(performance.now() * this.timerEndSway.speed) * this.timerEndSway.amplitude, this.timerEndIcon.setFrame(Math.floor(performance.now() / 200) % 2)) : (this.timerEndIcon.setFrame(0), this.timerEndIcon.angle = 0)), this.timer <= 0 && (this.gameScene.gameOverTriggered = !0, this.gameScene.timerSound.stop(), this.gameScene.ship.stop(), this.gameScene.ship.state.stageScore + this.gameScene.totalScore >= this.gameScene.targetScore ? this.gameScene.currentStageIndex >= Rt.length - 1 ? this.gameScene.gameClear() : this.gameScene.nextStage() : this.gameScene.gameOver());
+    t > 0 && (this.timerBar.fillStyle(this.timer <= 1e4 ? 16731691 : 32157, 0.7), this.timerBar.fillRoundedRect(q, _, t, p, S), this.timerEndIcon.x = q + t, this.timerEndIcon.y = _, this.timer <= 1e4 ? (this.gameScene.timerSound.isPlaying || this.gameScene.timerSound.play(), this.timerEndSway = { amplitude: 3, speed: 0.05 }, this.timerEndIcon.angle += Math.sin(performance.now() * this.timerEndSway.speed) * this.timerEndSway.amplitude, this.timerEndIcon.setFrame(Math.floor(performance.now() / 200) % 2)) : (this.timerEndIcon.setFrame(0), this.timerEndIcon.angle = 0)), this.timer <= 0 && (this.gameScene.gameOverTriggered = !0, this.gameScene.timerSound.stop(), this.gameScene.ship.stop(), this.gameScene.ship.state.stageScore + this.gameScene.totalScore >= this.gameScene.targetScore ? this.gameScene.currentStageIndex >= Ft.length - 1 ? this.gameScene.gameClear() : this.gameScene.nextStage() : this.gameScene.gameOver());
   }
   createTimerBar() {
     this.timerBarBG = this.add.graphics();
@@ -108641,7 +108641,7 @@ class re extends xt.Scene {
     this.timer = Dt;
   }
 }
-class ae extends xt.Scene {
+class oe extends xt.Scene {
   constructor() {
     super({ key: "Pause" });
   }
@@ -108654,7 +108654,7 @@ class ae extends xt.Scene {
     });
   }
 }
-class oe extends xt.Scene {
+class he extends xt.Scene {
   constructor() {
     super({ key: "GameOver" });
   }
@@ -108670,7 +108670,7 @@ class oe extends xt.Scene {
     this.gameOverScoreText = this.add.text(120, 32, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.gameOverPop = this.add.container(Z / 2, J / 2, [q, _, this.gameOverScoreText]).setDepth(101);
   }
 }
-class he extends xt.Scene {
+class le extends xt.Scene {
   constructor() {
     super({ key: "NextStage" });
   }
@@ -108688,7 +108688,7 @@ class he extends xt.Scene {
     this.nextStageScoreText = this.add.text(-14, 44, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.nextStagePop = this.add.container(Z / 2, J / 2, [q, _, it, this.nextStageScoreText]).setDepth(101);
   }
 }
-class le extends xt.Scene {
+class ue extends xt.Scene {
   constructor() {
     super({ key: "GameClear" });
   }
@@ -108711,12 +108711,12 @@ xt.Scene.prototype.addTweens = function(at) {
     ...at
   });
 };
-const ue = {
+const fe = {
   type: xt.AUTO,
   width: yt,
-  height: Ft,
+  height: Lt,
   parent: "game-container",
-  backgroundColor: bt,
+  backgroundColor: Kt,
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
@@ -108728,8 +108728,8 @@ const ue = {
       debug: !1
     }
   },
-  scene: [qt, jt, _t, ne, re, ae, kt, oe, he, le]
-}, fe = (at) => new xt.Game({ ...ue, parent: at });
+  scene: [_t, kt, te, re, ae, oe, qt, he, le, ue]
+}, de = (at) => new xt.Game({ ...fe, parent: at });
 document.addEventListener("DOMContentLoaded", () => {
-  fe("game-container");
+  de("game-container");
 });
