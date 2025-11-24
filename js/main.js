@@ -20,7 +20,7 @@ const Rt = [
   { key: "char8", weight: 40, name: "pig", swimSpeed: 110 },
   { key: "char9", weight: 20, name: "rabbit", swimSpeed: 170 },
   { key: "char10", weight: 25, name: "snake", swimSpeed: 150 }
-], Ut = 10, bt = 13234170, yt = 1280, Ft = 720, Dt = 3e4, Bt = 7e3, Mt = Ft - 190, It = 18, zt = 10, Xt = 0.15, Gt = "loading", Vt = { width: 94, height: 57 }, Kt = 12, Zt = { start: 0, end: 2 };
+], Ut = 10, bt = 13234170, yt = 1280, Ft = 720, Dt = 3e4, Bt = 7e3, Mt = Ft - 190, It = 18, zt = 20, Xt = 0.15, Gt = "loading", Vt = { width: 94, height: 57 }, Kt = 12, Zt = { start: 0, end: 2 };
 function Jt(at) {
   return at && at.__esModule && Object.prototype.hasOwnProperty.call(at, "default") ? at.default : at;
 }
@@ -108506,7 +108506,7 @@ class ne extends xt.Scene {
     if (this.gameOverTriggered) return;
     this.ship.sprite.y = Mt;
     let q = 0;
-    if (Lt() ? this.orientation ? q = this.mobileDir : (q = Phaser.Math.Clamp(this.tiltGamma / 10, -1, 1), q *= 1.2) : q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0), this.boostActive) {
+    if (Lt() ? this.orientation ? q = this.mobileDir : q = Phaser.Math.Clamp(this.tiltGamma / 10, -1, 1) : q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0), this.boostActive) {
       this.boostTimer -= J;
       const tt = Phaser.Math.Clamp(this.boostTimer / Bt, 0, 1), p = this.interfaceScene.boostGaugeHeight * tt;
       this.interfaceScene.boostGauge.clear(), this.interfaceScene.boostGauge.fillStyle(65280, 0.7);
