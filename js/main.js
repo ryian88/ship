@@ -108510,8 +108510,8 @@ class ne extends xt.Scene {
       if (this.orientation)
         q = this.mobileDir;
       else {
-        let S = this.tiltGamma || 0;
-        Math.abs(S) > 5 && (q = Phaser.Math.Clamp(S / 10, -1, 1));
+        let p = this.tiltGamma || 0;
+        q = Phaser.Math.Clamp(p / 10, -1, 1);
       }
     else q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0);
     if (this.boostActive) {
