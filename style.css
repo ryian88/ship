@@ -1,0 +1,47 @@
+@font-face { 
+ font-family: 'Hakgyoansim-Bold'; 
+ src: url("./fonts/HakgyoansimDunggeunmisoB.ttf") format("truetype"); 
+ } 
+
+@font-face { 
+ font-family: 'Hakgyoansim-Regular'; 
+ src: url("./fonts/HakgyoansimDunggeunmisoR.ttf") format("truetype"); 
+ } 
+
+@font-face { 
+ font-family: 'Waguri'; 
+ src: url("./fonts/WAGURI.ttf") format("truetype"); 
+ } 
+
+@font-face { 
+ font-family: 'GmarketSans'; 
+ src: url("./fonts/GmarketSansTTFMedium.ttf") format("truetype"); 
+ } 
+
+@font-face { 
+ font-family: 'Cafe24Ssurround'; 
+ src: url("./fonts/Cafe24Ssurround.ttf") format("truetype"); 
+ } 
+
+
+html, body, div, span, ul, ol, li { 
+ margin: 0; 
+ padding: 0; 
+ list-style: none; 
+ box-sizing: border-box; 
+ } 
+
+body { 
+ margin: 0; 
+ padding: 0; 
+ color: rgba(255, 255, 255, 0.87); 
+ background-color: #000000; 
+ } 
+
+/* log */
+.logContainer { 
+ position: absolute; 
+ top: 0; 
+ left: 0; 
+ color: red; 
+ } 
