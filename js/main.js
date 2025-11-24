@@ -108305,7 +108305,7 @@ class te extends At.GameObjects.Container {
     const q = this.sprite.body.velocity.x;
     if (Z) {
       const _ = this.scene.boostActive ? Xt * this.scene.boostMultiplier : Xt;
-      this.sprite.setVelocityX(At.Math.Clamp(q + Z * _, -J, J)), Z !== this.prevDir && (this.scene.shipCreak.play({ rate: At.Math.FloatBetween(0.95, 1.05) }), this.prevDir = Z, Z > 0 ? this.warningLight.offsetX = -10 : Z < 0 && (this.warningLight.offsetX = 10));
+      this.scene.isTiltMode ? this.sprite.setVelocityX(Z * J) : this.sprite.setVelocityX(At.Math.Clamp(q + Z * _, -J, J)), Z !== this.prevDir && (this.scene.shipCreak.play({ rate: At.Math.FloatBetween(0.95, 1.05) }), this.prevDir = Z, Z > 0 ? this.warningLight.offsetX = -10 : Z < 0 && (this.warningLight.offsetX = 10));
     } else
       this.sprite.setVelocityX(q * 0.98), this.prevDir = 0;
     Z !== 0 && this.sprite.setFrame(Z < 0 ? 1 : 0);
@@ -108483,7 +108483,7 @@ class ne extends xt.Scene {
     super("Game"), this.ship = null, this.characters = [], this.onShipChars = [], this.boostTimer = 0, this.boostCount = 1, this.boostMultiplier = 2, this.timeUpBonus = 1, this.currentStageIndex = 0, this.totalScore = 0, this.whales = [], this.tiltGamma = 0, this.mobileDir = 0;
   }
   init(Z) {
-    this.charactersData = Z.charactersData, this.orientation = Z.orientation ?? 0;
+    this.charactersData = Z.charactersData, this.orientation = Z.orientation, this.isTiltMode = this.orientation === 1;
   }
   create() {
     this.scene.launch("Interface"), this.interfaceScene = this.scene.get("Interface");
@@ -108495,7 +108495,7 @@ class ne extends xt.Scene {
       this.tiltGamma = tt ? _.gamma : _.beta;
     }), window.addEventListener("orientationchange", () => {
       setTimeout(() => this.tiltGamma = 0, 100);
-    })), this.orientation == 1 && this.createMobileButton(Z, J), this.createHUD(Z, J), this.scene.get("Interface").events.once("createComplete", () => {
+    })), this.isTiltMode && this.createMobileButton(Z, J), this.createHUD(Z, J), this.scene.get("Interface").events.once("createComplete", () => {
       this.resetGame();
     }), this.startStage();
   }
@@ -108506,7 +108506,7 @@ class ne extends xt.Scene {
     if (this.gameOverTriggered) return;
     this.ship.sprite.y = Mt;
     let q = 0;
-    if (wt() ? this.orientation ? q = this.mobileDir : (q = Phaser.Math.Clamp(this.tiltGamma / 10, -1, 1), q *= 1.2) : q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0), this.boostActive) {
+    if (wt() ? this.isTiltMode ? (q = Phaser.Math.Clamp(this.tiltGamma / 10, -1, 1), q *= 1.2) : q = this.mobileDir : q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0), this.boostActive) {
       this.boostTimer -= J;
       const tt = Phaser.Math.Clamp(this.boostTimer / Bt, 0, 1), p = this.interfaceScene.boostGaugeHeight * tt;
       this.interfaceScene.boostGauge.clear(), this.interfaceScene.boostGauge.fillStyle(65280, 0.7);
