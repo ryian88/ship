@@ -108510,8 +108510,8 @@ class ne extends xt.Scene {
       if (this.orientation)
         q = this.mobileDir;
       else {
-        let p = this.tiltGamma || 0, S = Phaser.Math.Clamp(p / 10, -1, 1);
-        q = Math.sign(S) * Math.pow(Math.abs(S), 1.5);
+        let p = this.tiltGamma || 0;
+        q = Phaser.Math.Clamp(p / 10, -1, 1);
       }
     else q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0);
     if (this.boostActive) {
@@ -108522,7 +108522,7 @@ class ne extends xt.Scene {
       this.interfaceScene.boostGauge.fillRect(this.interfaceScene.boostGaugeX, S, this.interfaceScene.boostGaugeWidth, p), this.boostTimer <= 0 && (this.boostActive = !1, this.interfaceScene.boostButton.setFrame(0), this.interfaceScene.boostGauge.clear(), this.interfaceScene.boostButton.setInteractive({ useHandCursor: !0 }));
     }
     const _ = this.boostActive ? zt * this.boostMultiplier : zt;
-    this.ship.move(q, _ * Math.abs(q)), this.characters.forEach((tt) => tt.update(this.ship)), this.ship.applyTilt(J), this.ship.updateState(this.onShipChars), this.updateHUD(this.ship, this, q), this.interfaceScene.updateTimer(J);
+    this.ship.move(q, _), this.characters.forEach((tt) => tt.update(this.ship)), this.ship.applyTilt(J), this.ship.updateState(this.onShipChars), this.updateHUD(this.ship, this, q), this.interfaceScene.updateTimer(J);
   }
   updateHUD() {
     this.hudScore.setText(`${this.ship.state.stageScore + this.totalScore}`), this.hudStageNumber.setText(`${this.currentStageIndex + 1} 단계`), this.hudStageTarget.setText(`${Rt[this.currentStageIndex].targetScore}`);
