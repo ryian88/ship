@@ -1,8 +1,7 @@
 @font-face { 
- font-family: 'Cafe24Ssurround'; 
- src: url("./fonts/Cafe24Ssurround.ttf") format("truetype"); 
+ font-family: 'Waguri'; 
+ src: url("./fonts/WAGURI.ttf") format("truetype"); 
  } 
-
 
 html, body, div, span, ul, ol, li { 
  margin: 0; 
