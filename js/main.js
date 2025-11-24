@@ -20,7 +20,7 @@ const Ft = [
   { key: "char8", weight: 40, name: "pig", swimSpeed: 110 },
   { key: "char9", weight: 20, name: "rabbit", swimSpeed: 170 },
   { key: "char10", weight: 25, name: "snake", swimSpeed: 150 }
-], Ut = 10, Kt = 13234170, yt = 1280, Lt = 720, Dt = 3e4, Bt = 7e3, Rt = Lt - 190, It = 18, zt = 10, Xt = 14, Vt = 0.15, Gt = "loading", Yt = { width: 94, height: 57 }, Zt = 12, Jt = { start: 0, end: 2 };
+], Ut = 10, Kt = 13234170, yt = 1280, Lt = 720, Dt = 3e4, Bt = 7e3, Rt = Lt - 190, It = 18, zt = 10, Xt = 10, Vt = 0.15, Gt = "loading", Yt = { width: 94, height: 57 }, Zt = 12, Jt = { start: 0, end: 2 };
 function Qt(at) {
   return at && at.__esModule && Object.prototype.hasOwnProperty.call(at, "default") ? at.default : at;
 }
