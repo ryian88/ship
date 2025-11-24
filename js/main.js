@@ -108191,7 +108191,7 @@ class _t extends xt.Scene {
   }
   create() {
     const { width: Z, height: J } = this.scale;
-    this.gameScene = this.scene.get("Game"), this.overlay = Lt(this), this.createBackground(Z, J), this.createHowToPlayPopup(Z, J), this.createButtons(), wt() || this.createOrientationButton(Z, J);
+    this.gameScene = this.scene.get("Game"), this.overlay = Lt(this), this.createBackground(Z, J), this.createHowToPlayPopup(Z, J), this.createButtons(), wt() && this.createOrientationButton(Z, J);
   }
   createOrientationButton(Z, J) {
     this.add.text(Z - 300, J - 70, "0", {
