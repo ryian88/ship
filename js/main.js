@@ -27,8 +27,8 @@ function Jt(at) {
 var Dt = { exports: {} }, Qt = Dt.exports, Yt;
 function $t() {
   return Yt || (Yt = 1, function(at, Z) {
-    (function(q, tt) {
-      at.exports = tt();
+    (function(q, _) {
+      at.exports = _();
     })(Qt, () => (
       /******/
       (() => {
@@ -107883,7 +107883,7 @@ return new ` + this.key + `();
           )
           /******/
         }, q = {};
-        function tt(p) {
+        function _(p) {
           var S = q[p];
           if (S !== void 0)
             return S.exports;
@@ -107896,9 +107896,9 @@ return new ` + this.key + `();
             exports: {}
             /******/
           };
-          return J[p](t, t.exports, tt), t.exports;
+          return J[p](t, t.exports, _), t.exports;
         }
-        tt.g = function() {
+        _.g = function() {
           if (typeof globalThis == "object") return globalThis;
           try {
             return this || new Function("return this")();
@@ -107906,8 +107906,8 @@ return new ` + this.key + `();
             if (typeof window == "object") return window;
           }
         }();
-        var _ = tt(85454);
-        return _;
+        var tt = _(85454);
+        return tt;
       })()
     ));
   }(Dt)), Dt.exports;
@@ -107922,10 +107922,10 @@ class jt extends xt.Scene {
     const J = { width: 500, height: 30 }, q = {
       x: this.scale.width / 2 - J.width / 2,
       y: this.scale.height / 2 - J.height / 2
-    }, tt = J.height / 2, _ = 8, p = { width: J.width + _, height: J.height + _ }, S = tt + _, t = { x: q.x - _ / 2, y: q.y - _ / 2 }, d = this.add.graphics({ fillStyle: { color: 16777215 }, lineStyle: { width: 3, color: 9751772 } });
+    }, _ = J.height / 2, tt = 8, p = { width: J.width + tt, height: J.height + tt }, S = _ + tt, t = { x: q.x - tt / 2, y: q.y - tt / 2 }, d = this.add.graphics({ fillStyle: { color: 16777215 }, lineStyle: { width: 3, color: 9751772 } });
     d.fillRoundedRect(t.x, t.y, p.width, p.height, S), d.strokeRoundedRect(t.x, t.y, p.width, p.height, S);
     const c = this.add.graphics({ fillStyle: { color: 9751772 } });
-    c.fillRoundedRect(q.x, q.y, J.height, J.height, tt), this.anims.create({
+    c.fillRoundedRect(q.x, q.y, J.height, J.height, _), this.anims.create({
       key: "loading",
       frames: this.anims.generateFrameNumbers(Gt, Zt),
       frameRate: Kt,
@@ -107934,7 +107934,7 @@ class jt extends xt.Scene {
     const h = this.add.sprite(0, 0, Gt).play("loading");
     h.setScale(0.6667), h.y = q.y + J.height / 2 - h.height / 2 - 14, this.load.on("progress", (r) => {
       const n = Math.max(J.height, J.width * r);
-      c.clear(), c.fillRoundedRect(q.x, q.y, n, J.height, tt), h.x = q.x + n - J.height / 2;
+      c.clear(), c.fillRoundedRect(q.x, q.y, n, J.height, _), h.x = q.x + n - J.height / 2;
     });
   }
   preload() {
@@ -108109,47 +108109,47 @@ class kt extends At.Scene {
       this.scene.stop("Quiz"), this.scene.resume("Game"), this.gameScene.scene.resume("Interface"), this.gameScene.resetStage(), this.gameScene.currentStageIndex++, this.gameScene.startStage(this.gameScene.currentStageIndex);
     });
   }
-  createStoreButton(Z, J, q, tt) {
-    const _ = this.add.image(Z, J, q).setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => this.showQuiz(tt, _));
-    return _;
+  createStoreButton(Z, J, q, _) {
+    const tt = this.add.image(Z, J, q).setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => this.showQuiz(_, tt));
+    return tt;
   }
   showQuiz(Z, J) {
-    const { width: q, height: tt } = this.scale, _ = Nt[this.quizIndexPointer++ % Nt.length];
+    const { width: q, height: _ } = this.scale, tt = Nt[this.quizIndexPointer++ % Nt.length];
     this.overlay.setVisible(!0);
-    const p = this.add.image(0, 0, "boat_store_quiz_box").setScale(0.6667), S = Z === "speed" ? "store_item_speed" : "store_item_time", t = this.add.image(-460, -210, S).setScale(0.35), d = this.createUnderlinedQuestion(_.question);
-    this.optionContainers = this.createOptionButtons(_, Z, J), this.quizPop = this.add.container(q / 2, tt / 2, [p, t, d, ...this.optionContainers]).setDepth(101);
+    const p = this.add.image(0, 0, "boat_store_quiz_box").setScale(0.6667), S = Z === "speed" ? "store_item_speed" : "store_item_time", t = this.add.image(-460, -210, S).setScale(0.35), d = this.createUnderlinedQuestion(tt.question);
+    this.optionContainers = this.createOptionButtons(tt, Z, J), this.quizPop = this.add.container(q / 2, _ / 2, [p, t, d, ...this.optionContainers]).setDepth(101);
   }
   createUnderlinedQuestion(Z) {
     const J = Z.split(/(_[^_]+_)/g), q = this.add.container(0, -80);
-    let tt = 50;
-    return J.forEach((_) => {
-      const p = _.startsWith("_") && _.endsWith("_"), S = p ? _.slice(1, -1) : _, t = p ? "#ff0000" : "#000", d = this.add.text(tt, 0, S, { fontFamily: "Waguri", fontSize: "32px", color: t }).setOrigin(0, 0.5);
+    let _ = 50;
+    return J.forEach((tt) => {
+      const p = tt.startsWith("_") && tt.endsWith("_"), S = p ? tt.slice(1, -1) : tt, t = p ? "#ff0000" : "#000", d = this.add.text(_, 0, S, { fontFamily: "Waguri", fontSize: "32px", color: t }).setOrigin(0, 0.5);
       if (q.add(d), p) {
         const c = this.add.line(d.x, d.y + 20, 0, 0, d.width, 0, 16711680).setOrigin(0, 0).setLineWidth(2);
         q.add(c);
       }
-      tt += d.width + 6;
-    }), q.setX(-tt / 2), q;
+      _ += d.width + 6;
+    }), q.setX(-_ / 2), q;
   }
   createOptionButtons(Z, J, q) {
-    return Z.options.map((tt, _) => {
-      const p = -300 + _ * 330, S = 184, t = this.add.image(0, 0, "ansBox").setScale(0.6667).setOrigin(0.5), d = this.add.text(0, 0, tt, { fontFamily: "Waguri", fontSize: "28px", color: "#fff", align: "center" }).setOrigin(0.5), c = this.add.container(p, S, [t, d]).setSize(t.displayWidth, t.displayHeight).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => this.checkAnswer(_, Z.answer, J, q, c));
+    return Z.options.map((_, tt) => {
+      const p = -300 + tt * 330, S = 184, t = this.add.image(0, 0, "ansBox").setScale(0.6667).setOrigin(0.5), d = this.add.text(0, 0, _, { fontFamily: "Waguri", fontSize: "28px", color: "#fff", align: "center" }).setOrigin(0.5), c = this.add.container(p, S, [t, d]).setSize(t.displayWidth, t.displayHeight).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => this.checkAnswer(tt, Z.answer, J, q, c));
       return c;
     });
   }
-  checkAnswer(Z, J, q, tt, _) {
+  checkAnswer(Z, J, q, _, tt) {
     const p = Z === J, S = p ? "correct" : "incorrect", t = p ? "item_get" : "item_soldout";
-    this.sound.play(S), this.showResultIcon(_, p), this.showStoreResultIcon(tt, t, p), tt.disableInteractive(), this.optionContainers.forEach((d) => d.disableInteractive()), p && (q === "speed" ? (this.gameScene.boostCount++, this.gameScene.interfaceScene.boostCountText.setText(this.gameScene.boostCount)) : (this.gameScene.timeUpBonus++, this.gameScene.interfaceScene.timeUpCountText.setText(this.gameScene.timeUpBonus))), this.time.delayedCall(1e3, () => {
+    this.sound.play(S), this.showResultIcon(tt, p), this.showStoreResultIcon(_, t, p), _.disableInteractive(), this.optionContainers.forEach((d) => d.disableInteractive()), p && (q === "speed" ? (this.gameScene.boostCount++, this.gameScene.interfaceScene.boostCountText.setText(this.gameScene.boostCount)) : (this.gameScene.timeUpBonus++, this.gameScene.interfaceScene.timeUpCountText.setText(this.gameScene.timeUpBonus))), this.time.delayedCall(1e3, () => {
       this.overlay.setVisible(!1), this.quizPop?.setAlpha(0);
     });
   }
   showResultIcon(Z, J) {
-    const q = J ? "correct" : "incorrect", tt = this.add.image(0, 0, q).setScale(0.5).setOrigin(0.5);
-    Z.add(tt);
+    const q = J ? "correct" : "incorrect", _ = this.add.image(0, 0, q).setScale(0.5).setOrigin(0.5);
+    Z.add(_);
   }
   showStoreResultIcon(Z, J, q) {
-    const tt = q ? 80 : 0, _ = q ? 80 : 0;
-    this.add.image(Z.x + tt, Z.y + _, J).setScale(0.6667).setOrigin(0.5);
+    const _ = q ? 80 : 0, tt = q ? 80 : 0;
+    this.add.image(Z.x + _, Z.y + tt, J).setScale(0.6667).setOrigin(0.5);
   }
 }
 class qt extends xt.Scene {
@@ -108160,23 +108160,23 @@ class qt extends xt.Scene {
     this.load.spritesheet(Gt, "assets/players/boat/boat_spritesheet.png", { frameWidth: Vt.width, frameHeight: Vt.height }), this.load.image("logo", "assets/icecandy_logo.png");
   }
   create() {
-    const { width: Z, height: J } = this.scale, q = this.add.rectangle(0, 0, Z, J, 13234170).setOrigin(0, 0), tt = this.add.image(Z / 2, J / 2, "logo").setAlpha(0);
-    tt.setY(tt.y + 100), this.addTweens({
-      targets: tt,
+    const { width: Z, height: J } = this.scale, q = this.add.rectangle(0, 0, Z, J, 13234170).setOrigin(0, 0), _ = this.add.image(Z / 2, J / 2, "logo").setAlpha(0);
+    _.setY(_.y + 100), this.addTweens({
+      targets: _,
       alpha: 1,
       y: "-=120",
       duration: 150,
       onComplete: () => {
         this.addTweens({
-          targets: tt,
+          targets: _,
           alpha: 1,
           y: "+=20",
           duration: 100
         });
       }
     }), this.time.delayedCall(1200, () => {
-      const _ = { alpha: 0, duration: 200 };
-      this.addTweens({ targets: tt, ..._ }), this.addTweens({ targets: q, ..._ });
+      const tt = { alpha: 0, duration: 200 };
+      this.addTweens({ targets: _, ...tt }), this.addTweens({ targets: q, ...tt });
     }), this.time.delayedCall(1500, () => {
       this.scene.start("Preloader");
     });
@@ -108209,8 +108209,8 @@ class _t extends xt.Scene {
       { x: 1100, y: 200, key: "panda" },
       { x: Z / 2, y: 460, key: "intro" },
       { x: Z / 2, y: 170, key: "title" }
-    ].forEach(({ x: tt, y: _, key: p }) => {
-      const S = this.add.image(tt, _, p).setScale(0.6667);
+    ].forEach(({ x: _, y: tt, key: p }) => {
+      const S = this.add.image(_, tt, p).setScale(0.6667);
       if (p === "mainBG") return;
       let t = {
         targets: S,
@@ -108280,15 +108280,15 @@ class _t extends xt.Scene {
     }), Wt(this.startButton);
   }
   createHowToPlayPopup(Z, J) {
-    const q = this.add.image(0, 0, "howToPlayPop").setScale(0.6667), tt = this.add.image(q.displayWidth / 2 - 60, -q.displayHeight / 2 + 40, "closeBtn").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
+    const q = this.add.image(0, 0, "howToPlayPop").setScale(0.6667), _ = this.add.image(q.displayWidth / 2 - 60, -q.displayHeight / 2 + 40, "closeBtn").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.overlay.setVisible(!1), this.howPopup.setVisible(!1);
     });
-    this.howPopup = this.add.container(Z / 2, J / 2, [q, tt]).setVisible(!1).setDepth(101);
+    this.howPopup = this.add.container(Z / 2, J / 2, [q, _]).setVisible(!1).setDepth(101);
   }
 }
 class te extends At.GameObjects.Container {
-  constructor(Z, J, q, tt) {
-    super(Z, J, q), this.scene = Z, this.sprite = Z.matter.add.sprite(J, q, "ship", 0, { shape: tt.ship }).setScale(0.5).setDepth(10), this.state = { leftTorque: 0, rightTorque: 0, angleDeg: 0, stageScore: 0 }, this.prevDir = 0, this.warningLight = Z.add.sprite(J, q - 60, "warningLight"), this.warningLight.setScale(0.5), this.warningLight.setDepth(10), this.warningLight.offsetX = -10, this.warningBlinkTimer = null, this.isBlinkOn = !1, this.tiltTime = 0, this.prevTiltDir = 0;
+  constructor(Z, J, q, _) {
+    super(Z, J, q), this.scene = Z, this.sprite = Z.matter.add.sprite(J, q, "ship", 0, { shape: _.ship }).setScale(0.5).setDepth(10), this.state = { leftTorque: 0, rightTorque: 0, angleDeg: 0, stageScore: 0 }, this.prevDir = 0, this.warningLight = Z.add.sprite(J, q - 60, "warningLight"), this.warningLight.setScale(0.5), this.warningLight.setDepth(10), this.warningLight.offsetX = -10, this.warningBlinkTimer = null, this.isBlinkOn = !1, this.tiltTime = 0, this.prevTiltDir = 0;
   }
   blinkWarning(Z) {
     Z ? this.warningBlinkTimer || (this.warningBlinkTimer = this.scene.time.addEvent({
@@ -108304,8 +108304,8 @@ class te extends At.GameObjects.Container {
   move(Z, J) {
     const q = this.sprite.body.velocity.x;
     if (Z) {
-      const tt = this.scene.boostActive ? Xt * this.scene.boostMultiplier : Xt;
-      this.sprite.setVelocityX(At.Math.Clamp(q + Z * tt, -J, J)), Z !== this.prevDir && (this.scene.shipCreak.play({ rate: At.Math.FloatBetween(0.95, 1.05) }), this.prevDir = Z, Z > 0 ? this.warningLight.offsetX = -10 : Z < 0 && (this.warningLight.offsetX = 10));
+      const _ = this.scene.boostActive ? Xt * this.scene.boostMultiplier : Xt;
+      this.sprite.setVelocityX(At.Math.Clamp(q + Z * _, -J, J)), Z !== this.prevDir && (this.scene.shipCreak.play({ rate: At.Math.FloatBetween(0.95, 1.05) }), this.prevDir = Z, Z > 0 ? this.warningLight.offsetX = -10 : Z < 0 && (this.warningLight.offsetX = 10));
     } else
       this.sprite.setVelocityX(q * 0.98), this.prevDir = 0;
     Z !== 0 && this.sprite.setFrame(Z < 0 ? 1 : 0);
@@ -108314,8 +108314,8 @@ class te extends At.GameObjects.Container {
   applyTilt(Z) {
     if (this.gameOverTriggered) return;
     this.sprite.angle = At.Math.Linear(this.sprite.angle, this.state.angleDeg, 0.1);
-    const J = this.state.angleDeg, q = Math.abs(J), tt = J > 0 ? 1 : J < 0 ? -1 : 0;
-    tt !== 0 && tt !== this.prevTiltDir && (this.tiltTime = 0, this.prevTiltDir = tt), q >= It ? (this.tiltTime += Z, this.scene.warning.isPlaying || (this.scene.warning.play(), this.blinkWarning(!0)), this.tiltTime >= 4e3 && this.scene.gameOver()) : (this.tiltTime = 0, this.prevTiltDir = 0, this.scene.warning.isPlaying && (this.scene.warning.stop(), this.blinkWarning(!1))), this.updateWarningLight();
+    const J = this.state.angleDeg, q = Math.abs(J), _ = J > 0 ? 1 : J < 0 ? -1 : 0;
+    _ !== 0 && _ !== this.prevTiltDir && (this.tiltTime = 0, this.prevTiltDir = _), q >= It ? (this.tiltTime += Z, this.scene.warning.isPlaying || (this.scene.warning.play(), this.blinkWarning(!0)), this.tiltTime >= 4e3 && this.scene.gameOver()) : (this.tiltTime = 0, this.prevTiltDir = 0, this.scene.warning.isPlaying && (this.scene.warning.stop(), this.blinkWarning(!1))), this.updateWarningLight();
   }
   // 배가 넘어지는 애니메이션
   fallOver() {
@@ -108333,16 +108333,16 @@ class te extends At.GameObjects.Container {
   }
   updateChildObject(Z, J) {
     if (!Z) return;
-    const q = At.Math.DegToRad(this.sprite.angle), tt = Z.offsetX ?? -10, _ = tt * Math.cos(q) - J * Math.sin(q), p = tt * Math.sin(q) + J * Math.cos(q);
-    Z.x = this.sprite.x + _, Z.y = this.sprite.y + p, Z.angle = this.sprite.angle;
+    const q = At.Math.DegToRad(this.sprite.angle), _ = Z.offsetX ?? -10, tt = _ * Math.cos(q) - J * Math.sin(q), p = _ * Math.sin(q) + J * Math.cos(q);
+    Z.x = this.sprite.x + tt, Z.y = this.sprite.y + p, Z.angle = this.sprite.angle;
   }
   // 배 상태(좌/우 토크, 기울기, 총 무게) 계산
   updateState(Z) {
-    let J = 0, q = 0, tt = 0;
-    Z.forEach((_) => {
-      const p = Math.abs(_.relativeX) * _.weight;
-      _.relativeX < 0 ? J += p : q += p, tt += _.weight;
-    }), this.state.leftTorque = J, this.state.rightTorque = q, this.state.angleDeg = At.Math.Clamp((q - J) * 5e-3, -It, It), this.state.stageScore = tt;
+    let J = 0, q = 0, _ = 0;
+    Z.forEach((tt) => {
+      const p = Math.abs(tt.relativeX) * tt.weight;
+      tt.relativeX < 0 ? J += p : q += p, _ += tt.weight;
+    }), this.state.leftTorque = J, this.state.rightTorque = q, this.state.angleDeg = At.Math.Clamp((q - J) * 5e-3, -It, It), this.state.stageScore = _;
   }
   stop() {
     this.sprite.setVelocity(0, 0), this.sprite.setAngularVelocity(0);
@@ -108372,11 +108372,11 @@ class ee extends Phaser.GameObjects.Container {
     const J = Z.sprite.y - 10;
     if (!this.onShip && !this.onGround) {
       this.y += 2 + this.weight * 0.01, this.x += Math.sin(performance.now() * this.sway.speed + this.sway.offset) * this.sway.amplitude * 0.05, this.x = Phaser.Math.Clamp(this.x, 50, yt - 50), this.obj.scaleX > 0.08 && (this.obj.setScale(this.obj.scaleX - 2e-4), this.setDepth(12));
-      const tt = Z.sprite.x - Z.sprite.displayWidth / 2, _ = Z.sprite.x + Z.sprite.displayWidth / 2;
-      this.y + this.obj.displayHeight >= Mt && this.x >= tt + 20 && this.x <= _ - 20 ? (this.onShip = !0, this.scene.onShipChars.push(this), this.relativeX = this.x - Z.sprite.x, this.y = J - this.obj.displayHeight / 2, this.obj.setScale(0.2), this.setDepth(5), this.shipOn(), this.scoreText.x = 0, this.scoreText.y = -20) : this.y + this.obj.displayHeight >= Ft - 10 && (this.onGround = !0, this.y = Ft - this.obj.displayHeight, this.obj.setScale(0.2), this.moveOffScreen(), this.groundOn());
+      const _ = Z.sprite.x - Z.sprite.displayWidth / 2, tt = Z.sprite.x + Z.sprite.displayWidth / 2;
+      this.y + this.obj.displayHeight >= Mt && this.x >= _ + 20 && this.x <= tt - 20 ? (this.onShip = !0, this.scene.onShipChars.push(this), this.relativeX = this.x - Z.sprite.x, this.y = J - this.obj.displayHeight / 2, this.obj.setScale(0.2), this.setDepth(5), this.shipOn(), this.scoreText.x = 0, this.scoreText.y = -20) : this.y + this.obj.displayHeight >= Ft - 10 && (this.onGround = !0, this.y = Ft - this.obj.displayHeight, this.obj.setScale(0.2), this.moveOffScreen(), this.groundOn());
     } else if (this.onShip) {
-      const q = Phaser.Math.DegToRad(Z.sprite.angle), tt = this.relativeX * Math.cos(q), _ = this.relativeX * Math.sin(q);
-      this.x = Z.sprite.x + tt, this.y = J - this.obj.displayHeight / 2 + _;
+      const q = Phaser.Math.DegToRad(Z.sprite.angle), _ = this.relativeX * Math.cos(q), tt = this.relativeX * Math.sin(q);
+      this.x = Z.sprite.x + _, this.y = J - this.obj.displayHeight / 2 + tt;
     }
   }
   shipOn() {
@@ -108418,11 +108418,11 @@ class ee extends Phaser.GameObjects.Container {
   }
   moveOffScreen() {
     this.scene.swimSound && (this.scene.swimSound.play(), this.groundOn());
-    const Z = this.data.swimSpeed || 200, J = this.x < yt / 2 ? -50 : yt + 50, tt = Math.abs(J - this.x) / Z * 500;
+    const Z = this.data.swimSpeed || 200, J = this.x < yt / 2 ? -50 : yt + 50, _ = Math.abs(J - this.x) / Z * 500;
     this.scene.tweens.add({
       targets: this,
       x: J,
-      duration: tt,
+      duration: _,
       ease: "Linear",
       onComplete: () => {
         this.destroy();
@@ -108442,11 +108442,11 @@ function ie(at, Z) {
 }
 function se(at, Z) {
   if (at.whales.length > 0) return;
-  const J = Phaser.Math.Between(0, 1) === 0, q = J ? -150 : yt + 150, tt = J ? 150 : yt - 150, _ = at.matter.add.sprite(q, Mt, "whale", null, {
+  const J = Phaser.Math.Between(0, 1) === 0, q = J ? -150 : yt + 150, _ = J ? 150 : yt - 150, tt = at.matter.add.sprite(q, Mt, "whale", null, {
     isStatic: !0,
     label: "whale"
   }).setScale(0.3);
-  J && _.setFlipX(!0), at.whales.push(_);
+  J && tt.setFlipX(!0), at.whales.push(tt);
   const p = 7e3, S = 1e3, t = 5e3;
   at.anims.exists("whale_anim") || at.anims.create({
     key: "whale_anim",
@@ -108464,17 +108464,17 @@ function se(at, Z) {
     duration: p,
     ease: "Linear",
     onUpdate: (d) => {
-      if (!at.whales.includes(_)) return;
+      if (!at.whales.includes(tt)) return;
       const c = d.getValue(), h = c - S - t;
-      c < S ? (_.x = Phaser.Math.Linear(q, tt, c / S), (!_.anims.isPlaying || _.anims.currentAnim.key !== "whale_anim") && _.anims.play("whale_anim")) : c < S + t ? (_.x = tt, (!_.anims.isPlaying || _.anims.currentAnim.key !== "whale_spout_anim") && _.anims.play("whale_spout_anim")) : (_.x = Phaser.Math.Linear(tt, q, h / 1e3), _.setFlipX(!J), (!_.anims.isPlaying || _.anims.currentAnim.key !== "whale_anim") && _.anims.play("whale_anim"));
+      c < S ? (tt.x = Phaser.Math.Linear(q, _, c / S), (!tt.anims.isPlaying || tt.anims.currentAnim.key !== "whale_anim") && tt.anims.play("whale_anim")) : c < S + t ? (tt.x = _, (!tt.anims.isPlaying || tt.anims.currentAnim.key !== "whale_spout_anim") && tt.anims.play("whale_spout_anim")) : (tt.x = Phaser.Math.Linear(_, q, h / 1e3), tt.setFlipX(!J), (!tt.anims.isPlaying || tt.anims.currentAnim.key !== "whale_anim") && tt.anims.play("whale_anim"));
       const r = at.ship.sprite;
-      if (Math.abs(_.x - r.x) < (_.displayWidth + r.displayWidth) / 2) {
-        const e = _.x < r.x ? 1 : -1;
+      if (Math.abs(tt.x - r.x) < (tt.displayWidth + r.displayWidth) / 2) {
+        const e = tt.x < r.x ? 1 : -1;
         r.setVelocityX(e * 8);
       }
     },
     onComplete: () => {
-      at.whales.includes(_) && (at.whales = at.whales.filter((d) => d !== _)), _.destroy(), Z && Z();
+      at.whales.includes(tt) && (at.whales = at.whales.filter((d) => d !== tt)), tt.destroy(), Z && Z();
     }
   });
 }
@@ -108490,9 +108490,9 @@ class ne extends xt.Scene {
     const { width: Z, height: J } = this.scale;
     this.add.image(Z / 2, J / 2, "mainGameBG").setScale(0.6667), this.add.image(Z / 2, J, "wave").setOrigin(0.5, 1).setScale(0.6667).setDepth(11), this.add.image(200, J - 80, "game_score").setScale(0.6667).setDepth(13), this.matter.world.setBounds(0, 0, Z, J), this.swimSound = this.sound.add("swim", { volume: 0.5 }), this.timerSound = this.sound.add("timer", { loop: !0, volume: 0.5 }), this.shipCreak = this.sound.add("shipCreak", { volume: 0.3 }), this.warning = this.sound.add("warning", { volume: 0.3 });
     const q = this.cache.json.get("shipPhysics");
-    this.ship = new te(this, Z / 2, Mt, q), wt() || (this.cursors = this.input.keyboard.createCursorKeys()), wt() && window.DeviceOrientationEvent && (window.addEventListener("deviceorientation", (tt) => {
-      const _ = window.innerHeight > window.innerWidth;
-      this.tiltGamma = _ ? tt.gamma : tt.beta;
+    this.ship = new te(this, Z / 2, Mt, q), wt() || (this.cursors = this.input.keyboard.createCursorKeys()), wt() && window.DeviceOrientationEvent && (window.addEventListener("deviceorientation", (_) => {
+      const tt = window.innerHeight > window.innerWidth;
+      this.tiltGamma = tt ? _.gamma : _.beta;
     }), window.addEventListener("orientationchange", () => {
       setTimeout(() => this.tiltGamma = 0, 100);
     })), this.orientation == 1 && this.createMobileButton(Z, J), this.createHUD(Z, J), this.scene.get("Interface").events.once("createComplete", () => {
@@ -108510,19 +108510,19 @@ class ne extends xt.Scene {
       if (this.orientation)
         q = this.mobileDir;
       else {
-        let _ = this.tiltGamma || 0, p = Phaser.Math.Clamp(_ / maxTilt, -1, 1);
-        q = Math.sign(p) * Math.pow(Math.abs(p), 1.5);
+        let p = this.tiltGamma || 0, S = Phaser.Math.Clamp(p / 10, -1, 1);
+        q = Math.sign(S) * Math.pow(Math.abs(S), 1.5);
       }
     else q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0);
     if (this.boostActive) {
       this.boostTimer -= J;
-      const _ = Phaser.Math.Clamp(this.boostTimer / Bt, 0, 1), p = this.interfaceScene.boostGaugeHeight * _;
+      const tt = Phaser.Math.Clamp(this.boostTimer / Bt, 0, 1), p = this.interfaceScene.boostGaugeHeight * tt;
       this.interfaceScene.boostGauge.clear(), this.interfaceScene.boostGauge.fillStyle(65280, 0.7);
       const S = this.interfaceScene.boostGaugeY + (this.interfaceScene.boostGaugeHeight - p);
       this.interfaceScene.boostGauge.fillRect(this.interfaceScene.boostGaugeX, S, this.interfaceScene.boostGaugeWidth, p), this.boostTimer <= 0 && (this.boostActive = !1, this.interfaceScene.boostButton.setFrame(0), this.interfaceScene.boostGauge.clear(), this.interfaceScene.boostButton.setInteractive({ useHandCursor: !0 }));
     }
-    const tt = this.boostActive ? zt * this.boostMultiplier : zt;
-    this.ship.move(q, tt * Math.abs(q)), this.characters.forEach((_) => _.update(this.ship)), this.ship.applyTilt(J), this.ship.updateState(this.onShipChars), this.updateHUD(this.ship, this, q), this.interfaceScene.updateTimer(J);
+    const _ = this.boostActive ? zt * this.boostMultiplier : zt;
+    this.ship.move(q, _ * Math.abs(q)), this.characters.forEach((tt) => tt.update(this.ship)), this.ship.applyTilt(J), this.ship.updateState(this.onShipChars), this.updateHUD(this.ship, this, q), this.interfaceScene.updateTimer(J);
   }
   updateHUD() {
     this.hudScore.setText(`${this.ship.state.stageScore + this.totalScore}`), this.hudStageNumber.setText(`${this.currentStageIndex + 1} 단계`), this.hudStageTarget.setText(`${Rt[this.currentStageIndex].targetScore}`);
@@ -108583,7 +108583,7 @@ class ne extends xt.Scene {
     if (this.gameOverTriggered) return;
     const Z = this.charactersData[Phaser.Math.Between(0, this.charactersData.length - 1)], J = yt / Ut;
     (!this.zonePool || this.zonePool.length === 0) && (this.zonePool = Phaser.Utils.Array.NumberArray(0, Ut - 1), Phaser.Utils.Array.Shuffle(this.zonePool));
-    const q = this.zonePool.pop(), tt = J * q, _ = tt + J, p = Phaser.Math.Between(tt + 100, _ - 100), S = new ee(this, Z, p);
+    const q = this.zonePool.pop(), _ = J * q, tt = _ + J, p = Phaser.Math.Between(_ + 100, tt - 100), S = new ee(this, Z, p);
     this.characters.push(S);
   }
   // 다음 스테이지 시작 전 준비
@@ -108626,20 +108626,20 @@ class re extends xt.Scene {
   updateTimer(Z) {
     if (this.gameScene.gameOverTriggered) return;
     this.timer -= Z, this.timer = Phaser.Math.Clamp(this.timer, 0, Ot);
-    const J = this.timer / Ot, { x: q, y: tt, width: _, height: p, radius: S } = this.timerBarConfig;
+    const J = this.timer / Ot, { x: q, y: _, width: tt, height: p, radius: S } = this.timerBarConfig;
     this.timerBar.clear();
-    const t = _ * J;
-    t > 0 && (this.timerBar.fillStyle(this.timer <= 1e4 ? 16731691 : 32157, 0.7), this.timerBar.fillRoundedRect(q, tt, t, p, S), this.timerEndIcon.x = q + t, this.timerEndIcon.y = tt, this.timer <= 1e4 ? (this.gameScene.timerSound.isPlaying || this.gameScene.timerSound.play(), this.timerEndSway = { amplitude: 3, speed: 0.05 }, this.timerEndIcon.angle += Math.sin(performance.now() * this.timerEndSway.speed) * this.timerEndSway.amplitude, this.timerEndIcon.setFrame(Math.floor(performance.now() / 200) % 2)) : (this.timerEndIcon.setFrame(0), this.timerEndIcon.angle = 0)), this.timer <= 0 && (this.gameScene.gameOverTriggered = !0, this.gameScene.timerSound.stop(), this.gameScene.ship.stop(), this.gameScene.ship.state.stageScore + this.gameScene.totalScore >= this.gameScene.targetScore ? this.gameScene.currentStageIndex >= Rt.length - 1 ? this.gameScene.gameClear() : this.gameScene.nextStage() : this.gameScene.gameOver());
+    const t = tt * J;
+    t > 0 && (this.timerBar.fillStyle(this.timer <= 1e4 ? 16731691 : 32157, 0.7), this.timerBar.fillRoundedRect(q, _, t, p, S), this.timerEndIcon.x = q + t, this.timerEndIcon.y = _, this.timer <= 1e4 ? (this.gameScene.timerSound.isPlaying || this.gameScene.timerSound.play(), this.timerEndSway = { amplitude: 3, speed: 0.05 }, this.timerEndIcon.angle += Math.sin(performance.now() * this.timerEndSway.speed) * this.timerEndSway.amplitude, this.timerEndIcon.setFrame(Math.floor(performance.now() / 200) % 2)) : (this.timerEndIcon.setFrame(0), this.timerEndIcon.angle = 0)), this.timer <= 0 && (this.gameScene.gameOverTriggered = !0, this.gameScene.timerSound.stop(), this.gameScene.ship.stop(), this.gameScene.ship.state.stageScore + this.gameScene.totalScore >= this.gameScene.targetScore ? this.gameScene.currentStageIndex >= Rt.length - 1 ? this.gameScene.gameClear() : this.gameScene.nextStage() : this.gameScene.gameOver());
   }
   createTimerBar() {
     this.timerBarBG = this.add.graphics();
-    const Z = this.scale.width / 2 - 464 / 2, J = 40 - 20 / 2, q = 464, tt = 20, _ = 10;
-    this.timerBarBG.fillStyle(16777215, 0.7), this.timerBarBG.fillRoundedRect(Z, J, q, tt, _), this.timerBarBG.setDepth(12), this.timerBar = this.add.graphics(), this.timerBar.fillStyle(32157, 0.7), this.timerBar.fillRoundedRect(Z, J, q, tt, _), this.timerBar.setDepth(12), this.timerBarConfig = {
+    const Z = this.scale.width / 2 - 464 / 2, J = 40 - 20 / 2, q = 464, _ = 20, tt = 10;
+    this.timerBarBG.fillStyle(16777215, 0.7), this.timerBarBG.fillRoundedRect(Z, J, q, _, tt), this.timerBarBG.setDepth(12), this.timerBar = this.add.graphics(), this.timerBar.fillStyle(32157, 0.7), this.timerBar.fillRoundedRect(Z, J, q, _, tt), this.timerBar.setDepth(12), this.timerBarConfig = {
       x: Z,
       y: J,
       width: q,
-      height: tt,
-      radius: _
+      height: _,
+      radius: tt
     }, this.timerEndIcon = this.add.image(Z, J, "timer").setScale(0.12).setDepth(13).setOrigin(0.5, 0.5);
   }
   reset() {
@@ -108669,10 +108669,10 @@ class oe extends xt.Scene {
   create() {
     const { width: Z, height: J } = this.scale;
     this.gameScene = this.scene.get("Game"), this.overlay = Lt(this), this.overlay.setVisible(!0);
-    const q = this.add.image(0, 0, "stage_fail").setScale(0.6667), tt = this.add.image(0, q.displayHeight / 2 - 40, "button_home").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
+    const q = this.add.image(0, 0, "stage_fail").setScale(0.6667), _ = this.add.image(0, q.displayHeight / 2 - 40, "button_home").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.gameScene.resetGame(), this.gameScene.scene.stop("Game"), this.gameScene.scene.stop("Interface"), this.scene.stop("GameOver"), this.gameScene.scene.start("MainMenu");
     });
-    this.gameOverScoreText = this.add.text(120, 32, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.gameOverPop = this.add.container(Z / 2, J / 2, [q, tt, this.gameOverScoreText]).setDepth(101);
+    this.gameOverScoreText = this.add.text(120, 32, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.gameOverPop = this.add.container(Z / 2, J / 2, [q, _, this.gameOverScoreText]).setDepth(101);
   }
 }
 class he extends xt.Scene {
@@ -108685,12 +108685,12 @@ class he extends xt.Scene {
   create() {
     const { width: Z, height: J } = this.scale;
     this.gameScene = this.scene.get("Game"), this.overlay = Lt(this), this.overlay.setVisible(!0);
-    const q = this.add.image(0, 0, "stage_success").setScale(0.6667), tt = this.add.image(-90, q.displayHeight / 2 - 100, "button_store").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
+    const q = this.add.image(0, 0, "stage_success").setScale(0.6667), _ = this.add.image(-90, q.displayHeight / 2 - 100, "button_store").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.scene.stop(), this.gameScene.scene.launch("Quiz");
-    }), _ = this.add.image(90, q.displayHeight / 2 - 100, "button_next").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
+    }), tt = this.add.image(90, q.displayHeight / 2 - 100, "button_next").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.scene.stop("NextStage"), this.scene.resume("Game"), this.gameScene.scene.resume("Interface"), this.gameScene.resetStage(), this.gameScene.currentStageIndex++, this.gameScene.startStage(this.gameScene.currentStageIndex);
     });
-    this.nextStageScoreText = this.add.text(-14, 44, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.nextStagePop = this.add.container(Z / 2, J / 2, [q, tt, _, this.nextStageScoreText]).setDepth(101);
+    this.nextStageScoreText = this.add.text(-14, 44, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.nextStagePop = this.add.container(Z / 2, J / 2, [q, _, tt, this.nextStageScoreText]).setDepth(101);
   }
 }
 class le extends xt.Scene {
@@ -108703,10 +108703,10 @@ class le extends xt.Scene {
   create() {
     const { width: Z, height: J } = this.scale;
     this.gameScene = this.scene.get("Game");
-    const q = this.add.image(0, 0, "stage_finish").setScale(0.6667), tt = this.add.image(0, q.displayHeight / 2 - 120, "button_finish").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
+    const q = this.add.image(0, 0, "stage_finish").setScale(0.6667), _ = this.add.image(0, q.displayHeight / 2 - 120, "button_finish").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.gameScene.scene.stop("Game"), this.gameScene.scene.stop("Interface"), this.scene.stop("GameClear"), this.gameScene.scene.start("MainMenu");
     });
-    this.finishScoreText = this.add.text(-128, 130, this.score, { fontFamily: "Waguri", fontSize: "42px", color: "#0048a2" }).setOrigin(0.5, 0.5), this.stageFinishPop = this.add.container(Z / 2, J / 2, [q, tt, this.finishScoreText]).setDepth(101);
+    this.finishScoreText = this.add.text(-128, 130, this.score, { fontFamily: "Waguri", fontSize: "42px", color: "#0048a2" }).setOrigin(0.5, 0.5), this.stageFinishPop = this.add.container(Z / 2, J / 2, [q, _, this.finishScoreText]).setDepth(101);
   }
 }
 xt.Scene.prototype.addTweens = function(at) {
