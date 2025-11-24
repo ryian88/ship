@@ -108305,7 +108305,7 @@ class te extends At.GameObjects.Container {
     const q = this.sprite.body.velocity.x;
     if (Z) {
       const _ = this.scene.boostActive ? Xt * this.scene.boostMultiplier : Xt;
-      !this.scene.orientation && Lt() ? this.sprite.setVelocityX(Z * J) : this.sprite.setVelocityX(At.Math.Clamp(q + Z * _, -J, J)), Z !== this.prevDir && (this.scene.shipCreak.play({ rate: At.Math.FloatBetween(0.95, 1.05) }), this.prevDir = Z, Z > 0 ? this.warningLight.offsetX = -10 : Z < 0 && (this.warningLight.offsetX = 10));
+      !this.scene.orientation && Lt() ? this.sprite.setVelocityX(q + Z * J) : this.sprite.setVelocityX(At.Math.Clamp(q + Z * _, -J, J)), Z !== this.prevDir && (this.scene.shipCreak.play({ rate: At.Math.FloatBetween(0.95, 1.05) }), this.prevDir = Z, Z > 0 ? this.warningLight.offsetX = -10 : Z < 0 && (this.warningLight.offsetX = 10));
     } else
       this.sprite.setVelocityX(q * 0.98), this.prevDir = 0;
     Z !== 0 && this.sprite.setFrame(Z < 0 ? 1 : 0);
@@ -108506,7 +108506,7 @@ class ne extends xt.Scene {
     if (this.gameOverTriggered) return;
     this.ship.sprite.y = Mt;
     let q = 0;
-    if (Lt() ? this.orientation ? q = this.mobileDir : q = Math.sign(this.tiltGamma) * Math.min(Math.abs(this.tiltGamma) / 10, 1) : q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0), this.boostActive) {
+    if (Lt() ? this.orientation ? q = this.mobileDir : q = Math.sign(this.tiltGamma) * Math.min(Math.abs(this.tiltGamma) / 20, 1) : q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0), this.boostActive) {
       this.boostTimer -= J;
       const tt = Phaser.Math.Clamp(this.boostTimer / Bt, 0, 1), p = this.interfaceScene.boostGaugeHeight * tt;
       this.interfaceScene.boostGauge.clear(), this.interfaceScene.boostGauge.fillStyle(65280, 0.7);
