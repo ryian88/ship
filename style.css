@@ -1,24 +1,4 @@
 @font-face { 
- font-family: 'Hakgyoansim-Bold'; 
- src: url("./fonts/HakgyoansimDunggeunmisoB.ttf") format("truetype"); 
- } 
-
-@font-face { 
- font-family: 'Hakgyoansim-Regular'; 
- src: url("./fonts/HakgyoansimDunggeunmisoR.ttf") format("truetype"); 
- } 
-
-@font-face { 
- font-family: 'Waguri'; 
- src: url("./fonts/WAGURI.ttf") format("truetype"); 
- } 
-
-@font-face { 
- font-family: 'GmarketSans'; 
- src: url("./fonts/GmarketSansTTFMedium.ttf") format("truetype"); 
- } 
-
-@font-face { 
  font-family: 'Cafe24Ssurround'; 
  src: url("./fonts/Cafe24Ssurround.ttf") format("truetype"); 
  } 
