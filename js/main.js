@@ -108504,7 +108504,7 @@ class ne extends xt.Scene {
     if (this.gameOverTriggered) return;
     this.ship.sprite.y = Mt;
     let q = 0;
-    if (Lt() ? this.orientation ? q = this.mobileDir : q = Math.sign(this.tiltGamma) * Math.min(Math.abs(this.tiltGamma) / 25, 1) : q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0), this.boostActive) {
+    if (Lt() ? this.orientation ? q = this.mobileDir : q = Math.sign(this.tiltGamma) * Math.min(Math.abs(this.tiltGamma) / 20, 1) : q = (this.cursors.right.isDown ? 1 : 0) - (this.cursors.left.isDown ? 1 : 0), this.boostActive) {
       this.boostTimer -= J;
       const p = Phaser.Math.Clamp(this.boostTimer / Bt, 0, 1), S = this.interfaceScene.boostGaugeHeight * p;
       this.interfaceScene.boostGauge.clear(), this.interfaceScene.boostGauge.fillStyle(65280, 0.7);
