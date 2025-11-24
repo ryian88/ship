@@ -107941,7 +107941,10 @@ class jt extends xt.Scene {
     this.add.text(0, 0, ".", {
       fontFamily: "Waguri",
       fontSize: "1px"
-    }).setAlpha(0), this.load.audio("bgm", "assets/sound/music/bgm.mp3"), this.load.audio("correct", "assets/sound/effect/correct.mp3"), this.load.audio("fail", "assets/sound/effect/fail.mp3"), this.load.audio("incorrect", "assets/sound/effect/incorrect.mp3"), this.load.audio("shipCreak", "assets/sound/effect/splash.mp3"), this.load.audio("success", "assets/sound/effect/success.mp3"), this.load.audio("swim", "assets/sound/effect/swim.mp3"), this.load.audio("timer", "assets/sound/effect/timer.mp3"), this.load.audio("warning", "assets/sound/effect/warning.mp3"), this.load.image("mainBG", "assets/main/bg_intro.png"), this.load.image("intro", "assets/main/intro.png"), this.load.image("panda", "assets/main/panda.png"), this.load.image("penguin", "assets/main/penguin.png"), this.load.image("title", "assets/main/title.png"), this.load.spritesheet("btn_start", "assets/main/btn_start.png", {
+    }).setAlpha(0), this.load.audio("bgm", "assets/sound/music/bgm.mp3"), this.load.spritesheet("bgm", "assets/mainGame/bgm.png", {
+      frameWidth: 74,
+      frameHeight: 74
+    }), this.load.audio("correct", "assets/sound/effect/correct.mp3"), this.load.audio("fail", "assets/sound/effect/fail.mp3"), this.load.audio("incorrect", "assets/sound/effect/incorrect.mp3"), this.load.audio("shipCreak", "assets/sound/effect/splash.mp3"), this.load.audio("success", "assets/sound/effect/success.mp3"), this.load.audio("swim", "assets/sound/effect/swim.mp3"), this.load.audio("timer", "assets/sound/effect/timer.mp3"), this.load.audio("warning", "assets/sound/effect/warning.mp3"), this.load.image("mainBG", "assets/main/bg_intro.png"), this.load.image("intro", "assets/main/intro.png"), this.load.image("panda", "assets/main/panda.png"), this.load.image("penguin", "assets/main/penguin.png"), this.load.image("title", "assets/main/title.png"), this.load.spritesheet("btn_start", "assets/main/btn_start.png", {
       frameWidth: 319,
       frameHeight: 136
     }), this.load.spritesheet("btn_how", "assets/main/btn_how.png", {
@@ -107967,9 +107970,6 @@ class jt extends xt.Scene {
     }), this.load.spritesheet("timer", "assets/mainGame/timer.png", {
       frameWidth: 401,
       frameHeight: 371
-    }), this.load.spritesheet("bgm", "assets/mainGame/bgm.png", {
-      frameWidth: 74,
-      frameHeight: 74
     }), this.load.spritesheet("whale", "assets/charaters/whale.png", {
       frameWidth: 657,
       frameHeight: 420
@@ -108354,10 +108354,11 @@ class te extends At.GameObjects.Container {
 class ee extends Phaser.GameObjects.Container {
   constructor(Z, J, q) {
     super(Z, q, -50), this.scene = Z, Z.add.existing(this), this.obj = Z.add.sprite(0, 0, J.key).setScale(0.2).setDepth(1), this.add(this.obj), this.weight = J.weight, this.onShip = !1, this.onGround = !1, this.relativeX = 0, this.data = J, this.scoreText = Z.add.text(0, -50, `+${this.weight}`, {
-      font: "24px Arial",
+      fontFamily: "Waguri",
+      fontSize: "24px",
       fill: "#834ef5",
       stroke: "#000",
-      strokeThickness: 3
+      strokeThickness: 1
     }).setOrigin(0.5).setAlpha(0), this.add(this.scoreText), this.sway = {
       amplitude: Phaser.Math.Between(30, 80),
       // 좌우 이동 최대 거리
@@ -108390,7 +108391,7 @@ class ee extends Phaser.GameObjects.Container {
       targets: this.scoreText,
       y: -70,
       alpha: 0,
-      duration: 5e3,
+      duration: 1e3,
       ease: "Cubic.easeOut",
       onComplete: () => this.scoreText.destroy()
     });
@@ -108499,9 +108500,6 @@ class ne extends xt.Scene {
       this.resetGame();
     }), this.startStage();
   }
-  createMobileButton(Z, J) {
-    this.touchLeft = this.add.image(120, J / 2, "game_touch_left").setInteractive().setScale(0.6667), this.touchRight = this.add.image(Z - 120, J / 2, "game_touch_right").setInteractive().setScale(0.6667), this.touchLeft.on("pointerdown", () => this.mobileDir = -1), this.touchLeft.on("pointerup", () => this.mobileDir = 0), this.touchLeft.on("pointerout", () => this.mobileDir = 0), this.touchLeft.on("pointerupoutside", () => this.mobileDir = 0), this.touchRight.on("pointerdown", () => this.mobileDir = 1), this.touchRight.on("pointerup", () => this.mobileDir = 0), this.touchRight.on("pointerout", () => this.mobileDir = 0), this.touchRight.on("pointerupoutside", () => this.mobileDir = 0);
-  }
   update(Z, J) {
     if (this.gameOverTriggered) return;
     this.ship.sprite.y = Mt;
@@ -108571,6 +108569,9 @@ class ne extends xt.Scene {
       fontSize: "14px",
       color: "#fff"
     }).setDepth(13).setOrigin(0.5, 0.5);
+  }
+  createMobileButton(Z, J) {
+    this.touchLeft = this.add.image(120, J / 2, "game_touch_left").setInteractive().setScale(0.6667), this.touchRight = this.add.image(Z - 120, J / 2, "game_touch_right").setInteractive().setScale(0.6667), this.touchLeft.on("pointerdown", () => this.mobileDir = -1), this.touchLeft.on("pointerup", () => this.mobileDir = 0), this.touchLeft.on("pointerout", () => this.mobileDir = 0), this.touchLeft.on("pointerupoutside", () => this.mobileDir = 0), this.touchRight.on("pointerdown", () => this.mobileDir = 1), this.touchRight.on("pointerup", () => this.mobileDir = 0), this.touchRight.on("pointerout", () => this.mobileDir = 0), this.touchRight.on("pointerupoutside", () => this.mobileDir = 0);
   }
   // 캐릭터 생성 ZONE_COUNT로 구역 나눠서 생성
   createChar() {
