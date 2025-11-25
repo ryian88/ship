@@ -3,6 +3,11 @@
  src: url("./fonts/WAGURI.ttf") format("truetype"); 
  } 
 
+ @font-face { 
+ font-family: 'GmarketSans'; 
+ src: url("./font/GmarketSansTTFMedium.ttf") format("truetype"); 
+ } 
+
 html, body, div, span, ul, ol, li { 
  margin: 0; 
  padding: 0; 
