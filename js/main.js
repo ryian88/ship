@@ -108621,7 +108621,7 @@ class ne extends xt.Scene {
   }
   // 다음 스테이지 시작 전 준비
   resetStage() {
-    this.gameOverTriggered = !1, this.charTimer && (this.charTimer.remove(), this.charTimer = null), this.characters.forEach((Z) => Z.destroy()), this.characters = [], this.onShipChars = [], this.tweens.killAll(), this.whales.forEach((Z) => Z.destroy()), this.whales = [], this.interfaceScene.reset(), this.ship.reset(), this.boostActive = !1, this.boostTimer = 0, this.timerSound.stop();
+    this.gameOverTriggered = !1, this.charTimer && (this.charTimer.remove(), this.charTimer = null), this.characters.forEach((Z) => Z.destroy()), this.characters = [], this.onShipChars = [], this.tweens.killAll(), this.whales.forEach((Z) => Z.destroy()), this.whales = [], this.interfaceScene.reset(), this.ship.reset(), this.boostActive = !1, this.boostCount > 0 ? (this.interfaceScene.boostButton.setFrame(0), this.interfaceScene.boostButton.setInteractive({ useHandCursor: !0 })) : (this.interfaceScene.boostButton.setFrame(1), this.interfaceScene.boostButton.disableInteractive()), this.interfaceScene.boostGauge.clear(), this.boostTimer = 0, this.timerSound.stop();
   }
   resetGame() {
     this.resetStage(), this.currentStageIndex = 0, this.boostCount = 1, this.timeUpBonus = 1, this.totalScore = 0, this.interfaceScene.boostCountText.setText(this.boostCount), this.interfaceScene.timeUpCountText.setText(this.timeUpBonus);
