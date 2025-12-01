@@ -26,7 +26,7 @@ function Jt(at) {
 }
 var wt = { exports: {} }, Qt = wt.exports, Yt;
 function $t() {
-  return Yt || (Yt = 1, function(at, Z) {
+  return Yt || (Yt = 1, function(at, K) {
     (function(q, _) {
       at.exports = _();
     })(Qt, () => (
@@ -14963,13 +14963,13 @@ function $t() {
 `);
                   var W = [];
                   for (L = 0; L < O.length; L++) {
-                    var b = O[L], K = "", H = "", $ = "", k = "";
+                    var b = O[L], Z = "", H = "", $ = "", k = "";
                     for (G = 0; G < b.length; G++)
-                      if (y = b.charCodeAt(G), K += b[G], y === s || G === b.length - 1) {
-                        k = $ + K;
+                      if (y = b.charCodeAt(G), Z += b[G], y === s || G === b.length - 1) {
+                        k = $ + Z;
                         var Q = Y(k, t.fontData);
                         Q <= e ? $ = k : (H = H.slice(0, -1), H += (H ? `
-` : "") + $, $ = K), K = "";
+` : "") + $, $ = Z), Z = "";
                       }
                     H = H.slice(0, -1), H += (H ? `
 ` : "") + $, W.push(H);
@@ -15496,13 +15496,13 @@ function $t() {
                     s.cropWidth * m.scaleX,
                     s.cropHeight * m.scaleY
                   ));
-                  var y = s.frame, T = y.glTexture, C = s.tintFill, E = h.getTintAppendFloatAlpha(s.tintTopLeft, o.alpha * s._alphaTL), M = h.getTintAppendFloatAlpha(s.tintTopRight, o.alpha * s._alphaTR), P = h.getTintAppendFloatAlpha(s.tintBottomLeft, o.alpha * s._alphaBL), A = h.getTintAppendFloatAlpha(s.tintBottomRight, o.alpha * s._alphaBR), R = f.setGameObject(s), F = 0, w = 0, I = 0, U = 0, N = s.letterSpacing, D, B = 0, L = 0, G, O = s.scrollX, z = s.scrollY, X = s.fontData, V = X.chars, Y = X.lineHeight, W = s.fontSize / X.size, b = 0, K = s._align, H = 0, $ = 0, k = s.getTextBounds(!1);
+                  var y = s.frame, T = y.glTexture, C = s.tintFill, E = h.getTintAppendFloatAlpha(s.tintTopLeft, o.alpha * s._alphaTL), M = h.getTintAppendFloatAlpha(s.tintTopRight, o.alpha * s._alphaTR), P = h.getTintAppendFloatAlpha(s.tintBottomLeft, o.alpha * s._alphaBL), A = h.getTintAppendFloatAlpha(s.tintBottomRight, o.alpha * s._alphaBR), R = f.setGameObject(s), F = 0, w = 0, I = 0, U = 0, N = s.letterSpacing, D, B = 0, L = 0, G, O = s.scrollX, z = s.scrollY, X = s.fontData, V = X.chars, Y = X.lineHeight, W = s.fontSize / X.size, b = 0, Z = s._align, H = 0, $ = 0, k = s.getTextBounds(!1);
                   s.maxWidth > 0 && (a = k.wrappedText, l = a.length);
                   var Q = s._bounds.lines;
-                  K === 1 ? $ = (Q.longest - Q.lengths[0]) / 2 : K === 2 && ($ = Q.longest - Q.lengths[0]);
+                  Z === 1 ? $ = (Q.longest - Q.lengths[0]) / 2 : Z === 2 && ($ = Q.longest - Q.lengths[0]);
                   for (var st = o.roundPixels, nt = s.displayCallback, rt = s.callbackData, j = 0; j < l; j++) {
                     if (I = a.charCodeAt(j), I === 10) {
-                      H++, K === 1 ? $ = (Q.longest - Q.lengths[H]) / 2 : K === 2 && ($ = Q.longest - Q.lengths[H]), F = 0, w += Y, G = null;
+                      H++, Z === 1 ? $ = (Q.longest - Q.lengths[H]) / 2 : Z === 2 && ($ = Q.longest - Q.lengths[H]), F = 0, w += Y, G = null;
                       continue;
                     }
                     if (D = V[I], !!D) {
@@ -16263,8 +16263,8 @@ function $t() {
                   for (R = 0; R < I.length; R++)
                     if (F = I[R], w = F.glyph, !(F.code === 32 || w.width === 0 || w.height === 0))
                       if (l.shouldFlush(6) && (l.flush(), P = l.setGameObject(e)), m[F.i]) {
-                        var V = m[F.i], Y = V.tintEffect, W = g(V.tintTL, v * e._alphaTL), b = g(V.tintTR, v * e._alphaTR), K = g(V.tintBL, v * e._alphaBL), H = g(V.tintBR, v * e._alphaBR);
-                        d(l, e, F, w, 0, 0, f, u, W, b, K, H, Y, M, P);
+                        var V = m[F.i], Y = V.tintEffect, W = g(V.tintTL, v * e._alphaTL), b = g(V.tintTR, v * e._alphaTR), Z = g(V.tintBL, v * e._alphaBL), H = g(V.tintBR, v * e._alphaBR);
+                        d(l, e, F, w, 0, 0, f, u, W, b, Z, H, Y, M, P);
                       } else
                         d(l, e, F, w, 0, 0, f, u, y, T, C, E, x, M, P);
                   n.pipelines.postBatch(e);
@@ -24213,8 +24213,8 @@ function $t() {
                         break;
                       }
                       case d.GRADIENT_FILL_STYLE: {
-                        var W = g[++L] * y, b = g[++L] * y, K = g[++L] * y, H = g[++L] * y;
-                        C.TL = B(g[++L], W), C.TR = B(g[++L], b), C.BL = B(g[++L], K), C.BR = B(g[++L], H);
+                        var W = g[++L] * y, b = g[++L] * y, Z = g[++L] * y, H = g[++L] * y;
+                        C.TL = B(g[++L], W), C.TR = B(g[++L], b), C.BL = B(g[++L], Z), C.BR = B(g[++L], H);
                         break;
                       }
                       case d.GRADIENT_LINE_STYLE: {
@@ -24420,8 +24420,8 @@ function $t() {
                     d.SetScale(T, z, X, V, Y);
                   }
                   if (o(v, "setOrigin")) {
-                    var W = s(v, "setOrigin.x", 0.5), b = s(v, "setOrigin.y", W), K = s(v, "setOrigin.stepX", 0), H = s(v, "setOrigin.stepY", 0);
-                    d.SetOrigin(T, W, b, K, H);
+                    var W = s(v, "setOrigin.x", 0.5), b = s(v, "setOrigin.y", W), Z = s(v, "setOrigin.stepX", 0), H = s(v, "setOrigin.stepY", 0);
+                    d.SetOrigin(T, W, b, Z, H);
                   }
                   if (o(v, "setAlpha")) {
                     var $ = s(v, "setAlpha.value", 1), k = s(v, "setAlpha.step", 0);
@@ -29196,12 +29196,12 @@ function $t() {
                  *
                  * @return {Phaser.GameObjects.Particles.ParticleBounds} The Particle Bounds processor.
                  */
-                addParticleBounds: function(O, z, X, V, Y, W, b, K) {
+                addParticleBounds: function(O, z, X, V, Y, W, b, Z) {
                   if (typeof O == "object") {
                     var H = O;
                     O = H.x, z = H.y, X = x(H, "w") ? H.w : H.width, V = x(H, "h") ? H.h : H.height;
                   }
-                  return this.addParticleProcessor(new M(O, z, X, V, Y, W, b, K));
+                  return this.addParticleProcessor(new M(O, z, X, V, Y, W, b, Z));
                 },
                 /**
                  * Sets the initial radial speed of emitted particles.
@@ -29428,8 +29428,8 @@ function $t() {
                         if (W === "random" && typeof Y.getRandomPoint == "function")
                           z = new P(Y), X.push(z);
                         else if (W === "edge" && typeof Y.getPoints == "function") {
-                          var b = l(z, "quantity", 1), K = l(z, "stepRate", 0), H = l(z, "yoyo", !1), $ = l(z, "seamless", !0), k = l(z, "total", -1);
-                          z = new e(Y, b, K, H, $, k), X.push(z);
+                          var b = l(z, "quantity", 1), Z = l(z, "stepRate", 0), H = l(z, "yoyo", !1), $ = l(z, "seamless", !0), k = l(z, "total", -1);
+                          z = new e(Y, b, Z, H, $, k), X.push(z);
                         }
                       }
                     }
@@ -29934,7 +29934,7 @@ function $t() {
                 emitParticle: function(O, z, X) {
                   if (!this.atLimit()) {
                     O === void 0 && (O = this.ops.quantity.onEmit());
-                    for (var V = this.dead, Y = this.stopAfter, W = this.follow ? this.follow.x + this.followOffset.x : z, b = this.follow ? this.follow.y + this.followOffset.y : X, K = 0; K < O; K++) {
+                    for (var V = this.dead, Y = this.stopAfter, W = this.follow ? this.follow.x + this.followOffset.x : z, b = this.follow ? this.follow.y + this.followOffset.y : X, Z = 0; Z < O; Z++) {
                       var H = V.pop();
                       if (H || (H = new this.particleClass(this)), H.fire(W, b) ? (this.particleBringToTop ? this.alive.push(H) : this.alive.unshift(H), this.emitCallback && this.emitCallback.call(this.emitCallbackScope, H, this)) : this.dead.push(H), Y > 0 && (this.stopCounter++, this.stopCounter >= Y) || this.atLimit())
                         break;
@@ -29984,15 +29984,15 @@ function $t() {
                   z *= this.timeScale;
                   var X = z / 1e3;
                   this.trackVisible && (this.visible = this.follow.visible), this.getWorldTransformMatrix(this.worldMatrix);
-                  var V = this.getProcessors(), Y = this.alive, W = this.dead, b = 0, K = [], H = Y.length;
+                  var V = this.getProcessors(), Y = this.alive, W = this.dead, b = 0, Z = [], H = Y.length;
                   for (b = 0; b < H; b++) {
                     var $ = Y[b];
-                    $.update(z, X, V) && K.push({ index: b, particle: $ });
+                    $.update(z, X, V) && Z.push({ index: b, particle: $ });
                   }
-                  if (H = K.length, H > 0) {
+                  if (H = Z.length, H > 0) {
                     var k = this.deathCallback, Q = this.deathCallbackScope;
                     for (b = H - 1; b >= 0; b--) {
-                      var st = K[b];
+                      var st = Z[b];
                       Y.splice(st.index, 1), W.push(st.particle), k && k.call(Q, st.particle), st.particle.setPosition();
                     }
                   }
@@ -30058,18 +30058,18 @@ function $t() {
                  */
                 getBounds: function(O, z, X, V) {
                   O === void 0 && (O = 0), z === void 0 && (z = 0), X === void 0 && (X = 1e3 / 60), V === void 0 && (V = new A());
-                  var Y = this.getWorldTransformMatrix(), W, b, K = this.alive, H = !1;
+                  var Y = this.getWorldTransformMatrix(), W, b, Z = this.alive, H = !1;
                   if (V.setTo(0, 0, 0, 0), z > 0) {
                     var $ = 0;
                     for (this.skipping = !0; $ < Math.abs(z); ) {
-                      for (this.preUpdate(0, X), W = 0; W < K.length; W++)
-                        b = K[W].getBounds(Y), H ? T(V, b) : (H = !0, r(b, V));
+                      for (this.preUpdate(0, X), W = 0; W < Z.length; W++)
+                        b = Z[W].getBounds(Y), H ? T(V, b) : (H = !0, r(b, V));
                       $ += X;
                     }
                     this.skipping = !1;
                   } else
-                    for (W = 0; W < K.length; W++)
-                      b = K[W].getBounds(Y), H ? T(V, b) : (H = !0, r(b, V));
+                    for (W = 0; W < Z.length; W++)
+                      b = Z[W].getBounds(Y), H ? T(V, b) : (H = !0, r(b, V));
                   return O > 0 && g(V, O, O), V;
                 },
                 /**
@@ -42227,14 +42227,14 @@ function $t() {
                 else if (!f)
                   return D;
                 B || (B = f.get(u)), !N && R && f && l && (v = B.width / l.height, m = B.height / l.height);
-                var L = v / 2, G = m / 2, O = Math.floor(x), z = Math.floor(g), X = O + 1, V = z + 1, Y = v / O, W = m / z, b = [], K = [], H, $, k = 0, Q = 1, st = 0, nt = 1;
+                var L = v / 2, G = m / 2, O = Math.floor(x), z = Math.floor(g), X = O + 1, V = z + 1, Y = v / O, W = m / z, b = [], Z = [], H, $, k = 0, Q = 1, st = 0, nt = 1;
                 B && (k = B.u0, Q = B.u1, U ? (st = B.v1, nt = B.v0) : (st = B.v0, nt = B.v1));
                 var rt = Q - k, j = nt - st;
                 for ($ = 0; $ < V; $++) {
                   var et = $ * W - G;
                   for (H = 0; H < X; H++) {
                     var it = H * Y - L;
-                    K.push(it, -et);
+                    Z.push(it, -et);
                     var ot = k + rt * (H / O), ut = st + j * ($ / z);
                     b.push(ot, ut);
                   }
@@ -42243,7 +42243,7 @@ function $t() {
                 var dt = 0, ht = 0;
                 for ($ = 0; $ < z; $++)
                   for (H = 0; H < O; H++) {
-                    var lt = (H + X * $) * 2, vt = (H + X * ($ + 1)) * 2, mt = (H + 1 + X * ($ + 1)) * 2, ft = (H + 1 + X * $) * 2, ct = F[ht], pt = w[dt], gt = new n(K[lt], K[lt + 1], 0, b[lt], b[lt + 1], ct, pt).transformMat4(o), Tt = new n(K[vt], K[vt + 1], 0, b[vt], b[vt + 1], ct, pt).transformMat4(o), St = new n(K[ft], K[ft + 1], 0, b[ft], b[ft + 1], ct, pt).transformMat4(o), Ct = new n(K[vt], K[vt + 1], 0, b[vt], b[vt + 1], ct, pt).transformMat4(o), Et = new n(K[mt], K[mt + 1], 0, b[mt], b[mt + 1], ct, pt).transformMat4(o), Pt = new n(K[ft], K[ft + 1], 0, b[ft], b[ft + 1], ct, pt).transformMat4(o);
+                    var lt = (H + X * $) * 2, vt = (H + X * ($ + 1)) * 2, mt = (H + 1 + X * ($ + 1)) * 2, ft = (H + 1 + X * $) * 2, ct = F[ht], pt = w[dt], gt = new n(Z[lt], Z[lt + 1], 0, b[lt], b[lt + 1], ct, pt).transformMat4(o), Tt = new n(Z[vt], Z[vt + 1], 0, b[vt], b[vt + 1], ct, pt).transformMat4(o), St = new n(Z[ft], Z[ft + 1], 0, b[ft], b[ft + 1], ct, pt).transformMat4(o), Ct = new n(Z[vt], Z[vt + 1], 0, b[vt], b[vt + 1], ct, pt).transformMat4(o), Et = new n(Z[mt], Z[mt + 1], 0, b[mt], b[mt + 1], ct, pt).transformMat4(o), Pt = new n(Z[ft], Z[ft + 1], 0, b[ft], b[ft + 1], ct, pt).transformMat4(o);
                     I && (gt.setUVs(k, nt), Tt.setUVs(k, st), St.setUVs(Q, nt), Ct.setUVs(k, st), Et.setUVs(Q, st), Pt.setUVs(Q, nt)), ht++, ht === F.length && (ht = 0), dt++, dt === w.length && (dt = 0), D.verts.push(gt, Tt, St, Ct, Et, Pt), D.faces.push(
                       new d(gt, Tt, St),
                       new d(Ct, Et, Pt)
@@ -42274,8 +42274,8 @@ function $t() {
                   for (var M = i.models[E], P = M.vertices, A = M.textureCoords, R = M.faces, F = 0; F < R.length; F++) {
                     var w = R[F], I = w.vertices[0], U = w.vertices[1], N = w.vertices[2], D = P[I.vertexIndex], B = P[U.vertexIndex], L = P[N.vertexIndex], G = I.textureCoordsIndex, O = U.textureCoordsIndex, z = N.textureCoordsIndex, X = G === -1 ? { u: 0, v: 1 } : A[G], V = O === -1 ? { u: 0, v: 0 } : A[O], Y = z === -1 ? { u: 1, v: 1 } : A[z], W = 16777215;
                     w.material !== "" && C[w.material] && (W = C[w.material]);
-                    var b = new r(D.x * l, D.y * l, D.z * l, X.u, X.v, W).transformMat4(s), K = new r(B.x * l, B.y * l, B.z * l, V.u, V.v, W).transformMat4(s), H = new r(L.x * l, L.y * l, L.z * l, Y.u, Y.v, W).transformMat4(s);
-                    T.verts.push(b, K, H), T.faces.push(new d(b, K, H));
+                    var b = new r(D.x * l, D.y * l, D.z * l, X.u, X.v, W).transformMat4(s), Z = new r(B.x * l, B.y * l, B.z * l, V.u, V.v, W).transformMat4(s), H = new r(L.x * l, L.y * l, L.z * l, Y.u, Y.v, W).transformMat4(s);
+                    T.verts.push(b, Z, H), T.faces.push(new d(b, Z, H));
                   }
                 return a && (a.faces = a.faces.concat(T.faces), a.vertices = a.vertices.concat(T.verts)), T;
               };
@@ -43016,11 +43016,11 @@ function $t() {
                 L = L || 2;
                 var G = B && B.length, O = G ? B[0] * L : D.length, z = t(D, 0, O, L, !0), X = [];
                 if (!z || z.next === z.prev) return X;
-                var V, Y, W, b, K, H, $;
+                var V, Y, W, b, Z, H, $;
                 if (G && (z = s(D, B, z, L)), D.length > 80 * L) {
                   V = W = D[0], Y = b = D[1];
                   for (var k = L; k < O; k += L)
-                    K = D[k], H = D[k + 1], K < V && (V = K), H < Y && (Y = H), K > W && (W = K), H > b && (b = H);
+                    Z = D[k], H = D[k + 1], Z < V && (V = Z), H < Y && (Y = H), Z > W && (W = Z), H > b && (b = H);
                   $ = Math.max(W - V, b - Y), $ = $ !== 0 ? 32767 / $ : 0;
                 }
                 return c(z, X, L, V, Y, $, 0), X;
@@ -43064,8 +43064,8 @@ function $t() {
               function h(D) {
                 var B = D.prev, L = D, G = D.next;
                 if (y(B, L, G) >= 0) return !1;
-                for (var O = B.x, z = L.x, X = G.x, V = B.y, Y = L.y, W = G.y, b = O < z ? O < X ? O : X : z < X ? z : X, K = V < Y ? V < W ? V : W : Y < W ? Y : W, H = O > z ? O > X ? O : X : z > X ? z : X, $ = V > Y ? V > W ? V : W : Y > W ? Y : W, k = G.next; k !== B; ) {
-                  if (k.x >= b && k.x <= H && k.y >= K && k.y <= $ && x(O, V, z, Y, X, W, k.x, k.y) && y(k.prev, k, k.next) >= 0) return !1;
+                for (var O = B.x, z = L.x, X = G.x, V = B.y, Y = L.y, W = G.y, b = O < z ? O < X ? O : X : z < X ? z : X, Z = V < Y ? V < W ? V : W : Y < W ? Y : W, H = O > z ? O > X ? O : X : z > X ? z : X, $ = V > Y ? V > W ? V : W : Y > W ? Y : W, k = G.next; k !== B; ) {
+                  if (k.x >= b && k.x <= H && k.y >= Z && k.y <= $ && x(O, V, z, Y, X, W, k.x, k.y) && y(k.prev, k, k.next) >= 0) return !1;
                   k = k.next;
                 }
                 return !0;
@@ -43073,16 +43073,16 @@ function $t() {
               function r(D, B, L, G) {
                 var O = D.prev, z = D, X = D.next;
                 if (y(O, z, X) >= 0) return !1;
-                for (var V = O.x, Y = z.x, W = X.x, b = O.y, K = z.y, H = X.y, $ = V < Y ? V < W ? V : W : Y < W ? Y : W, k = b < K ? b < H ? b : H : K < H ? K : H, Q = V > Y ? V > W ? V : W : Y > W ? Y : W, st = b > K ? b > H ? b : H : K > H ? K : H, nt = v($, k, B, L, G), rt = v(Q, st, B, L, G), j = D.prevZ, et = D.nextZ; j && j.z >= nt && et && et.z <= rt; ) {
-                  if (j.x >= $ && j.x <= Q && j.y >= k && j.y <= st && j !== O && j !== X && x(V, b, Y, K, W, H, j.x, j.y) && y(j.prev, j, j.next) >= 0 || (j = j.prevZ, et.x >= $ && et.x <= Q && et.y >= k && et.y <= st && et !== O && et !== X && x(V, b, Y, K, W, H, et.x, et.y) && y(et.prev, et, et.next) >= 0)) return !1;
+                for (var V = O.x, Y = z.x, W = X.x, b = O.y, Z = z.y, H = X.y, $ = V < Y ? V < W ? V : W : Y < W ? Y : W, k = b < Z ? b < H ? b : H : Z < H ? Z : H, Q = V > Y ? V > W ? V : W : Y > W ? Y : W, st = b > Z ? b > H ? b : H : Z > H ? Z : H, nt = v($, k, B, L, G), rt = v(Q, st, B, L, G), j = D.prevZ, et = D.nextZ; j && j.z >= nt && et && et.z <= rt; ) {
+                  if (j.x >= $ && j.x <= Q && j.y >= k && j.y <= st && j !== O && j !== X && x(V, b, Y, Z, W, H, j.x, j.y) && y(j.prev, j, j.next) >= 0 || (j = j.prevZ, et.x >= $ && et.x <= Q && et.y >= k && et.y <= st && et !== O && et !== X && x(V, b, Y, Z, W, H, et.x, et.y) && y(et.prev, et, et.next) >= 0)) return !1;
                   et = et.nextZ;
                 }
                 for (; j && j.z >= nt; ) {
-                  if (j.x >= $ && j.x <= Q && j.y >= k && j.y <= st && j !== O && j !== X && x(V, b, Y, K, W, H, j.x, j.y) && y(j.prev, j, j.next) >= 0) return !1;
+                  if (j.x >= $ && j.x <= Q && j.y >= k && j.y <= st && j !== O && j !== X && x(V, b, Y, Z, W, H, j.x, j.y) && y(j.prev, j, j.next) >= 0) return !1;
                   j = j.prevZ;
                 }
                 for (; et && et.z <= rt; ) {
-                  if (et.x >= $ && et.x <= Q && et.y >= k && et.y <= st && et !== O && et !== X && x(V, b, Y, K, W, H, et.x, et.y) && y(et.prev, et, et.next) >= 0) return !1;
+                  if (et.x >= $ && et.x <= Q && et.y >= k && et.y <= st && et !== O && et !== X && x(V, b, Y, Z, W, H, et.x, et.y) && y(et.prev, et, et.next) >= 0) return !1;
                   et = et.nextZ;
                 }
                 return !0;
@@ -43138,10 +43138,10 @@ function $t() {
                   L = L.next;
                 } while (L !== B);
                 if (!X) return null;
-                var Y = X, W = X.x, b = X.y, K = 1 / 0, H;
+                var Y = X, W = X.x, b = X.y, Z = 1 / 0, H;
                 L = X;
                 do
-                  G >= L.x && L.x >= W && G !== L.x && x(O < b ? G : z, O, W, b, O < b ? z : G, O, L.x, L.y) && (H = Math.abs(O - L.y) / (G - L.x), A(L, D) && (H < K || H === K && (L.x > X.x || L.x === X.x && l(X, L))) && (X = L, K = H)), L = L.next;
+                  G >= L.x && L.x >= W && G !== L.x && x(O < b ? G : z, O, W, b, O < b ? z : G, O, L.x, L.y) && (H = Math.abs(O - L.y) / (G - L.x), A(L, D) && (H < Z || H === Z && (L.x > X.x || L.x === X.x && l(X, L))) && (X = L, Z = H)), L = L.next;
                 while (L !== Y);
                 return X;
               }
@@ -43243,14 +43243,14 @@ function $t() {
                     var W = B[V] * L, b = V < Y - 1 ? B[V + 1] * L : D.length;
                     X -= Math.abs(N(D, W, b, L));
                   }
-                var K = 0;
+                var Z = 0;
                 for (V = 0; V < G.length; V += 3) {
                   var H = G[V] * L, $ = G[V + 1] * L, k = G[V + 2] * L;
-                  K += Math.abs(
+                  Z += Math.abs(
                     (D[H] - D[k]) * (D[$ + 1] - D[H + 1]) - (D[H] - D[$]) * (D[k + 1] - D[H + 1])
                   );
                 }
-                return X === 0 && K === 0 ? 0 : Math.abs((K - X) / X);
+                return X === 0 && Z === 0 ? 0 : Math.abs((Z - X) / X);
               };
               function N(D, B, L, G) {
                 for (var O = 0, z = B, X = L - G; z < L; z += G)
@@ -56511,12 +56511,12 @@ return new ` + this.key + `();
                  * @return {this} This Matrix4.
                  */
                 multiplyMatrices: function(a, l) {
-                  var f = a.val, u = l.val, v = f[0], m = f[4], x = f[8], g = f[12], y = f[1], T = f[5], C = f[9], E = f[13], M = f[2], P = f[6], A = f[10], R = f[14], F = f[3], w = f[7], I = f[11], U = f[15], N = u[0], D = u[4], B = u[8], L = u[12], G = u[1], O = u[5], z = u[9], X = u[13], V = u[2], Y = u[6], W = u[10], b = u[14], K = u[3], H = u[7], $ = u[11], k = u[15];
+                  var f = a.val, u = l.val, v = f[0], m = f[4], x = f[8], g = f[12], y = f[1], T = f[5], C = f[9], E = f[13], M = f[2], P = f[6], A = f[10], R = f[14], F = f[3], w = f[7], I = f[11], U = f[15], N = u[0], D = u[4], B = u[8], L = u[12], G = u[1], O = u[5], z = u[9], X = u[13], V = u[2], Y = u[6], W = u[10], b = u[14], Z = u[3], H = u[7], $ = u[11], k = u[15];
                   return this.setValues(
-                    v * N + m * G + x * V + g * K,
-                    y * N + T * G + C * V + E * K,
-                    M * N + P * G + A * V + R * K,
-                    F * N + w * G + I * V + U * K,
+                    v * N + m * G + x * V + g * Z,
+                    y * N + T * G + C * V + E * Z,
+                    M * N + P * G + A * V + R * Z,
+                    F * N + w * G + I * V + U * Z,
                     v * D + m * O + x * Y + g * H,
                     y * D + T * O + C * Y + E * H,
                     M * D + P * O + A * Y + R * H,
@@ -56639,7 +56639,7 @@ return new ` + this.key + `();
                   if (Math.abs(x) < h)
                     return this;
                   x = 1 / x, u *= x, v *= x, m *= x;
-                  var g = Math.sin(a), y = Math.cos(a), T = 1 - y, C = f[0], E = f[1], M = f[2], P = f[3], A = f[4], R = f[5], F = f[6], w = f[7], I = f[8], U = f[9], N = f[10], D = f[11], B = f[12], L = f[13], G = f[14], O = f[15], z = u * u * T + y, X = v * u * T + m * g, V = m * u * T - v * g, Y = u * v * T - m * g, W = v * v * T + y, b = m * v * T + u * g, K = u * m * T + v * g, H = v * m * T - u * g, $ = m * m * T + y;
+                  var g = Math.sin(a), y = Math.cos(a), T = 1 - y, C = f[0], E = f[1], M = f[2], P = f[3], A = f[4], R = f[5], F = f[6], w = f[7], I = f[8], U = f[9], N = f[10], D = f[11], B = f[12], L = f[13], G = f[14], O = f[15], z = u * u * T + y, X = v * u * T + m * g, V = m * u * T - v * g, Y = u * v * T - m * g, W = v * v * T + y, b = m * v * T + u * g, Z = u * m * T + v * g, H = v * m * T - u * g, $ = m * m * T + y;
                   return this.setValues(
                     C * z + A * X + I * V,
                     E * z + R * X + U * V,
@@ -56649,10 +56649,10 @@ return new ` + this.key + `();
                     E * Y + R * W + U * b,
                     M * Y + F * W + N * b,
                     P * Y + w * W + D * b,
-                    C * K + A * H + I * $,
-                    E * K + R * H + U * $,
-                    M * K + F * H + N * $,
-                    P * K + w * H + D * $,
+                    C * Z + A * H + I * $,
+                    E * Z + R * H + U * $,
+                    M * Z + F * H + N * $,
+                    P * Z + w * H + D * $,
                     B,
                     L,
                     G,
@@ -57005,7 +57005,7 @@ return new ` + this.key + `();
                  * @return {Phaser.Math.Matrix4} This `out` Matrix4.
                  */
                 multiplyToMat4: function(a, l) {
-                  var f = this.val, u = a.val, v = f[0], m = f[1], x = f[2], g = f[3], y = f[4], T = f[5], C = f[6], E = f[7], M = f[8], P = f[9], A = f[10], R = f[11], F = f[12], w = f[13], I = f[14], U = f[15], N = u[0], D = u[1], B = u[2], L = u[3], G = u[4], O = u[5], z = u[6], X = u[7], V = u[8], Y = u[9], W = u[10], b = u[11], K = u[12], H = u[13], $ = u[14], k = u[15];
+                  var f = this.val, u = a.val, v = f[0], m = f[1], x = f[2], g = f[3], y = f[4], T = f[5], C = f[6], E = f[7], M = f[8], P = f[9], A = f[10], R = f[11], F = f[12], w = f[13], I = f[14], U = f[15], N = u[0], D = u[1], B = u[2], L = u[3], G = u[4], O = u[5], z = u[6], X = u[7], V = u[8], Y = u[9], W = u[10], b = u[11], Z = u[12], H = u[13], $ = u[14], k = u[15];
                   return l.setValues(
                     N * v + D * y + B * M + L * F,
                     D * m + D * T + B * P + L * w,
@@ -57019,10 +57019,10 @@ return new ` + this.key + `();
                     V * m + Y * T + W * P + b * w,
                     V * x + Y * C + W * A + b * I,
                     V * g + Y * E + W * R + b * U,
-                    K * v + H * y + $ * M + k * F,
-                    K * m + H * T + $ * P + k * w,
-                    K * x + H * C + $ * A + k * I,
-                    K * g + H * E + $ * R + k * U
+                    Z * v + H * y + $ * M + k * F,
+                    Z * m + H * T + $ * P + k * w,
+                    Z * x + H * C + $ * A + k * I,
+                    Z * g + H * E + $ * R + k * U
                   );
                 },
                 /**
@@ -64555,8 +64555,8 @@ return new ` + this.key + `();
                       this._elapsed -= X, this.stepsLastFrame = 1, this.useTree && (this.tree.clear(), this.tree.load(Y));
                       var b = this.colliders.update();
                       for (O = 0; O < b.length; O++) {
-                        var K = b[O];
-                        K.active && K.update();
+                        var Z = b[O];
+                        Z.active && Z.update();
                       }
                       this.emit(a.WORLD_STEP, z);
                     }
@@ -64615,9 +64615,9 @@ return new ` + this.key + `();
                   }
                   var W = this.pendingDestroy;
                   if (W.size > 0) {
-                    var b = this.tree, K = this.staticTree;
+                    var b = this.tree, Z = this.staticTree;
                     for (O = W.entries, z = O.length, L = 0; L < z; L++)
-                      G = O[L], G.physicsType === e.DYNAMIC_BODY ? (b.remove(G), X.delete(G)) : G.physicsType === e.STATIC_BODY && (K.remove(G), V.delete(G)), G.world = void 0, G.gameObject = void 0;
+                      G = O[L], G.physicsType === e.DYNAMIC_BODY ? (b.remove(G), X.delete(G)) : G.physicsType === e.STATIC_BODY && (Z.remove(G), V.delete(G)), G.world = void 0, G.gameObject = void 0;
                     W.clear();
                   }
                 },
@@ -64658,8 +64658,8 @@ return new ` + this.key + `();
                  * @param {number} delta - The delta value to be used in the calculation, in seconds.
                  */
                 computeVelocity: function(L, G) {
-                  var O = L.velocity.x, z = L.acceleration.x, X = L.drag.x, V = L.maxVelocity.x, Y = L.velocity.y, W = L.acceleration.y, b = L.drag.y, K = L.maxVelocity.y, H = L.speed, $ = L.maxSpeed, k = L.allowDrag, Q = L.useDamping;
-                  L.allowGravity && (O += (this.gravity.x + L.gravity.x) * G, Y += (this.gravity.y + L.gravity.y) * G), z ? O += z * G : k && X && (Q ? (X = Math.pow(X, G), O *= X, H = Math.sqrt(O * O + Y * Y), l(H, 0, 1e-3) && (O = 0)) : (X *= G, f(O - X, 0, 0.01) ? O -= X : u(O + X, 0, 0.01) ? O += X : O = 0)), W ? Y += W * G : k && b && (Q ? (b = Math.pow(b, G), Y *= b, H = Math.sqrt(O * O + Y * Y), l(H, 0, 1e-3) && (Y = 0)) : (b *= G, f(Y - b, 0, 0.01) ? Y -= b : u(Y + b, 0, 0.01) ? Y += b : Y = 0)), O = h(O, -V, V), Y = h(Y, -K, K), L.velocity.set(O, Y), $ > -1 && L.velocity.length() > $ && (L.velocity.normalize().scale($), H = $), L.speed = H;
+                  var O = L.velocity.x, z = L.acceleration.x, X = L.drag.x, V = L.maxVelocity.x, Y = L.velocity.y, W = L.acceleration.y, b = L.drag.y, Z = L.maxVelocity.y, H = L.speed, $ = L.maxSpeed, k = L.allowDrag, Q = L.useDamping;
+                  L.allowGravity && (O += (this.gravity.x + L.gravity.x) * G, Y += (this.gravity.y + L.gravity.y) * G), z ? O += z * G : k && X && (Q ? (X = Math.pow(X, G), O *= X, H = Math.sqrt(O * O + Y * Y), l(H, 0, 1e-3) && (O = 0)) : (X *= G, f(O - X, 0, 0.01) ? O -= X : u(O + X, 0, 0.01) ? O += X : O = 0)), W ? Y += W * G : k && b && (Q ? (b = Math.pow(b, G), Y *= b, H = Math.sqrt(O * O + Y * Y), l(H, 0, 1e-3) && (Y = 0)) : (b *= G, f(Y - b, 0, 0.01) ? Y -= b : u(Y + b, 0, 0.01) ? Y += b : Y = 0)), O = h(O, -V, V), Y = h(Y, -Z, Z), L.velocity.set(O, Y), $ > -1 && L.velocity.length() > $ && (L.velocity.normalize().scale($), H = $), L.speed = H;
                 },
                 /**
                  * Separates two Bodies.
@@ -64682,8 +64682,8 @@ return new ` + this.key + `();
                   if (!L.enable || !G.enable || L.checkCollision.none || G.checkCollision.none || !this.intersects(L, G) || (L.collisionMask & G.collisionCategory) === 0 || (G.collisionMask & L.collisionCategory) === 0 || O && O.call(z, L.gameObject || L, G.gameObject || G) === !1)
                     return W;
                   if (L.isCircle || G.isCircle) {
-                    var K = this.separateCircle(L, G, X);
-                    K.result ? (W = !0, b = !1) : (V = K.x, Y = K.y, b = !0);
+                    var Z = this.separateCircle(L, G, X);
+                    Z.result ? (W = !0, b = !1) : (V = Z.x, Y = Z.y, b = !0);
                   }
                   if (b) {
                     var H = !1, $ = !1, k = this.OVERLAP_BIAS;
@@ -64707,7 +64707,7 @@ return new ` + this.key + `();
                  */
                 separateCircle: function(L, G, O) {
                   v(L, G, !1, 0), m(L, G, !1, 0);
-                  var z = L.isCircle, X = G.isCircle, V = L.center, Y = G.center, W = L.immovable, b = G.immovable, K = L.velocity, H = G.velocity, $ = 0, k = !0;
+                  var z = L.isCircle, X = G.isCircle, V = L.center, Y = G.center, W = L.immovable, b = G.immovable, Z = L.velocity, H = G.velocity, $ = 0, k = !0;
                   if (z !== X) {
                     k = !1;
                     var Q = V.x, st = V.y, nt = L.halfWidth, rt = G.position.x, j = G.position.y, et = G.right, it = G.bottom;
@@ -64722,8 +64722,8 @@ return new ` + this.key + `();
                     return ht.x = void 0, ht.y = void 0, ht;
                   var lt = !L.pushable && !G.pushable;
                   if (k) {
-                    var vt = V.x - Y.x, mt = V.y - Y.y, ft = Math.sqrt(Math.pow(vt, 2) + Math.pow(mt, 2)), ct = (Y.x - V.x) / ft || 0, pt = (Y.y - V.y) / ft || 0, gt = 2 * (K.x * ct + K.y * pt - H.x * ct - H.y * pt) / (L.mass + G.mass);
-                    (W || b || !L.pushable || !G.pushable) && (gt *= 2), !W && L.pushable && (K.x = K.x - gt / L.mass * ct, K.y = K.y - gt / L.mass * pt, K.multiply(L.bounce)), !b && G.pushable && (H.x = H.x + gt / G.mass * ct, H.y = H.y + gt / G.mass * pt, H.multiply(G.bounce)), !W && !b && (ut *= 0.5, dt *= 0.5), (!W || L.pushable || lt) && (L.x -= ut, L.y -= dt, L.updateCenter()), (!b || G.pushable || lt) && (G.x += ut, G.y += dt, G.updateCenter()), ht.result = !0;
+                    var vt = V.x - Y.x, mt = V.y - Y.y, ft = Math.sqrt(Math.pow(vt, 2) + Math.pow(mt, 2)), ct = (Y.x - V.x) / ft || 0, pt = (Y.y - V.y) / ft || 0, gt = 2 * (Z.x * ct + Z.y * pt - H.x * ct - H.y * pt) / (L.mass + G.mass);
+                    (W || b || !L.pushable || !G.pushable) && (gt *= 2), !W && L.pushable && (Z.x = Z.x - gt / L.mass * ct, Z.y = Z.y - gt / L.mass * pt, Z.multiply(L.bounce)), !b && G.pushable && (H.x = H.x + gt / G.mass * ct, H.y = H.y + gt / G.mass * pt, H.multiply(G.bounce)), !W && !b && (ut *= 0.5, dt *= 0.5), (!W || L.pushable || lt) && (L.x -= ut, L.y -= dt, L.updateCenter()), (!b || G.pushable || lt) && (G.x += ut, G.y += dt, G.updateCenter()), ht.result = !0;
                   } else
                     !W && (L.pushable || lt) && (L.x -= ut, L.y -= dt, L.updateCenter()), !b && (G.pushable || lt) && (G.x += ut, G.y += dt, G.updateCenter()), ht.x = void 0, ht.y = void 0;
                   return ht;
@@ -64832,13 +64832,13 @@ return new ` + this.key + `();
                 collideObjects: function(L, G, O, z, X, V) {
                   var Y, W;
                   L.isParent && (L.physicsType === void 0 || G === void 0 || L === G) && (L = L.children.entries), G && G.isParent && G.physicsType === void 0 && (G = G.children.entries);
-                  var b = Array.isArray(L), K = Array.isArray(G);
-                  if (this._total = 0, !b && !K)
+                  var b = Array.isArray(L), Z = Array.isArray(G);
+                  if (this._total = 0, !b && !Z)
                     this.collideHandler(L, G, O, z, X, V);
-                  else if (!b && K)
+                  else if (!b && Z)
                     for (Y = 0; Y < G.length; Y++)
                       this.collideHandler(L, G[Y], O, z, X, V);
-                  else if (b && !K)
+                  else if (b && !Z)
                     if (G)
                       for (Y = 0; Y < L.length; Y++)
                         this.collideHandler(L[Y], G, O, z, X, V);
@@ -64950,17 +64950,17 @@ return new ` + this.key + `();
                 collideSpriteVsGroup: function(L, G, O, z, X, V) {
                   var Y = L.isBody ? L : L.body;
                   if (!(G.getLength() === 0 || !Y || !Y.enable || Y.checkCollision.none || !this.canCollide(Y, G))) {
-                    var W, b, K;
+                    var W, b, Z;
                     if (this.useTree || G.physicsType === e.STATIC_BODY) {
                       var H = this.treeMinMax;
                       H.minX = Y.left, H.minY = Y.top, H.maxX = Y.right, H.maxY = Y.bottom;
                       var $ = G.physicsType === e.DYNAMIC_BODY ? this.tree.search(H) : this.staticTree.search(H);
                       for (b = $.length, W = 0; W < b; W++)
-                        K = $[W], !(Y === K || !K.enable || K.checkCollision.none || !G.contains(K.gameObject)) && this.separate(Y, K, z, X, V) && (O && O.call(X, Y.gameObject, K.gameObject), this._total++);
+                        Z = $[W], !(Y === Z || !Z.enable || Z.checkCollision.none || !G.contains(Z.gameObject)) && this.separate(Y, Z, z, X, V) && (O && O.call(X, Y.gameObject, Z.gameObject), this._total++);
                     } else {
                       var k = G.getChildren(), Q = G.children.entries.indexOf(L);
                       for (b = k.length, W = 0; W < b; W++)
-                        K = k[W].body, !(!K || W === Q || !K.enable) && this.separate(Y, K, z, X, V) && (O && O.call(X, Y.gameObject, K.gameObject), this._total++);
+                        Z = k[W].body, !(!Z || W === Q || !Z.enable) && this.separate(Y, Z, z, X, V) && (O && O.call(X, Y.gameObject, Z.gameObject), this._total++);
                     }
                   }
                 },
@@ -65074,7 +65074,7 @@ return new ` + this.key + `();
                   var Y = L.isBody ? L : L.body;
                   if (!Y.enable || Y.checkCollision.none || !this.canCollide(Y, G))
                     return !1;
-                  var W = G.layer, b = Y.x - W.tileWidth * G.scaleX, K = Y.y - W.tileHeight * G.scaleY, H = Y.width + W.tileWidth * G.scaleX, $ = Y.height + W.tileHeight * G.scaleY, k = V ? null : this.tileFilterOptions, Q = x(b, K, H, $, k, G.scene.cameras.main, G.layer);
+                  var W = G.layer, b = Y.x - W.tileWidth * G.scaleX, Z = Y.y - W.tileHeight * G.scaleY, H = Y.width + W.tileWidth * G.scaleX, $ = Y.height + W.tileHeight * G.scaleY, k = V ? null : this.tileFilterOptions, Q = x(b, Z, H, $, k, G.scene.cameras.main, G.layer);
                   return Q.length === 0 ? !1 : this.collideSpriteVsTilesHandler(L, Q, O, z, X, V, !0);
                 },
                 /**
@@ -65098,10 +65098,10 @@ return new ` + this.key + `();
                  * @return {boolean} True if any objects overlap (with `overlapOnly`); or true if any overlapping objects were separated.
                  */
                 collideSpriteVsTilesHandler: function(L, G, O, z, X, V, Y) {
-                  for (var W = L.isBody ? L : L.body, b, K = { left: 0, right: 0, top: 0, bottom: 0 }, H, $ = !1, k = 0; k < G.length; k++) {
+                  for (var W = L.isBody ? L : L.body, b, Z = { left: 0, right: 0, top: 0, bottom: 0 }, H, $ = !1, k = 0; k < G.length; k++) {
                     b = G[k], H = b.tilemapLayer;
                     var Q = H.tileToWorldXY(b.x, b.y);
-                    K.left = Q.x, K.top = Q.y, K.right = K.left + b.width * H.scaleX, K.bottom = K.top + b.height * H.scaleY, I(K, W) && (!z || z.call(X, L, b)) && C(b, L) && (V || P(k, W, b, K, H, this.TILE_BIAS, Y)) && (this._total++, $ = !0, O && O.call(X, L, b), V && W.onOverlap ? this.emit(a.TILE_OVERLAP, L, b, W) : W.onCollide && this.emit(a.TILE_COLLIDE, L, b, W));
+                    Z.left = Q.x, Z.top = Q.y, Z.right = Z.left + b.width * H.scaleX, Z.bottom = Z.top + b.height * H.scaleY, I(Z, W) && (!z || z.call(X, L, b)) && C(b, L) && (V || P(k, W, b, Z, H, this.TILE_BIAS, Y)) && (this._total++, $ = !0, O && O.call(X, L, b), V && W.onOverlap ? this.emit(a.TILE_OVERLAP, L, b, W) : W.onCollide && this.emit(a.TILE_COLLIDE, L, b, W));
                   }
                   return $;
                 },
@@ -69697,8 +69697,8 @@ return new ` + this.key + `();
                     }
                   }
                   if (F.showPositions && !y.isStatic) {
-                    var b = y.position.x, K = y.position.y, H = Math.ceil(F.positionSize / 2);
-                    T.fillStyle(F.positionColor, 1), T.fillRect(b - H, K - H, F.positionSize, F.positionSize);
+                    var b = y.position.x, Z = y.position.y, H = Math.ceil(F.positionSize / 2);
+                    T.fillStyle(F.positionColor, 1), T.fillRect(b - H, Z - H, F.positionSize, F.positionSize);
                   }
                   return this;
                 },
@@ -72023,11 +72023,11 @@ return new ` + this.key + `();
                     if (!(!T.isActive || T.isSensor)) {
                       var C = T.collision, E = C.parentA, M = C.parentB, P = C.normal.x, A = C.normal.y, R = C.tangent.x, F = C.tangent.y, w = T.inverseMass, I = T.friction * T.frictionStatic * f, U = T.contacts, N = T.contactCount, D = 1 / N, B = E.position.x - E.positionPrev.x, L = E.position.y - E.positionPrev.y, G = E.angle - E.anglePrev, O = M.position.x - M.positionPrev.x, z = M.position.y - M.positionPrev.y, X = M.angle - M.anglePrev;
                       for (y = 0; y < N; y++) {
-                        var V = U[y], Y = V.vertex, W = Y.x - E.position.x, b = Y.y - E.position.y, K = Y.x - M.position.x, H = Y.y - M.position.y, $ = B - b * G, k = L + W * G, Q = O - H * X, st = z + K * X, nt = $ - Q, rt = k - st, j = P * nt + A * rt, et = R * nt + F * rt, it = T.separation + j, ot = Math.min(it, 1);
+                        var V = U[y], Y = V.vertex, W = Y.x - E.position.x, b = Y.y - E.position.y, Z = Y.x - M.position.x, H = Y.y - M.position.y, $ = B - b * G, k = L + W * G, Q = O - H * X, st = z + Z * X, nt = $ - Q, rt = k - st, j = P * nt + A * rt, et = R * nt + F * rt, it = T.separation + j, ot = Math.min(it, 1);
                         ot = it < 0 ? 0 : ot;
                         var ut = ot * I;
                         et < -ut || et > ut ? (x = et > 0 ? et : -et, m = T.friction * (et > 0 ? 1 : -1) * i, m < -x ? m = -x : m > x && (m = x)) : (m = et, x = u);
-                        var dt = W * A - b * P, ht = K * A - H * P, lt = D / (w + E.inverseInertia * dt * dt + M.inverseInertia * ht * ht), vt = (1 + T.restitution) * j * lt;
+                        var dt = W * A - b * P, ht = Z * A - H * P, lt = D / (w + E.inverseInertia * dt * dt + M.inverseInertia * ht * ht), vt = (1 + T.restitution) * j * lt;
                         if (m *= lt, j < a)
                           V.normalImpulse = 0;
                         else {
@@ -72041,7 +72041,7 @@ return new ` + this.key + `();
                           V.tangentImpulse += m, V.tangentImpulse < -x && (V.tangentImpulse = -x), V.tangentImpulse > x && (V.tangentImpulse = x), m = V.tangentImpulse - ft;
                         }
                         var ct = P * vt + R * m, pt = A * vt + F * m;
-                        E.isStatic || E.isSleeping || (E.positionPrev.x += ct * E.inverseMass, E.positionPrev.y += pt * E.inverseMass, E.anglePrev += (W * pt - b * ct) * E.inverseInertia), M.isStatic || M.isSleeping || (M.positionPrev.x -= ct * M.inverseMass, M.positionPrev.y -= pt * M.inverseMass, M.anglePrev -= (K * pt - H * ct) * M.inverseInertia);
+                        E.isStatic || E.isSleeping || (E.positionPrev.x += ct * E.inverseMass, E.positionPrev.y += pt * E.inverseMass, E.anglePrev += (W * pt - b * ct) * E.inverseInertia), M.isStatic || M.isSleeping || (M.positionPrev.x -= ct * M.inverseMass, M.positionPrev.y -= pt * M.inverseMass, M.anglePrev -= (Z * pt - H * ct) * M.inverseInertia);
                       }
                     }
                   }
@@ -73486,21 +73486,21 @@ return new ` + this.key + `();
               }
               function R(D, B, L, G, O) {
                 O = O || 0;
-                var z = B[1] - D[1], X = D[0] - B[0], V = z * D[0] + X * D[1], Y = G[1] - L[1], W = L[0] - G[0], b = Y * L[0] + W * L[1], K = z * W - Y * X;
-                return U(K, 0, O) ? [0, 0] : [(W * V - X * b) / K, (z * b - Y * V) / K];
+                var z = B[1] - D[1], X = D[0] - B[0], V = z * D[0] + X * D[1], Y = G[1] - L[1], W = L[0] - G[0], b = Y * L[0] + W * L[1], Z = z * W - Y * X;
+                return U(Z, 0, O) ? [0, 0] : [(W * V - X * b) / Z, (z * b - Y * V) / Z];
               }
               function F(D, B, L, G, O, z, X) {
                 z = z || 100, X = X || 0, O = O || 25, B = typeof B < "u" ? B : [], L = L || [], G = G || [];
-                var V = [0, 0], Y = [0, 0], W = [0, 0], b = 0, K = 0, H = 0, $ = 0, k = 0, Q = 0, st = 0, nt = [], rt = [], j = D, et = D;
+                var V = [0, 0], Y = [0, 0], W = [0, 0], b = 0, Z = 0, H = 0, $ = 0, k = 0, Q = 0, st = 0, nt = [], rt = [], j = D, et = D;
                 if (et.length < 3)
                   return B;
                 if (X++, X > z)
                   return console.warn("quickDecomp: max level (" + z + ") reached."), B;
                 for (var it = 0; it < D.length; ++it)
                   if (m(j, it)) {
-                    L.push(j[it]), b = K = Number.MAX_VALUE;
+                    L.push(j[it]), b = Z = Number.MAX_VALUE;
                     for (var ot = 0; ot < D.length; ++ot)
-                      c(a(j, it - 1), a(j, it), a(j, ot)) && n(a(j, it - 1), a(j, it), a(j, ot - 1)) && (W = R(a(j, it - 1), a(j, it), a(j, ot), a(j, ot - 1)), r(a(j, it + 1), a(j, it), W) && (H = i(j[it], W), H < K && (K = H, Y = W, Q = ot))), c(a(j, it + 1), a(j, it), a(j, ot + 1)) && n(a(j, it + 1), a(j, it), a(j, ot)) && (W = R(a(j, it + 1), a(j, it), a(j, ot), a(j, ot + 1)), c(a(j, it - 1), a(j, it), W) && (H = i(j[it], W), H < b && (b = H, V = W, k = ot)));
+                      c(a(j, it - 1), a(j, it), a(j, ot)) && n(a(j, it - 1), a(j, it), a(j, ot - 1)) && (W = R(a(j, it - 1), a(j, it), a(j, ot), a(j, ot - 1)), r(a(j, it + 1), a(j, it), W) && (H = i(j[it], W), H < Z && (Z = H, Y = W, Q = ot))), c(a(j, it + 1), a(j, it), a(j, ot + 1)) && n(a(j, it + 1), a(j, it), a(j, ot)) && (W = R(a(j, it + 1), a(j, it), a(j, ot), a(j, ot + 1)), c(a(j, it - 1), a(j, it), W) && (H = i(j[it], W), H < b && (b = H, V = W, k = ot)));
                     if (Q === (k + 1) % D.length)
                       W[0] = (Y[0] + V[0]) / 2, W[1] = (Y[1] + V[1]) / 2, G.push(W), it < k ? (f(nt, j, it, k + 1), nt.push(W), rt.push(W), Q !== 0 && f(rt, j, Q, j.length), f(rt, j, 0, it + 1)) : (it !== 0 && f(nt, j, it, j.length), f(nt, j, 0, k + 1), nt.push(W), rt.push(W), f(rt, j, Q, it + 1));
                     else {
@@ -80629,10 +80629,10 @@ return new ` + this.key + `();
                   l.flipX && (w || (N += -g.realWidth + I * 2), L = -1), l.flipY && (w || (D += -g.realHeight + U * 2), G = -1);
                   var O = l.x, z = l.y;
                   f.roundPixels && (O = Math.floor(O), z = Math.floor(z)), m.applyITRS(O, z, l.rotation, l.scaleX * L, l.scaleY * G), v.copyFrom(f.matrix), u ? (v.multiplyWithOffset(u, -f.scrollX * l.scrollFactorX, -f.scrollY * l.scrollFactorY), m.e = O, m.f = z) : (m.e -= f.scrollX * l.scrollFactorX, m.f -= f.scrollY * l.scrollFactorY), v.multiply(m, x);
-                  var X = x.setQuad(N, D, N + R, D + F, f.renderRoundPixels), V = s.getTintAppendFloatAlpha, Y = f.alpha, W = V(l.tintTopLeft, Y * l._alphaTL), b = V(l.tintTopRight, Y * l._alphaTR), K = V(l.tintBottomLeft, Y * l._alphaBL), H = V(l.tintBottomRight, Y * l._alphaBR);
+                  var X = x.setQuad(N, D, N + R, D + F, f.renderRoundPixels), V = s.getTintAppendFloatAlpha, Y = f.alpha, W = V(l.tintTopLeft, Y * l._alphaTL), b = V(l.tintTopRight, Y * l._alphaTR), Z = V(l.tintBottomLeft, Y * l._alphaBL), H = V(l.tintBottomRight, Y * l._alphaBR);
                   this.shouldFlush(6) && this.flush();
                   var $ = this.setGameObject(l, g);
-                  this.manager.preBatch(l), this.batchQuad(l, X[0], X[1], X[2], X[3], X[4], X[5], X[6], X[7], T, C, E, M, W, b, K, H, l.tintFill, y, $), this.manager.postBatch(l);
+                  this.manager.preBatch(l), this.batchQuad(l, X[0], X[1], X[2], X[3], X[4], X[5], X[6], X[7], T, C, E, M, W, b, Z, H, l.tintFill, y, $), this.manager.postBatch(l);
                 },
                 /**
                  * Generic function for batching a textured quad using argument values instead of a Game Object.
@@ -80674,7 +80674,7 @@ return new ` + this.key + `();
                  * @param {number} [textureUnit] - The texture unit to set (defaults to currently bound if undefined or null)
                  * @param {boolean} [skipPrePost=false] - Skip the pre and post manager calls?
                  */
-                batchTexture: function(l, f, u, v, m, x, g, y, T, C, E, M, P, A, R, F, w, I, U, N, D, B, L, G, O, z, X, V, Y, W, b, K, H) {
+                batchTexture: function(l, f, u, v, m, x, g, y, T, C, E, M, P, A, R, F, w, I, U, N, D, B, L, G, O, z, X, V, Y, W, b, Z, H) {
                   H === void 0 && (H = !1), this.manager.set(this, l);
                   var $ = this._tempMatrix1, k = this._tempMatrix2, Q = this._tempMatrix3, st = I / u + X, nt = U / v + V, rt = (I + N) / u + X, j = (U + D) / v + V, et = g, it = y, ot = -F, ut = -w;
                   if (l.isCropped) {
@@ -80685,7 +80685,7 @@ return new ` + this.key + `();
                   }
                   P = P ^ (!b && f.isRenderTexture ? 1 : 0), M && (et *= -1, ot += g), P && (it *= -1, ut += y), Y.roundPixels && (m = Math.floor(m), x = Math.floor(x)), k.applyITRS(m, x, E, T, C), $.copyFrom(Y.matrix), W ? ($.multiplyWithOffset(W, -Y.scrollX * A, -Y.scrollY * R), k.e = m, k.f = x) : (k.e -= Y.scrollX * A, k.f -= Y.scrollY * R), $.multiply(k, Q);
                   var ft = Q.setQuad(ot, ut, ot + et, ut + it, Y.renderRoundPixels);
-                  K == null && (K = this.setTexture2D(f)), l && !H && this.manager.preBatch(l), this.batchQuad(l, ft[0], ft[1], ft[2], ft[3], ft[4], ft[5], ft[6], ft[7], st, nt, rt, j, B, L, G, O, z, f, K), l && !H && this.manager.postBatch(l);
+                  Z == null && (Z = this.setTexture2D(f)), l && !H && this.manager.preBatch(l), this.batchQuad(l, ft[0], ft[1], ft[2], ft[3], ft[4], ft[5], ft[6], ft[7], st, nt, rt, j, B, L, G, O, z, f, Z), l && !H && this.manager.postBatch(l);
                 },
                 /**
                  * Adds a Texture Frame into the batch for rendering.
@@ -80865,10 +80865,10 @@ return new ` + this.key + `();
                   E && E.multiply(C, M);
                   var P = u - l, A = v - f, R = Math.sqrt(P * P + A * A);
                   if (R !== 0) {
-                    var F = m * (v - f) / R, w = m * (l - u) / R, I = x * (v - f) / R, U = x * (l - u) / R, N = u - I, D = v - U, B = l - F, L = f - w, G = u + I, O = v + U, z = l + F, X = f + w, V = M.getX(N, D), Y = M.getY(N, D), W = M.getX(B, L), b = M.getY(B, L), K = M.getX(G, O), H = M.getY(G, O), $ = M.getX(z, X), k = M.getY(z, X), Q = this.strokeTint, st = Q.TL, nt = Q.TR, rt = Q.BL, j = Q.BR;
-                    if (this.batchQuad(null, $, k, W, b, V, Y, K, H, 0, 0, 1, 1, st, nt, rt, j, 2), !(g <= 2)) {
+                    var F = m * (v - f) / R, w = m * (l - u) / R, I = x * (v - f) / R, U = x * (l - u) / R, N = u - I, D = v - U, B = l - F, L = f - w, G = u + I, O = v + U, z = l + F, X = f + w, V = M.getX(N, D), Y = M.getY(N, D), W = M.getX(B, L), b = M.getY(B, L), Z = M.getX(G, O), H = M.getY(G, O), $ = M.getX(z, X), k = M.getY(z, X), Q = this.strokeTint, st = Q.TL, nt = Q.TR, rt = Q.BL, j = Q.BR;
+                    if (this.batchQuad(null, $, k, W, b, V, Y, Z, H, 0, 0, 1, 1, st, nt, rt, j, 2), !(g <= 2)) {
                       var et = this.prevQuad, it = this.firstQuad;
-                      y > 0 && et[4] ? this.batchQuad(null, $, k, W, b, et[0], et[1], et[2], et[3], 0, 0, 1, 1, st, nt, rt, j, 2) : (it[0] = $, it[1] = k, it[2] = W, it[3] = b, it[4] = 1), T && it[4] ? this.batchQuad(null, V, Y, K, H, it[0], it[1], it[2], it[3], 0, 0, 1, 1, st, nt, rt, j, 2) : (et[0] = V, et[1] = Y, et[2] = K, et[3] = H, et[4] = 1);
+                      y > 0 && et[4] ? this.batchQuad(null, $, k, W, b, et[0], et[1], et[2], et[3], 0, 0, 1, 1, st, nt, rt, j, 2) : (it[0] = $, it[1] = k, it[2] = W, it[3] = b, it[4] = 1), T && it[4] ? this.batchQuad(null, V, Y, Z, H, it[0], it[1], it[2], it[3], 0, 0, 1, 1, st, nt, rt, j, 2) : (et[0] = V, et[1] = Y, et[2] = Z, et[3] = H, et[4] = 1);
                     }
                   }
                 },
@@ -81388,7 +81388,7 @@ return new ` + this.key + `();
                  * @return {boolean} `true` if this method caused the batch to flush, otherwise `false`.
                  */
                 batchQuad: function(v, m, x, g, y, T, C, E, M, P, A, R, F, w, I, U, N, D, B) {
-                  var L = Math.min(m, g, T, E), G = Math.min(x, y, C, M), O = Math.max(m, g, T, E), z = Math.max(x, y, C, M), X = O - L, V = z - G, Y = this.spriteBounds.setTo(L, G, X, V), W = v ? v.preFX.padding : 0, b = X + W * 2, K = V + W * 2, H = Math.abs(Math.max(b, K)), $ = this.manager.getRenderTarget(H), k = this.targetBounds.setTo(0, 0, $.width, $.height);
+                  var L = Math.min(m, g, T, E), G = Math.min(x, y, C, M), O = Math.max(m, g, T, E), z = Math.max(x, y, C, M), X = O - L, V = z - G, Y = this.spriteBounds.setTo(L, G, X, V), W = v ? v.preFX.padding : 0, b = X + W * 2, Z = V + W * 2, H = Math.abs(Math.max(b, Z)), $ = this.manager.getRenderTarget(H), k = this.targetBounds.setTo(0, 0, $.width, $.height);
                   c(k, Math.round(Y.centerX), Math.round(Y.centerY)), this.tempSprite = v;
                   var Q = this.gl, st = this.renderer;
                   st.clearStencilMask(), this.setShader(this.drawSpriteShader), this.set1i("uMainSampler", 0), this.set2f("uResolution", st.width, st.height), this.flipProjectionMatrix(!0), v && (this.onDrawSprite(v, $), v.preFX.onFX(this));
@@ -97384,15 +97384,15 @@ return new ` + this.key + `();
                         };
                         Y.x = b.x, Y.y = b.y;
                       }
-                      var K = {
+                      var Z = {
                         x: Y.originX * N.width,
                         y: (Y.originY - (N.gid ? 1 : 0)) * N.height
                       };
                       if (N.rotation) {
                         var H = h(N.rotation);
-                        i(K, H), Y.rotation = H;
+                        i(Z, H), Y.rotation = H;
                       }
-                      Y.x += K.x, Y.y += K.y, (N.flippedHorizontal !== void 0 || N.flippedVertical !== void 0) && Y.setFlip(N.flippedHorizontal, N.flippedVertical), N.visible || (Y.visible = !1), M.setPropertiesFromTiledObject(Y, N), O ? O.add(Y) : G.add.existing(Y), C.push(Y);
+                      Y.x += Z.x, Y.y += Z.y, (N.flippedHorizontal !== void 0 || N.flippedVertical !== void 0) && Y.setFlip(N.flippedHorizontal, N.flippedVertical), N.visible || (Y.visible = !1), M.setPropertiesFromTiledObject(Y, N), O ? O.add(Y) : G.add.existing(Y), C.push(Y);
                     }
                   }
                   return C;
@@ -104112,8 +104112,8 @@ return new ` + this.key + `();
                 for (var V = d.TYPES, Y = 0; Y < V.length; Y++) {
                   var W = V[Y], b = l(g, W, !1);
                   if (b) {
-                    var K = l(g, W + "Params", []);
-                    L.setCallback(W, b, K);
+                    var Z = l(g, W + "Params", []);
+                    L.setCallback(W, b, Z);
                   }
                 }
                 return L;
@@ -107953,11 +107953,11 @@ class jt extends xt.Scene {
     }), this.load.spritesheet("btn_how", "assets/main/btn_how.png", {
       frameWidth: 319,
       frameHeight: 136
-    }), this.load.image("howToPlayPop", "assets/howToPlay/howToPlay.png"), this.load.image("bubble_1", "assets/howToPlay/bubble_1.png"), this.load.image("bubble_2", "assets/howToPlay/bubble_2.png"), this.load.image("bubble_3", "assets/howToPlay/bubble_3.png"), this.load.image("bubble_4", "assets/howToPlay/bubble_4.png"), this.load.image("closeBtn", "assets/howToPlay/closeBtn.png"), this.load.image("mainGameBG", "assets/mainGame/bg.png"), this.load.image("game_score", "assets/mainGame/game_score.png"), this.load.image("wave", "assets/mainGame/game_wave.png"), this.load.image("pause", "assets/mainGame/pause.png"), this.load.spritesheet("ship", "assets/players/boat/ship.png", { frameWidth: 565, frameHeight: 173 }), this.load.json("shipPhysics", "assets/players/boat/ship.json"), this.charactersData.forEach((Z) => {
-      this.load.image(Z.key, "assets/charaters/" + Z.name + ".png"), this.load.spritesheet(Z.key + "_on", "assets/charaters/" + Z.name + "_on.png", {
+    }), this.load.image("howToPlayPop", "assets/howToPlay/howToPlay.png"), this.load.image("bubble_1", "assets/howToPlay/bubble_1.png"), this.load.image("bubble_2", "assets/howToPlay/bubble_2.png"), this.load.image("bubble_3", "assets/howToPlay/bubble_3.png"), this.load.image("bubble_4", "assets/howToPlay/bubble_4.png"), this.load.image("closeBtn", "assets/howToPlay/closeBtn.png"), this.load.image("mainGameBG", "assets/mainGame/bg.png"), this.load.image("game_score", "assets/mainGame/game_score.png"), this.load.image("wave", "assets/mainGame/game_wave.png"), this.load.image("pause", "assets/mainGame/pause.png"), this.load.spritesheet("ship", "assets/players/boat/ship.png", { frameWidth: 565, frameHeight: 173 }), this.load.json("shipPhysics", "assets/players/boat/ship.json"), this.charactersData.forEach((K) => {
+      this.load.image(K.key, "assets/charaters/" + K.name + ".png"), this.load.spritesheet(K.key + "_on", "assets/charaters/" + K.name + "_on.png", {
         frameWidth: 310,
         frameHeight: 400
-      }), this.load.spritesheet(Z.key + "_swim", "assets/charaters/" + Z.name + "_swim.png", {
+      }), this.load.spritesheet(K.key + "_swim", "assets/charaters/" + K.name + "_swim.png", {
         frameWidth: 482,
         frameHeight: 236
       });
@@ -108092,12 +108092,12 @@ const Nt = [
     answer: 0
   }
 ];
-function Wt(at, Z = 1, J = 0) {
-  return at.on("pointerover", () => at.setFrame(Z)).on("pointerout", () => at.setFrame(J)), at;
+function Wt(at, K = 1, J = 0) {
+  return at.on("pointerover", () => at.setFrame(K)).on("pointerout", () => at.setFrame(J)), at;
 }
 function Ot(at) {
-  const { width: Z, height: J } = at.scale;
-  return at.add.rectangle(Z / 2, J / 2, Z, J, 0, 0.7).setOrigin(0.5).setDepth(100).setVisible(!1).setInteractive();
+  const { width: K, height: J } = at.scale;
+  return at.add.rectangle(K / 2, J / 2, K, J, 0, 0.7).setOrigin(0.5).setDepth(100).setVisible(!1).setInteractive();
 }
 function Lt() {
   return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
@@ -108107,23 +108107,23 @@ class kt extends At.Scene {
     super({ key: "Quiz" }), this.quizIndexPointer = 0, this.storeButtons = {};
   }
   create() {
-    const { width: Z, height: J } = this.scale;
-    this.overlay = Ot(this), this.gameScene = this.scene.get("Game"), this.add.image(Z / 2, J / 2, "store_bg").setScale(0.6667), this.storeButtons.speed = this.createStoreButton(600, 420, "store_result_speed", "speed"), this.storeButtons.time = this.createStoreButton(950, 420, "store_result_time", "time"), this.nextStageButton = this.add.image(Z / 2 + 130, J - 80, "button_next").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
+    const { width: K, height: J } = this.scale;
+    this.overlay = Ot(this), this.gameScene = this.scene.get("Game"), this.add.image(K / 2, J / 2, "store_bg").setScale(0.6667), this.storeButtons.speed = this.createStoreButton(600, 420, "store_result_speed", "speed"), this.storeButtons.time = this.createStoreButton(950, 420, "store_result_time", "time"), this.nextStageButton = this.add.image(K / 2 + 130, J - 80, "button_next").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.scene.stop("Quiz"), this.scene.resume("Game"), this.gameScene.scene.resume("Interface"), this.gameScene.resetStage(), this.gameScene.currentStageIndex++, this.gameScene.startStage(this.gameScene.currentStageIndex);
     });
   }
-  createStoreButton(Z, J, q, _) {
-    const tt = this.add.image(Z, J, q).setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => this.showQuiz(_, tt));
+  createStoreButton(K, J, q, _) {
+    const tt = this.add.image(K, J, q).setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => this.showQuiz(_, tt));
     return tt;
   }
-  showQuiz(Z, J) {
+  showQuiz(K, J) {
     const { width: q, height: _ } = this.scale, tt = Nt[this.quizIndexPointer++ % Nt.length];
     this.overlay.setVisible(!0);
-    const p = this.add.image(0, 0, "boat_store_quiz_box").setScale(0.6667), S = Z === "speed" ? "store_item_speed" : "store_item_time", t = this.add.image(-460, -210, S).setScale(0.35), d = this.createUnderlinedQuestion(tt.question);
-    this.optionContainers = this.createOptionButtons(tt, Z, J), this.quizPop = this.add.container(q / 2, _ / 2, [p, t, d, ...this.optionContainers]).setDepth(101);
+    const p = this.add.image(0, 0, "boat_store_quiz_box").setScale(0.6667), S = K === "speed" ? "store_item_speed" : "store_item_time", t = this.add.image(-460, -210, S).setScale(0.35), d = this.createUnderlinedQuestion(tt.question);
+    this.optionContainers = this.createOptionButtons(tt, K, J), this.quizPop = this.add.container(q / 2, _ / 2, [p, t, d, ...this.optionContainers]).setDepth(101);
   }
-  createUnderlinedQuestion(Z) {
-    const J = Z.split(/(_[^_]+_)/g), q = this.add.container(0, -80);
+  createUnderlinedQuestion(K) {
+    const J = K.split(/(_[^_]+_)/g), q = this.add.container(0, -80);
     let _ = 50;
     return J.forEach((tt) => {
       const p = tt.startsWith("_") && tt.endsWith("_"), S = p ? tt.slice(1, -1) : tt, t = p ? "#ff0000" : "#000", d = this.add.text(_, 0, S, { fontFamily: "Waguri", fontSize: "32px", color: t }).setOrigin(0, 0.5);
@@ -108134,25 +108134,25 @@ class kt extends At.Scene {
       _ += d.width + 6;
     }), q.setX(-_ / 2), q;
   }
-  createOptionButtons(Z, J, q) {
-    return Z.options.map((_, tt) => {
-      const p = -300 + tt * 330, S = 184, t = this.add.image(0, 0, "ansBox").setScale(0.6667).setOrigin(0.5), d = this.add.text(0, 0, _, { fontFamily: "Waguri", fontSize: "28px", color: "#fff", align: "center" }).setOrigin(0.5), c = this.add.container(p, S, [t, d]).setSize(t.displayWidth, t.displayHeight).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => this.checkAnswer(tt, Z.answer, J, q, c));
+  createOptionButtons(K, J, q) {
+    return K.options.map((_, tt) => {
+      const p = -300 + tt * 330, S = 184, t = this.add.image(0, 0, "ansBox").setScale(0.6667).setOrigin(0.5), d = this.add.text(0, 0, _, { fontFamily: "Waguri", fontSize: "28px", color: "#fff", align: "center" }).setOrigin(0.5), c = this.add.container(p, S, [t, d]).setSize(t.displayWidth, t.displayHeight).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => this.checkAnswer(tt, K.answer, J, q, c));
       return c;
     });
   }
-  checkAnswer(Z, J, q, _, tt) {
-    const p = Z === J, S = p ? "correct" : "incorrect", t = p ? "item_get" : "item_soldout";
+  checkAnswer(K, J, q, _, tt) {
+    const p = K === J, S = p ? "correct" : "incorrect", t = p ? "item_get" : "item_soldout";
     this.sound.play(S), this.showResultIcon(tt, p), this.showStoreResultIcon(_, t, p), _.disableInteractive(), this.optionContainers.forEach((d) => d.disableInteractive()), p && (q === "speed" ? (this.gameScene.boostCount++, this.gameScene.interfaceScene.boostCountText.setText(this.gameScene.boostCount)) : (this.gameScene.timeUpBonus++, this.gameScene.interfaceScene.timeUpCountText.setText(this.gameScene.timeUpBonus))), this.time.delayedCall(1e3, () => {
       this.overlay.setVisible(!1), this.quizPop?.setAlpha(0);
     });
   }
-  showResultIcon(Z, J) {
+  showResultIcon(K, J) {
     const q = J ? "correct" : "incorrect", _ = this.add.image(0, 0, q).setScale(0.5).setOrigin(0.5);
-    Z.add(_);
+    K.add(_);
   }
-  showStoreResultIcon(Z, J, q) {
+  showStoreResultIcon(K, J, q) {
     const _ = q ? 80 : 0, tt = q ? 80 : 0;
-    this.add.image(Z.x + _, Z.y + tt, J).setScale(0.6667).setOrigin(0.5);
+    this.add.image(K.x + _, K.y + tt, J).setScale(0.6667).setOrigin(0.5);
   }
 }
 class qt extends xt.Scene {
@@ -108163,7 +108163,7 @@ class qt extends xt.Scene {
     this.load.spritesheet(Gt, "assets/players/boat/boat_spritesheet.png", { frameWidth: Vt.width, frameHeight: Vt.height }), this.load.image("logo", "assets/icecandy_logo.png");
   }
   create() {
-    const { width: Z, height: J } = this.scale, q = this.add.rectangle(0, 0, Z, J, 13234170).setOrigin(0, 0), _ = this.add.image(Z / 2, J / 2, "logo").setAlpha(0);
+    const { width: K, height: J } = this.scale, q = this.add.rectangle(0, 0, K, J, 13234170).setOrigin(0, 0), _ = this.add.image(K / 2, J / 2, "logo").setAlpha(0);
     _.setY(_.y + 100), this.addTweens({
       targets: _,
       alpha: 1,
@@ -108189,30 +108189,30 @@ class _t extends xt.Scene {
   constructor() {
     super("MainMenu"), this.orientation = 0;
   }
-  init(Z) {
-    this.charactersData = Z.charactersData;
+  init(K) {
+    this.charactersData = K.charactersData;
   }
   create() {
-    const { width: Z, height: J } = this.scale;
-    this.gameScene = this.scene.get("Game"), this.overlay = Ot(this), this.createBackground(Z, J), this.createHowToPlayPopup(Z, J), this.createButtons(), Lt() && this.createOrientationButton(Z, J);
+    const { width: K, height: J } = this.scale;
+    this.gameScene = this.scene.get("Game"), this.overlay = Ot(this), this.createBackground(K, J), this.createHowToPlayPopup(K, J), this.createButtons(), Lt() && this.createOrientationButton(K, J);
   }
   // 자이로 센서 버튼
-  createOrientationButton(Z, J) {
-    this.add.text(Z - 300, J - 70, "0", {
+  createOrientationButton(K, J) {
+    this.add.text(K - 300, J - 70, "0", {
       fontFamily: "Waguri",
       fontSize: "25px",
       color: "#fff"
-    }).setText("자이로 센서 사용"), this.orientationButton = this.add.image(Z - 60, J - 50, "gyroSenso", this.orientation).setInteractive({ useHandCursor: !0 }).setScale(0.6667).on("pointerdown", () => {
+    }).setText("자이로 센서 사용"), this.orientationButton = this.add.image(K - 60, J - 50, "gyroSenso", this.orientation).setInteractive({ useHandCursor: !0 }).setScale(0.6667).on("pointerdown", () => {
       this.orientation = this.orientation === 0 ? 1 : 0, this.orientationButton.setFrame(this.orientation);
     });
   }
-  createBackground(Z, J) {
+  createBackground(K, J) {
     [
-      { x: Z / 2, y: J / 2, key: "mainBG" },
+      { x: K / 2, y: J / 2, key: "mainBG" },
       { x: 150, y: 150, key: "penguin" },
       { x: 1100, y: 200, key: "panda" },
-      { x: Z / 2, y: 460, key: "intro" },
-      { x: Z / 2, y: 170, key: "title" }
+      { x: K / 2, y: 460, key: "intro" },
+      { x: K / 2, y: 170, key: "title" }
     ].forEach(({ x: _, y: tt, key: p }) => {
       const S = this.add.image(_, tt, p).setScale(0.6667);
       if (p === "mainBG") return;
@@ -108284,7 +108284,7 @@ class _t extends xt.Scene {
     }), Wt(this.startButton);
   }
   // 게임 방법 팝업
-  createHowToPlayPopup(Z, J) {
+  createHowToPlayPopup(K, J) {
     const q = this.add.image(0, 0, "howToPlayPop").setScale(0.6667), _ = this.createBubble("단계를 성공하면 상점에 들러 문제를 풀고 아이템을 얻을 수 있어요.", "bubble_1"), tt = this.createBubble("배에 동물 친구들을 태우면 점수가 올라가요.", "bubble_2", 20), p = this.createBubbleWithImages("bubble_3"), S = this.createBubble("화면을 기울여 배를 움직일 수 있어요. 배의 한쪽이 너무 무거우면 배가 뒤집어질 수 있어요.", "bubble_4", 20);
     _.setPosition(-364, -154), tt.setPosition(338, -164), p.setPosition(-250, 74), S.setPosition(346, 10);
     const t = this.add.container(0, 180), d = this.add.text(-500, 0, "제한 시간 내에 많은 ", { fontFamily: "Waguri", fontSize: "37px", color: "#fff" }).setOrigin(0, 0.5), c = this.add.text(d.x + d.width, 0, "동물 친구", { fontFamily: "Waguri", fontSize: "37px", color: "#ffc22f" }).setOrigin(0, 0.5), h = this.add.text(c.x + c.width, 0, "들을 태워 ", { fontFamily: "Waguri", fontSize: "37px", color: "#fff" }).setOrigin(0, 0.5), r = this.add.text(h.x + h.width, 0, "목표 점수", { fontFamily: "Waguri", fontSize: "37px", color: "#ffc22f" }).setOrigin(0, 0.5), n = this.add.text(r.x + r.width, 0, "를 달성하세요.", { fontFamily: "Waguri", fontSize: "37px", color: "#fff" }).setOrigin(0, 0.5);
@@ -108294,10 +108294,10 @@ class _t extends xt.Scene {
     const a = this.add.image(q.displayWidth / 2 - 36, -q.displayHeight / 2 + 36, "closeBtn").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.overlay.setVisible(!1), this.howPopup.setVisible(!1);
     });
-    this.howPopup = this.add.container(Z / 2, J / 2, [q, _, tt, p, S, t, e, a]).setVisible(!1).setDepth(101);
+    this.howPopup = this.add.container(K / 2, J / 2, [q, _, tt, p, S, t, e, a]).setVisible(!1).setDepth(101);
   }
-  createBubble(Z, J, q = 0) {
-    const _ = this.add.image(0, 0, J).setScale(0.6667), tt = this.add.text(q, 0, Z, {
+  createBubble(K, J, q = 0) {
+    const _ = this.add.image(0, 0, J).setScale(0.6667), tt = this.add.text(q, 0, K, {
       fontFamily: "GmarketSans",
       fontSize: "26px",
       color: "#000",
@@ -108307,8 +108307,8 @@ class _t extends xt.Scene {
     }).setOrigin(0.5, 0.5);
     return this.add.container(0, 0, [_, tt]);
   }
-  createBubbleWithImages(Z) {
-    const J = this.add.image(0, 0, Z).setScale(0.6667), q = this.add.container(0, 0, [J]), _ = this.add.container(-J.displayWidth / 2 + 35, -J.displayHeight / 2 + 35);
+  createBubbleWithImages(K) {
+    const J = this.add.image(0, 0, K).setScale(0.6667), q = this.add.container(0, 0, [J]), _ = this.add.container(-J.displayWidth / 2 + 35, -J.displayHeight / 2 + 35);
     q.add(_);
     const tt = 4;
     let p = 0;
@@ -108321,11 +108321,11 @@ class _t extends xt.Scene {
   }
 }
 class te extends At.GameObjects.Container {
-  constructor(Z, J, q, _) {
-    super(Z, J, q), this.scene = Z, this.sprite = Z.matter.add.sprite(J, q, "ship", 0, { shape: _.ship }).setScale(0.5).setDepth(10), this.state = { leftTorque: 0, rightTorque: 0, angleDeg: 0, stageScore: 0 }, this.prevDir = 0, this.warningLight = Z.add.sprite(J, q - 60, "warningLight"), this.warningLight.setScale(0.5), this.warningLight.setDepth(10), this.warningLight.offsetX = -10, this.warningBlinkTimer = null, this.isBlinkOn = !1, this.tiltTime = 0, this.prevTiltDir = 0;
+  constructor(K, J, q, _) {
+    super(K, J, q), this.scene = K, this.sprite = K.matter.add.sprite(J, q, "ship", 0, { shape: _.ship }).setScale(0.5).setDepth(10), this.state = { leftTorque: 0, rightTorque: 0, angleDeg: 0, stageScore: 0 }, this.prevDir = 0, this.warningLight = K.add.sprite(J, q - 60, "warningLight"), this.warningLight.setScale(0.5), this.warningLight.setDepth(10), this.warningLight.offsetX = -10, this.warningBlinkTimer = null, this.isBlinkOn = !1, this.tiltTime = 0, this.prevTiltDir = 0;
   }
-  blinkWarning(Z) {
-    Z ? this.warningBlinkTimer || (this.warningBlinkTimer = this.scene.time.addEvent({
+  blinkWarning(K) {
+    K ? this.warningBlinkTimer || (this.warningBlinkTimer = this.scene.time.addEvent({
       delay: 200,
       // 0.2초
       loop: !0,
@@ -108335,27 +108335,27 @@ class te extends At.GameObjects.Container {
     })) : this.warningBlinkTimer && (this.warningBlinkTimer.remove(!1), this.warningLight.setFrame(0), this.warningBlinkTimer = null, this.isBlinkOn = !1);
   }
   // 배 좌우 이동
-  move(Z, J) {
+  move(K, J) {
     const q = this.sprite.body.velocity.x;
-    if (Z) {
+    if (K) {
       const _ = this.scene.boostActive ? Xt * this.scene.boostMultiplier : Xt;
-      !this.scene.orientation && Lt() ? this.sprite.setVelocityX(Z * J) : this.sprite.setVelocityX(At.Math.Clamp(q + Z * _, -J, J)), Z !== this.prevDir && (this.scene.shipCreak.play({ rate: At.Math.FloatBetween(0.95, 1.05) }), this.prevDir = Z, Z > 0 ? this.warningLight.offsetX = -10 : Z < 0 && (this.warningLight.offsetX = 10));
+      !this.scene.orientation && Lt() ? this.sprite.setVelocityX(K * J) : this.sprite.setVelocityX(At.Math.Clamp(q + K * _, -J, J)), K !== this.prevDir && (this.scene.shipCreak.play({ rate: At.Math.FloatBetween(0.95, 1.05) }), this.prevDir = K, K > 0 ? this.warningLight.offsetX = -10 : K < 0 && (this.warningLight.offsetX = 10));
     } else
       this.sprite.setVelocityX(q * 0.98), this.prevDir = 0;
-    Z !== 0 && this.sprite.setFrame(Z < 0 ? 1 : 0);
+    K !== 0 && this.sprite.setFrame(K < 0 ? 1 : 0);
   }
   // 배 기울기 적용
-  applyTilt(Z) {
+  applyTilt(K) {
     if (this.gameOverTriggered) return;
     this.sprite.angle = At.Math.Linear(this.sprite.angle, this.state.angleDeg, 0.1);
     const J = this.state.angleDeg, q = Math.abs(J), _ = J > 0 ? 1 : J < 0 ? -1 : 0;
-    _ !== 0 && _ !== this.prevTiltDir && (this.tiltTime = 0, this.prevTiltDir = _), q >= It ? (this.tiltTime += Z, this.scene.warning.isPlaying || (this.scene.warning.play(), this.blinkWarning(!0)), this.tiltTime >= 4e3 && this.scene.gameOver()) : (this.tiltTime = 0, this.prevTiltDir = 0, this.scene.warning.isPlaying && (this.scene.warning.stop(), this.blinkWarning(!1))), this.updateWarningLight();
+    _ !== 0 && _ !== this.prevTiltDir && (this.tiltTime = 0, this.prevTiltDir = _), q >= It ? (this.tiltTime += K, this.scene.warning.isPlaying || (this.scene.warning.play(), this.blinkWarning(!0)), this.tiltTime >= 4e3 && this.scene.gameOver("tilt")) : (this.tiltTime = 0, this.prevTiltDir = 0, this.scene.warning.isPlaying && (this.scene.warning.stop(), this.blinkWarning(!1))), this.updateWarningLight();
   }
   // 배가 넘어지는 애니메이션
   fallOver() {
-    const Z = this.sprite;
+    const K = this.sprite;
     this.scene.tweens.add({
-      targets: Z,
+      targets: K,
       angle: this.state.leftTorque > this.state.rightTorque ? -180 : 180,
       duration: 1e3,
       ease: "Sine.easeIn",
@@ -108365,15 +108365,15 @@ class te extends At.GameObjects.Container {
   updateWarningLight() {
     this.updateChildObject(this.warningLight, -60);
   }
-  updateChildObject(Z, J) {
-    if (!Z) return;
-    const q = At.Math.DegToRad(this.sprite.angle), _ = Z.offsetX ?? -10, tt = _ * Math.cos(q) - J * Math.sin(q), p = _ * Math.sin(q) + J * Math.cos(q);
-    Z.x = this.sprite.x + tt, Z.y = this.sprite.y + p, Z.angle = this.sprite.angle;
+  updateChildObject(K, J) {
+    if (!K) return;
+    const q = At.Math.DegToRad(this.sprite.angle), _ = K.offsetX ?? -10, tt = _ * Math.cos(q) - J * Math.sin(q), p = _ * Math.sin(q) + J * Math.cos(q);
+    K.x = this.sprite.x + tt, K.y = this.sprite.y + p, K.angle = this.sprite.angle;
   }
   // 배 상태(좌/우 토크, 기울기, 총 무게) 계산
-  updateState(Z) {
+  updateState(K) {
     let J = 0, q = 0, _ = 0;
-    Z.forEach((tt) => {
+    K.forEach((tt) => {
       const p = Math.abs(tt.relativeX) * tt.weight;
       tt.relativeX < 0 ? J += p : q += p, _ += tt.weight;
     }), this.state.leftTorque = J, this.state.rightTorque = q, this.state.angleDeg = At.Math.Clamp((q - J) * 5e-3, -It, It), this.state.stageScore = _;
@@ -108386,8 +108386,8 @@ class te extends At.GameObjects.Container {
   }
 }
 class ee extends Phaser.GameObjects.Container {
-  constructor(Z, J, q) {
-    super(Z, q, -50), this.scene = Z, Z.add.existing(this), this.obj = Z.add.sprite(0, 0, J.key).setScale(0.2).setDepth(1), this.add(this.obj), this.weight = J.weight, this.onShip = !1, this.onGround = !1, this.relativeX = 0, this.data = J, this.scoreText = Z.add.text(0, -50, `+${this.weight}`, {
+  constructor(K, J, q) {
+    super(K, q, -50), this.scene = K, K.add.existing(this), this.obj = K.add.sprite(0, 0, J.key).setScale(0.2).setDepth(1), this.add(this.obj), this.weight = J.weight, this.onShip = !1, this.onGround = !1, this.relativeX = 0, this.data = J, this.scoreText = K.add.text(0, -50, `+${this.weight}`, {
       fontFamily: "Waguri",
       fontSize: "24px",
       fill: "#834ef5",
@@ -108403,26 +108403,26 @@ class ee extends Phaser.GameObjects.Container {
     };
   }
   // 캐릭터 위치 업데이트 (낙하, 배 위, 좌우 흔들림)
-  update(Z) {
-    const J = Z.sprite.y - 10;
+  update(K) {
+    const J = K.sprite.y - 10;
     if (!this.onShip && !this.onGround) {
       this.y += 2 + this.weight * 0.01, this.x += Math.sin(performance.now() * this.sway.speed + this.sway.offset) * this.sway.amplitude * 0.05, this.x = Phaser.Math.Clamp(this.x, 50, yt - 50), this.obj.scaleX > 0.08 && (this.obj.setScale(this.obj.scaleX - 2e-4), this.setDepth(12));
-      const _ = Z.sprite.x - Z.sprite.displayWidth / 2, tt = Z.sprite.x + Z.sprite.displayWidth / 2;
-      this.y + this.obj.displayHeight >= Mt && this.x >= _ + 20 && this.x <= tt - 20 ? (this.onShip = !0, this.scene.onShipChars.push(this), this.relativeX = this.x - Z.sprite.x, this.y = J - this.obj.displayHeight / 2, this.obj.setScale(0.2), this.setDepth(5), this.shipOn(), this.scoreText.x = 0, this.scoreText.y = -20) : this.y + this.obj.displayHeight >= Ft - 10 && (this.onGround = !0, this.y = Ft - this.obj.displayHeight, this.obj.setScale(0.2), this.moveOffScreen(), this.groundOn());
+      const _ = K.sprite.x - K.sprite.displayWidth / 2, tt = K.sprite.x + K.sprite.displayWidth / 2;
+      this.y + this.obj.displayHeight >= Mt && this.x >= _ + 20 && this.x <= tt - 20 ? (this.onShip = !0, this.scene.onShipChars.push(this), this.relativeX = this.x - K.sprite.x, this.y = J - this.obj.displayHeight / 2, this.obj.setScale(0.2), this.setDepth(5), this.shipOn(), this.scoreText.x = 0, this.scoreText.y = -20) : this.y + this.obj.displayHeight >= Ft - 10 && (this.onGround = !0, this.y = Ft - this.obj.displayHeight, this.obj.setScale(0.2), this.moveOffScreen(), this.groundOn());
     } else if (this.onShip) {
-      const q = Phaser.Math.DegToRad(Z.sprite.angle), _ = this.relativeX * Math.cos(q), tt = this.relativeX * Math.sin(q);
-      this.x = Z.sprite.x + _, this.y = J - this.obj.displayHeight / 2 + tt;
+      const q = Phaser.Math.DegToRad(K.sprite.angle), _ = this.relativeX * Math.cos(q), tt = this.relativeX * Math.sin(q);
+      this.x = K.sprite.x + _, this.y = J - this.obj.displayHeight / 2 + tt;
     }
   }
   // 배 위 애니메이션
   shipOn() {
-    const Z = this.data.key + "_on";
-    this.scene.anims.exists(Z + "_anim") || this.scene.anims.create({
-      key: Z + "_anim",
-      frames: this.scene.anims.generateFrameNumbers(Z, { start: 0, end: 1 }),
+    const K = this.data.key + "_on";
+    this.scene.anims.exists(K + "_anim") || this.scene.anims.create({
+      key: K + "_anim",
+      frames: this.scene.anims.generateFrameNumbers(K, { start: 0, end: 1 }),
       frameRate: 2,
       repeat: -1
-    }), this.obj.play(Z + "_anim"), this.scoreText.setAlpha(1), this.scene.tweens.add({
+    }), this.obj.play(K + "_anim"), this.scoreText.setAlpha(1), this.scene.tweens.add({
       targets: this.scoreText,
       y: -70,
       alpha: 0,
@@ -108433,21 +108433,21 @@ class ee extends Phaser.GameObjects.Container {
   }
   // 수영 애니메이션
   groundOn() {
-    const Z = this.data.key + "_swim", J = this.x <= yt / 2;
-    this.scene.anims.exists(Z) || this.scene.anims.create({
-      key: Z,
-      frames: this.scene.anims.generateFrameNumbers(Z, { start: 0, end: 1 }),
+    const K = this.data.key + "_swim", J = this.x <= yt / 2;
+    this.scene.anims.exists(K) || this.scene.anims.create({
+      key: K,
+      frames: this.scene.anims.generateFrameNumbers(K, { start: 0, end: 1 }),
       frameRate: 2,
       repeat: -1
-    }), this.obj.play(Z, !0), this.obj.flipX = !J;
+    }), this.obj.play(K, !0), this.obj.flipX = !J;
   }
   // 게임 오버시 배에서 떨어져 수영
   fall() {
     this.setDepth(12), this.onShip = !1;
-    const Z = Phaser.Math.Between(Ft - 10, Mt + 50);
+    const K = Phaser.Math.Between(Ft - 10, Mt + 50);
     this.scene.tweens.add({
       targets: this,
-      y: Z,
+      y: K,
       duration: 500 + Math.random() * 300,
       // 조금씩 차이를 줘서 자연스럽게
       ease: "Sine.easeIn",
@@ -108457,7 +108457,7 @@ class ee extends Phaser.GameObjects.Container {
   // 수영중 캐릭터들 좌우 가까운 방향으로 이동
   moveOffScreen() {
     this.scene.swimSound && (this.scene.swimSound.play(), this.groundOn());
-    const Z = this.data.swimSpeed || 200, J = this.x < yt / 2 ? -50 : yt + 50, _ = Math.abs(J - this.x) / Z * 500;
+    const K = this.data.swimSpeed || 200, J = this.x < yt / 2 ? -50 : yt + 50, _ = Math.abs(J - this.x) / K * 500;
     this.scene.tweens.add({
       targets: this,
       x: J,
@@ -108472,14 +108472,14 @@ class ee extends Phaser.GameObjects.Container {
     this.obj.destroy(), this.scoreText.destroy();
   }
 }
-function ie(at, Z) {
+function ie(at, K) {
   let J = 0;
   const q = () => {
-    J >= Z || (J++, se(at, q));
+    J >= K || (J++, se(at, q));
   };
   q();
 }
-function se(at, Z) {
+function se(at, K) {
   if (at.whales.length > 0) return;
   const J = Phaser.Math.Between(0, 1) === 0, q = J ? -150 : yt + 150, _ = J ? 150 : yt - 150, tt = at.matter.add.sprite(q, Mt, "whale", null, {
     isStatic: !0,
@@ -108513,7 +108513,7 @@ function se(at, Z) {
       }
     },
     onComplete: () => {
-      at.whales.includes(tt) && (at.whales = at.whales.filter((d) => d !== tt)), tt.destroy(), Z && Z();
+      at.whales.includes(tt) && (at.whales = at.whales.filter((d) => d !== tt)), tt.destroy(), K && K();
     }
   });
 }
@@ -108521,24 +108521,24 @@ class ne extends xt.Scene {
   constructor() {
     super("Game"), this.ship = null, this.characters = [], this.onShipChars = [], this.boostTimer = 0, this.boostCount = 1, this.boostMultiplier = 2, this.timeUpBonus = 1, this.currentStageIndex = 0, this.totalScore = 0, this.whales = [], this.tiltGamma = 0, this.mobileDir = 0;
   }
-  init(Z) {
-    this.charactersData = Z.charactersData, this.orientation = Z.orientation, this.isTiltMode = this.orientation === 0;
+  init(K) {
+    this.charactersData = K.charactersData, this.orientation = K.orientation, this.isTiltMode = this.orientation === 0;
   }
   create() {
     this.scene.launch("Interface"), this.interfaceScene = this.scene.get("Interface");
-    const { width: Z, height: J } = this.scale;
-    this.add.image(Z / 2, J / 2, "mainGameBG").setScale(0.6667), this.add.image(Z / 2, J, "wave").setOrigin(0.5, 1).setScale(0.6667).setDepth(11), this.add.image(200, J - 80, "game_score").setScale(0.6667).setDepth(13), this.matter.world.setBounds(0, 0, Z, J), this.swimSound = this.sound.add("swim", { volume: 0.5 }), this.timerSound = this.sound.add("timer", { loop: !0, volume: 0.5 }), this.shipCreak = this.sound.add("shipCreak", { volume: 0.3 }), this.warning = this.sound.add("warning", { volume: 0.3 });
+    const { width: K, height: J } = this.scale;
+    this.add.image(K / 2, J / 2, "mainGameBG").setScale(0.6667), this.add.image(K / 2, J, "wave").setOrigin(0.5, 1).setScale(0.6667).setDepth(11), this.add.image(200, J - 80, "game_score").setScale(0.6667).setDepth(13), this.matter.world.setBounds(0, 0, K, J), this.swimSound = this.sound.add("swim", { volume: 0.5 }), this.timerSound = this.sound.add("timer", { loop: !0, volume: 0.5 }), this.shipCreak = this.sound.add("shipCreak", { volume: 0.3 }), this.warning = this.sound.add("warning", { volume: 0.3 });
     const q = this.cache.json.get("shipPhysics");
-    this.ship = new te(this, Z / 2, Mt, q), Lt() || (this.cursors = this.input.keyboard.createCursorKeys()), Lt() && window.DeviceOrientationEvent && (window.addEventListener("deviceorientation", (_) => {
+    this.ship = new te(this, K / 2, Mt, q), Lt() || (this.cursors = this.input.keyboard.createCursorKeys()), Lt() && window.DeviceOrientationEvent && (window.addEventListener("deviceorientation", (_) => {
       const tt = window.innerHeight > window.innerWidth;
       this.tiltGamma = tt ? _.gamma : _.beta;
     }), window.addEventListener("orientationchange", () => {
       setTimeout(() => this.tiltGamma = 0, 100);
-    })), this.orientation == 1 && this.createMobileButton(Z, J), this.createHUD(Z, J), this.scene.get("Interface").events.once("createComplete", () => {
+    })), this.orientation == 1 && this.createMobileButton(K, J), this.createHUD(K, J), this.scene.get("Interface").events.once("createComplete", () => {
       this.resetGame();
     }), this.startStage();
   }
-  update(Z, J) {
+  update(K, J) {
     if (this.gameOverTriggered) return;
     this.ship.sprite.y = Mt;
     let q = 0;
@@ -108567,8 +108567,8 @@ class ne extends xt.Scene {
     this.interfaceScene.timer += Bt, this.timeUpBonus -= 1, this.interfaceScene.timeUpCountText.setText(this.timeUpBonus);
   }
   // 게임 시작
-  startStage(Z = 0) {
-    this.currentStageIndex = Z, this.targetScore = Rt[Z].targetScore, this.charactersData.sort(() => Math.random() - 0.5), this.charTimer = this.time.addEvent({
+  startStage(K = 0) {
+    this.currentStageIndex = K, this.targetScore = Rt[K].targetScore, this.charactersData.sort(() => Math.random() - 0.5), this.charTimer = this.time.addEvent({
       delay: 1e3,
       callback: () => this.createChar(),
       loop: !0
@@ -108576,10 +108576,11 @@ class ne extends xt.Scene {
     const J = Rt[this.currentStageIndex].whaleCount || 0;
     J > 0 && ie(this, J);
   }
-  gameOver() {
-    this.gameOverTriggered = !0, this.sound.play("fail"), this.ship.stop(), this.ship.fallOver(), this.onShipChars.forEach((Z) => Z.fall()), this.time.delayedCall(1e3, () => {
+  gameOver(K = "unknown") {
+    this.gameOverTriggered = !0, this.sound.play("fail"), this.ship.stop(), this.ship.fallOver(), this.onShipChars.forEach((J) => J.fall()), this.time.delayedCall(1e3, () => {
       this.scene.pause("Interface"), this.scene.launch("GameOver", {
-        score: `${this.ship.state.stageScore + this.totalScore}`
+        score: `${this.ship.state.stageScore + this.totalScore}`,
+        reason: K
       });
     });
   }
@@ -108593,7 +108594,7 @@ class ne extends xt.Scene {
       score: `${this.ship.state.stageScore + this.totalScore}`
     }), this.totalScore += this.ship.state.stageScore;
   }
-  createHUD(Z, J) {
+  createHUD(K, J) {
     this.hudScore = this.add.text(125, J - 60, "0", {
       fontFamily: "Waguri",
       fontSize: "34px",
@@ -108608,20 +108609,20 @@ class ne extends xt.Scene {
       color: "#fff"
     }).setDepth(13).setOrigin(0.5, 0.5);
   }
-  createMobileButton(Z, J) {
-    this.touchLeft = this.add.image(120, J / 2, "game_touch_left").setInteractive().setScale(0.6667), this.touchRight = this.add.image(Z - 120, J / 2, "game_touch_right").setInteractive().setScale(0.6667), this.touchLeft.on("pointerdown", () => this.mobileDir = -1), this.touchLeft.on("pointerup", () => this.mobileDir = 0), this.touchLeft.on("pointerout", () => this.mobileDir = 0), this.touchLeft.on("pointerupoutside", () => this.mobileDir = 0), this.touchRight.on("pointerdown", () => this.mobileDir = 1), this.touchRight.on("pointerup", () => this.mobileDir = 0), this.touchRight.on("pointerout", () => this.mobileDir = 0), this.touchRight.on("pointerupoutside", () => this.mobileDir = 0);
+  createMobileButton(K, J) {
+    this.touchLeft = this.add.image(120, J / 2, "game_touch_left").setInteractive().setScale(0.6667), this.touchRight = this.add.image(K - 120, J / 2, "game_touch_right").setInteractive().setScale(0.6667), this.touchLeft.on("pointerdown", () => this.mobileDir = -1), this.touchLeft.on("pointerup", () => this.mobileDir = 0), this.touchLeft.on("pointerout", () => this.mobileDir = 0), this.touchLeft.on("pointerupoutside", () => this.mobileDir = 0), this.touchRight.on("pointerdown", () => this.mobileDir = 1), this.touchRight.on("pointerup", () => this.mobileDir = 0), this.touchRight.on("pointerout", () => this.mobileDir = 0), this.touchRight.on("pointerupoutside", () => this.mobileDir = 0);
   }
   // 캐릭터 생성 ZONE_COUNT로 구역 나눠서 생성
   createChar() {
     if (this.gameOverTriggered) return;
-    const Z = this.charactersData[Phaser.Math.Between(0, this.charactersData.length - 1)], J = yt / Ut;
+    const K = this.charactersData[Phaser.Math.Between(0, this.charactersData.length - 1)], J = yt / Ut;
     (!this.zonePool || this.zonePool.length === 0) && (this.zonePool = Phaser.Utils.Array.NumberArray(0, Ut - 1), Phaser.Utils.Array.Shuffle(this.zonePool));
-    const q = this.zonePool.pop(), _ = J * q, tt = _ + J, p = Phaser.Math.Between(_ + 100, tt - 100), S = new ee(this, Z, p);
+    const q = this.zonePool.pop(), _ = J * q, tt = _ + J, p = Phaser.Math.Between(_ + 100, tt - 100), S = new ee(this, K, p);
     this.characters.push(S);
   }
   // 다음 스테이지 시작 전 준비
   resetStage() {
-    this.gameOverTriggered = !1, this.charTimer && (this.charTimer.remove(), this.charTimer = null), this.characters.forEach((Z) => Z.destroy()), this.characters = [], this.onShipChars = [], this.tweens.killAll(), this.whales.forEach((Z) => Z.destroy()), this.whales = [], this.interfaceScene.reset(), this.ship.reset(), this.boostActive = !1, this.boostCount > 0 ? (this.interfaceScene.boostButton.setFrame(0), this.interfaceScene.boostButton.setInteractive({ useHandCursor: !0 })) : (this.interfaceScene.boostButton.setFrame(1), this.interfaceScene.boostButton.disableInteractive()), this.interfaceScene.boostGauge.clear(), this.boostTimer = 0, this.timerSound.stop();
+    this.gameOverTriggered = !1, this.charTimer && (this.charTimer.remove(), this.charTimer = null), this.characters.forEach((K) => K.destroy()), this.characters = [], this.onShipChars = [], this.tweens.killAll(), this.whales.forEach((K) => K.destroy()), this.whales = [], this.interfaceScene.reset(), this.ship.reset(), this.boostActive = !1, this.boostCount > 0 ? (this.interfaceScene.boostButton.setFrame(0), this.interfaceScene.boostButton.setInteractive({ useHandCursor: !0 })) : (this.interfaceScene.boostButton.setFrame(1), this.interfaceScene.boostButton.disableInteractive()), this.interfaceScene.boostGauge.clear(), this.boostTimer = 0, this.timerSound.stop();
   }
   resetGame() {
     this.resetStage(), this.currentStageIndex = 0, this.boostCount = 1, this.timeUpBonus = 1, this.totalScore = 0, this.interfaceScene.boostCountText.setText(this.boostCount), this.interfaceScene.timeUpCountText.setText(this.timeUpBonus);
@@ -108633,14 +108634,14 @@ class re extends xt.Scene {
   }
   create() {
     this.createBGM();
-    const { width: Z, height: J } = this.scale;
-    this.gameScene = this.scene.get("Game"), this.createTimerBar(), this.boostButton = this.add.image(Z / 2 - 40, J - 50, "boostIcon").setInteractive({ useHandCursor: !0 }).setScale(0.6667).setDepth(12), this.boostGaugeWidth = 10, this.boostGaugeHeight = 66, this.boostGaugeX = this.boostButton.x - 48, this.boostGaugeY = this.boostButton.y - this.boostGaugeHeight / 2 + 5, this.boostGaugeBG = this.add.graphics().setDepth(13), this.boostGaugeBG.fillStyle(5592405, 0.7), this.boostGaugeBG.fillRect(this.boostGaugeX, this.boostGaugeY, this.boostGaugeWidth, this.boostGaugeHeight), this.boostGauge = this.add.graphics().setDepth(13), this.boostCountText = this.add.text(Z / 2 - 43, J - 88, "0", {
+    const { width: K, height: J } = this.scale;
+    this.gameScene = this.scene.get("Game"), this.createTimerBar(), this.boostButton = this.add.image(K / 2 - 40, J - 50, "boostIcon").setInteractive({ useHandCursor: !0 }).setScale(0.6667).setDepth(12), this.boostGaugeWidth = 10, this.boostGaugeHeight = 66, this.boostGaugeX = this.boostButton.x - 48, this.boostGaugeY = this.boostButton.y - this.boostGaugeHeight / 2 + 5, this.boostGaugeBG = this.add.graphics().setDepth(13), this.boostGaugeBG.fillStyle(5592405, 0.7), this.boostGaugeBG.fillRect(this.boostGaugeX, this.boostGaugeY, this.boostGaugeWidth, this.boostGaugeHeight), this.boostGauge = this.add.graphics().setDepth(13), this.boostCountText = this.add.text(K / 2 - 43, J - 88, "0", {
       fontFamily: "Waguri",
       fontSize: "12px",
       color: "#fff"
     }).setDepth(12).setText(this.gameScene.boostCount), this.boostButton.on("pointerdown", () => {
       this.gameScene.boostCount > 0 && !this.gameScene.boostActive && this.gameScene.activateBoost();
-    }), this.timeUpItem = this.add.image(Z / 2 + 40, J - 50, "timeupIcon").setInteractive({ useHandCursor: !0 }).setScale(0.6667).setDepth(12), this.timeUpCountText = this.add.text(Z / 2 + 37, J - 88, "0", {
+    }), this.timeUpItem = this.add.image(K / 2 + 40, J - 50, "timeupIcon").setInteractive({ useHandCursor: !0 }).setScale(0.6667).setDepth(12), this.timeUpCountText = this.add.text(K / 2 + 37, J - 88, "0", {
       fontFamily: "Waguri",
       fontSize: "12px",
       color: "#fff"
@@ -108657,24 +108658,24 @@ class re extends xt.Scene {
     this.bgmButton.setFrame(this.bgm.isPlaying ? 0 : 1);
   }
   // 스테이지 타이머
-  updateTimer(Z) {
+  updateTimer(K) {
     if (this.gameScene.gameOverTriggered) return;
-    this.timer -= Z, this.timer = Phaser.Math.Clamp(this.timer, 0, Dt);
+    this.timer -= K, this.timer = Phaser.Math.Clamp(this.timer, 0, Dt);
     const J = this.timer / Dt, { x: q, y: _, width: tt, height: p, radius: S } = this.timerBarConfig;
     this.timerBar.clear();
     const t = tt * J;
-    t > 0 && (this.timerBar.fillStyle(this.timer <= 1e4 ? 16731691 : 32157, 0.7), this.timerBar.fillRoundedRect(q, _, t, p, S), this.timerEndIcon.x = q + t, this.timerEndIcon.y = _, this.timer <= 1e4 ? (this.gameScene.timerSound.isPlaying || this.gameScene.timerSound.play(), this.timerEndSway = { amplitude: 3, speed: 0.05 }, this.timerEndIcon.angle += Math.sin(performance.now() * this.timerEndSway.speed) * this.timerEndSway.amplitude, this.timerEndIcon.setFrame(Math.floor(performance.now() / 200) % 2)) : (this.timerEndIcon.setFrame(0), this.timerEndIcon.angle = 0)), this.timer <= 0 && (this.gameScene.gameOverTriggered = !0, this.gameScene.timerSound.stop(), this.gameScene.ship.stop(), this.gameScene.ship.state.stageScore + this.gameScene.totalScore >= this.gameScene.targetScore ? this.gameScene.currentStageIndex >= Rt.length - 1 ? this.gameScene.gameClear() : this.gameScene.nextStage() : this.gameScene.gameOver());
+    t > 0 && (this.timerBar.fillStyle(this.timer <= 1e4 ? 16731691 : 32157, 0.7), this.timerBar.fillRoundedRect(q, _, t, p, S), this.timerEndIcon.x = q + t, this.timerEndIcon.y = _, this.timer <= 1e4 ? (this.gameScene.timerSound.isPlaying || this.gameScene.timerSound.play(), this.timerEndSway = { amplitude: 3, speed: 0.05 }, this.timerEndIcon.angle += Math.sin(performance.now() * this.timerEndSway.speed) * this.timerEndSway.amplitude, this.timerEndIcon.setFrame(Math.floor(performance.now() / 200) % 2)) : (this.timerEndIcon.setFrame(0), this.timerEndIcon.angle = 0)), this.timer <= 0 && (this.gameScene.gameOverTriggered = !0, this.gameScene.timerSound.stop(), this.gameScene.ship.stop(), this.gameScene.ship.state.stageScore + this.gameScene.totalScore >= this.gameScene.targetScore ? this.gameScene.currentStageIndex >= Rt.length - 1 ? this.gameScene.gameClear() : this.gameScene.nextStage() : this.gameScene.gameOver("timeout"));
   }
   createTimerBar() {
     this.timerBarBG = this.add.graphics();
-    const Z = this.scale.width / 2 - 464 / 2, J = 40 - 20 / 2, q = 464, _ = 20, tt = 10;
-    this.timerBarBG.fillStyle(16777215, 0.7), this.timerBarBG.fillRoundedRect(Z, J, q, _, tt), this.timerBarBG.setDepth(12), this.timerBar = this.add.graphics(), this.timerBar.fillStyle(32157, 0.7), this.timerBar.fillRoundedRect(Z, J, q, _, tt), this.timerBar.setDepth(12), this.timerBarConfig = {
-      x: Z,
+    const K = this.scale.width / 2 - 464 / 2, J = 40 - 20 / 2, q = 464, _ = 20, tt = 10;
+    this.timerBarBG.fillStyle(16777215, 0.7), this.timerBarBG.fillRoundedRect(K, J, q, _, tt), this.timerBarBG.setDepth(12), this.timerBar = this.add.graphics(), this.timerBar.fillStyle(32157, 0.7), this.timerBar.fillRoundedRect(K, J, q, _, tt), this.timerBar.setDepth(12), this.timerBarConfig = {
+      x: K,
       y: J,
       width: q,
       height: _,
       radius: tt
-    }, this.timerEndIcon = this.add.image(Z, J, "timer").setScale(0.12).setDepth(13).setOrigin(0.5, 0.5);
+    }, this.timerEndIcon = this.add.image(K, J, "timer").setScale(0.12).setDepth(13).setOrigin(0.5, 0.5);
   }
   reset() {
     this.timer = Dt;
@@ -108685,10 +108686,10 @@ class ae extends xt.Scene {
     super({ key: "Pause" });
   }
   create() {
-    const { width: Z, height: J } = this.scale;
-    this.gameScene = this.scene.get("Game"), this.overlay = Ot(this), this.overlay.setVisible(!0), this.add.image(Z / 2 - 100, J / 2 + 40, "button_home").setScale(0.6667).setInteractive({ useHandCursor: !0 }).setDepth(101).on("pointerdown", () => {
+    const { width: K, height: J } = this.scale;
+    this.gameScene = this.scene.get("Game"), this.overlay = Ot(this), this.overlay.setVisible(!0), this.add.image(K / 2 - 100, J / 2 + 40, "button_home").setScale(0.6667).setInteractive({ useHandCursor: !0 }).setDepth(101).on("pointerdown", () => {
       this.scene.stop("Pause"), this.gameScene.resetGame(), this.scene.stop("Game"), this.gameScene.scene.stop("Interface"), this.scene.start("MainMenu");
-    }), this.add.image(Z / 2 + 100, J / 2 + 40, "button_resume").setScale(0.6667).setInteractive({ useHandCursor: !0 }).setDepth(101).on("pointerdown", () => {
+    }), this.add.image(K / 2 + 100, J / 2 + 40, "button_resume").setScale(0.6667).setInteractive({ useHandCursor: !0 }).setDepth(101).on("pointerdown", () => {
       this.scene.stop("Pause"), this.scene.resume("Game"), this.gameScene.scene.resume("Interface");
     });
   }
@@ -108697,50 +108698,59 @@ class oe extends xt.Scene {
   constructor() {
     super({ key: "GameOver" });
   }
-  init(Z) {
-    this.score = Z.score;
+  init(K) {
+    this.score = K.score, this.reason = K.reason, console.log(this.reason);
   }
   create() {
-    const { width: Z, height: J } = this.scale;
+    const { width: K, height: J } = this.scale;
     this.gameScene = this.scene.get("Game"), this.overlay = Ot(this), this.overlay.setVisible(!0);
     const q = this.add.image(0, 0, "stage_fail").setScale(0.6667), _ = this.add.image(0, q.displayHeight / 2 - 40, "button_home").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.gameScene.resetGame(), this.gameScene.scene.stop("Game"), this.gameScene.scene.stop("Interface"), this.scene.stop("GameOver"), this.gameScene.scene.start("MainMenu");
     });
-    this.gameOverScoreText = this.add.text(120, 32, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.gameOverPop = this.add.container(Z / 2, J / 2, [q, _, this.gameOverScoreText]).setDepth(101);
+    this.gameOverScoreText = this.add.text(120, 32, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.gameOverStageIndex = this.add.text(-260, 28, this.gameScene.currentStageIndex + 1, { fontFamily: "Waguri", fontSize: "36px", color: "#6e2802" }).setOrigin(0.5, 0.5);
+    const tt = this.getReasonText(), p = this.add.text(0, 90, tt, {
+      fontFamily: "Waguri",
+      fontSize: "38px",
+      color: "#ff4444"
+    }).setOrigin(0.5);
+    this.gameOverPop = this.add.container(K / 2, J / 2, [q, _, this.gameOverScoreText, this.gameOverStageIndex, p]).setDepth(101);
+  }
+  getReasonText() {
+    return this.reason === "timeout" ? "시간 초과로 종료되었어요!" : this.reason === "tilt" ? "배가 기울어 전복되었어요!" : "게임이 종료되었습니다.";
   }
 }
 class he extends xt.Scene {
   constructor() {
     super({ key: "NextStage" });
   }
-  init(Z) {
-    this.score = Z.score;
+  init(K) {
+    this.score = K.score;
   }
   create() {
-    const { width: Z, height: J } = this.scale;
+    const { width: K, height: J } = this.scale;
     this.gameScene = this.scene.get("Game"), this.overlay = Ot(this), this.overlay.setVisible(!0);
     const q = this.add.image(0, 0, "stage_success").setScale(0.6667), _ = this.add.image(-90, q.displayHeight / 2 - 100, "button_store").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.scene.stop(), this.gameScene.scene.launch("Quiz");
     }), tt = this.add.image(90, q.displayHeight / 2 - 100, "button_next").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.scene.stop("NextStage"), this.scene.resume("Game"), this.gameScene.scene.resume("Interface"), this.gameScene.resetStage(), this.gameScene.currentStageIndex++, this.gameScene.startStage(this.gameScene.currentStageIndex);
     });
-    this.nextStageScoreText = this.add.text(-14, 44, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.nextStagePop = this.add.container(Z / 2, J / 2, [q, _, tt, this.nextStageScoreText]).setDepth(101);
+    this.nextStageScoreText = this.add.text(-14, 44, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.nextStagePop = this.add.container(K / 2, J / 2, [q, _, tt, this.nextStageScoreText]).setDepth(101);
   }
 }
 class le extends xt.Scene {
   constructor() {
     super({ key: "GameClear" });
   }
-  init(Z) {
-    this.score = Z.score;
+  init(K) {
+    this.score = K.score;
   }
   create() {
-    const { width: Z, height: J } = this.scale;
+    const { width: K, height: J } = this.scale;
     this.gameScene = this.scene.get("Game");
     const q = this.add.image(0, 0, "stage_finish").setScale(0.6667), _ = this.add.image(0, q.displayHeight / 2 - 120, "button_finish").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.gameScene.scene.stop("Game"), this.gameScene.scene.stop("Interface"), this.scene.stop("GameClear"), this.gameScene.scene.start("MainMenu");
     });
-    this.finishScoreText = this.add.text(-128, 130, this.score, { fontFamily: "Waguri", fontSize: "42px", color: "#0048a2" }).setOrigin(0.5, 0.5), this.stageFinishPop = this.add.container(Z / 2, J / 2, [q, _, this.finishScoreText]).setDepth(101);
+    this.finishScoreText = this.add.text(-128, 130, this.score, { fontFamily: "Waguri", fontSize: "42px", color: "#0048a2" }).setOrigin(0.5, 0.5), this.stageFinishPop = this.add.container(K / 2, J / 2, [q, _, this.finishScoreText]).setDepth(101);
   }
 }
 xt.Scene.prototype.addTweens = function(at) {
