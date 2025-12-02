@@ -107944,6 +107944,9 @@ class jt extends xt.Scene {
     }).setAlpha(0), this.add.text(0, 0, ".", {
       fontFamily: "GmarketSans",
       fontSize: "1px"
+    }).setAlpha(0), this.add.text(0, 0, ".", {
+      fontFamily: "Cafe24Ssurround",
+      fontSize: "1px"
     }).setAlpha(0), this.load.audio("bgm", "assets/sound/music/bgm.mp3"), this.load.spritesheet("bgm", "assets/mainGame/bgm.png", {
       frameWidth: 74,
       frameHeight: 74
@@ -107979,7 +107982,7 @@ class jt extends xt.Scene {
     }), this.load.spritesheet("whale_spout", "assets/charaters/whale_spout.png", {
       frameWidth: 669,
       frameHeight: 550
-    }), this.load.image("stage_fail", "assets/gameOver/stage_fail.png"), this.load.image("button_home", "assets/gameOver/button_home.png"), this.load.image("button_resume", "assets/gameOver/btn_resume.png"), this.load.image("stage_success", "assets/gameOver/stage_success.png"), this.load.image("button_store", "assets/gameOver/button_store.png"), this.load.image("button_next", "assets/gameOver/button_next.png"), this.load.image("stage_finish", "assets/gameOver/stage_finish.png"), this.load.image("button_finish", "assets/gameOver/button_finish.png"), this.load.image("store_bg", "assets/quiz/store_bg.png"), this.load.image("store_result_speed", "assets/quiz/store_result_speed.png"), this.load.image("store_result_time", "assets/quiz/store_result_time.png"), this.load.image("store_item_speed", "assets/quiz/store_item_speed.png"), this.load.image("store_item_time", "assets/quiz/store_item_time.png"), this.load.image("boat_store_quiz_box", "assets/quiz/boat_store_quiz_box.png"), this.load.image("ansBox", "assets/quiz/ansBox.png"), this.load.image("correct", "assets/quiz/correct.png"), this.load.image("incorrect", "assets/quiz/incorrect.png"), this.load.image("item_get", "assets/quiz/item_get.png"), this.load.image("item_soldout", "assets/quiz/item_soldout.png"), this.load.spritesheet("gyroSenso", "assets/mobile/gyroSenso.png", {
+    }), this.load.image("stage_fail", "assets/gameOver/stage_fail.png"), this.load.image("button_home", "assets/gameOver/button_home.png"), this.load.image("button_resume", "assets/gameOver/btn_resume.png"), this.load.image("failText", "assets/gameOver/failText.png"), this.load.image("stage_success", "assets/gameOver/stage_success.png"), this.load.image("button_store", "assets/gameOver/button_store.png"), this.load.image("button_next", "assets/gameOver/button_next.png"), this.load.image("stage_finish", "assets/gameOver/stage_finish.png"), this.load.image("button_finish", "assets/gameOver/button_finish.png"), this.load.image("store_bg", "assets/quiz/store_bg.png"), this.load.image("store_result_speed", "assets/quiz/store_result_speed.png"), this.load.image("store_result_time", "assets/quiz/store_result_time.png"), this.load.image("store_item_speed", "assets/quiz/store_item_speed.png"), this.load.image("store_item_time", "assets/quiz/store_item_time.png"), this.load.image("boat_store_quiz_box", "assets/quiz/boat_store_quiz_box.png"), this.load.image("ansBox", "assets/quiz/ansBox.png"), this.load.image("correct", "assets/quiz/correct.png"), this.load.image("incorrect", "assets/quiz/incorrect.png"), this.load.image("item_get", "assets/quiz/item_get.png"), this.load.image("item_soldout", "assets/quiz/item_soldout.png"), this.load.spritesheet("gyroSenso", "assets/mobile/gyroSenso.png", {
       frameWidth: 128,
       frameHeight: 76
     }), this.load.image("game_touch_right", "assets/mobile/game_touch_right.png"), this.load.image("game_touch_left", "assets/mobile/game_touch_left.png");
@@ -108699,24 +108702,29 @@ class oe extends xt.Scene {
     super({ key: "GameOver" });
   }
   init(K) {
-    this.score = K.score, this.reason = K.reason, console.log(this.reason);
+    this.score = K.score, this.reason = K.reason;
   }
   create() {
     const { width: K, height: J } = this.scale;
     this.gameScene = this.scene.get("Game"), this.overlay = Ot(this), this.overlay.setVisible(!0);
-    const q = this.add.image(0, 0, "stage_fail").setScale(0.6667), _ = this.add.image(0, q.displayHeight / 2 - 40, "button_home").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
+    const q = this.add.image(0, 0, "stage_fail").setScale(0.6667).setOrigin(0.5), _ = this.add.image(0, q.displayHeight / 2 - 40, "button_home").setScale(0.6667).setInteractive({ useHandCursor: !0 }).on("pointerdown", () => {
       this.gameScene.resetGame(), this.gameScene.scene.stop("Game"), this.gameScene.scene.stop("Interface"), this.scene.stop("GameOver"), this.gameScene.scene.start("MainMenu");
-    });
-    this.gameOverScoreText = this.add.text(120, 32, this.score, { fontFamily: "Waguri", fontSize: "46px", color: "#fff" }).setOrigin(0.5, 0.5), this.gameOverStageIndex = this.add.text(-260, 28, this.gameScene.currentStageIndex + 1, { fontFamily: "Waguri", fontSize: "36px", color: "#6e2802" }).setOrigin(0.5, 0.5);
-    const tt = this.getReasonText(), p = this.add.text(0, 90, tt, {
-      fontFamily: "Waguri",
+    }), tt = this.add.text(0, 0, `${this.gameScene.currentStageIndex + 1}단계`, {
+      fontFamily: "Cafe24Ssurround",
       fontSize: "38px",
-      color: "#ff4444"
-    }).setOrigin(0.5);
-    this.gameOverPop = this.add.container(K / 2, J / 2, [q, _, this.gameOverScoreText, this.gameOverStageIndex, p]).setDepth(101);
+      color: "#6e2802"
+    }).setOrigin(0, 0.5), p = this.add.image(0, 0, "failText").setScale(0.6667).setOrigin(0, 0.5), S = this.add.text(0, 0, this.getReasonText(), {
+      fontFamily: "Cafe24Ssurround",
+      fontSize: "38px",
+      color: "#6e2802"
+    }).setOrigin(0, 0.5), t = 14;
+    let c = -(tt.displayWidth + t + p.displayWidth + t + S.displayWidth) / 2;
+    tt.x = c, c += tt.displayWidth + t, p.x = c, c += p.displayWidth + t, S.x = c;
+    const h = this.add.container(0, 30, [tt, p, S]);
+    this.gameOverPop = this.add.container(K / 2, J / 2, [q, _, h]).setDepth(101);
   }
   getReasonText() {
-    return this.reason === "timeout" ? "시간 초과로 종료되었어요!" : this.reason === "tilt" ? "배가 기울어 전복되었어요!" : "게임이 종료되었습니다.";
+    return this.reason === "timeout" ? "필요 점수에 도달하지 못했어요!" : this.reason === "tilt" ? "배가 기울어 전복되었어요!" : "게임이 종료되었습니다.";
   }
 }
 class he extends xt.Scene {

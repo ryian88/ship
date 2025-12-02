@@ -5,9 +5,16 @@
 
  @font-face { 
  font-family: 'GmarketSans'; 
- src: url("./font/GmarketSansTTFMedium.ttf") format("truetype"); 
+ src: url("./fonts/GmarketSansTTFMedium.ttf") format("truetype"); 
  } 
 
+ @font-face { 
+ font-family: 'Cafe24Ssurround'; 
+ src: url("./fonts//Cafe24Ssurround-v2.0.ttf") format("truetype"); 
+ } 
+
+
+ 
 html, body, div, span, ul, ol, li { 
  margin: 0; 
  padding: 0; 
